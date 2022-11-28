@@ -1,0 +1,1007 @@
+@startuml
+class com.toedter.calendar.JDateChooserBeanInfo {
+}
+class archivo.Registrar {
++ {static} String nombredato
++ {static} String correodato
+~ Connection con
+~ Statement stmt
+- java.awt.Canvas canvas1
+- javax.swing.JPasswordField contraseña
+- javax.swing.JPasswordField contraseña1
+- javax.swing.JTextPane correo
+- javax.swing.JLabel jLabel1
+- javax.swing.JLabel jLabel2
+- javax.swing.JLabel jLabel3
+- javax.swing.JLabel jLabel4
+- javax.swing.JLabel jLabel5
+- javax.swing.JLabel jLabel6
+- javax.swing.JPanel jPanel1
+- javax.swing.JScrollPane jScrollPane1
+- javax.swing.JScrollPane jScrollPane2
+- javax.swing.JTextPane nombre
+- javax.swing.JButton registrarse
+- javax.swing.JButton regresar
++ void habilitarBotonRegistrarse()
+- void initComponents()
+- void regresarActionPerformed(java.awt.event.ActionEvent)
+- void registrarseActionPerformed(java.awt.event.ActionEvent)
+- void contraseñaActionPerformed(java.awt.event.ActionEvent)
+- void correoKeyTyped(java.awt.event.KeyEvent)
+- void nombreKeyTyped(java.awt.event.KeyEvent)
+- void contraseña1ActionPerformed(java.awt.event.ActionEvent)
+- void nombreKeyReleased(java.awt.event.KeyEvent)
+- void correoKeyReleased(java.awt.event.KeyEvent)
+- void contraseñaKeyReleased(java.awt.event.KeyEvent)
+- void contraseña1KeyReleased(java.awt.event.KeyEvent)
++ {static} void main(String[])
+}
+class com.toedter.calendar.JTextFieldDateEditor {
+- {static} long serialVersionUID
+# Date date
+# SimpleDateFormat dateFormatter
+# MaskFormatter maskFormatter
+# String datePattern
+# String maskPattern
+# char placeholder
+# Color darkGreen
+# DateUtil dateUtil
+- boolean isMaskVisible
+- boolean ignoreDatePatternChange
+- int hours
+- int minutes
+- int seconds
+- int millis
+- Calendar calendar
++ Date getDate()
++ void setDate(Date)
+# void setDate(Date,boolean)
++ void setDateFormatString(String)
++ String getDateFormatString()
++ JComponent getUiComponent()
++ void caretUpdate(CaretEvent)
++ void focusLost(FocusEvent)
+- void checkText()
++ void focusGained(FocusEvent)
++ void setLocale(Locale)
++ String createMaskFromDatePattern(String)
++ boolean isMaskVisible()
++ void setMaskVisible(boolean)
++ Dimension getPreferredSize()
++ void actionPerformed(ActionEvent)
++ void setEnabled(boolean)
++ Date getMaxSelectableDate()
++ Date getMinSelectableDate()
++ void setMaxSelectableDate(Date)
++ void setMinSelectableDate(Date)
++ void setSelectableDateRange(Date,Date)
++ {static} void main(String[])
+}
+class com.toedter.calendar.JCalendarBeanInfo {
+}
+class archivo.TrikiVisual {
+~ String turno
+~ String siguienteJuego
+~ String nombrej1
+~ String nombrej2
+~ String turnonom
+~ JLabel[] lbs
+~ int[][] vs
+- javax.swing.JButton botonAtras1
+- javax.swing.JButton botonCalendario1
+- javax.swing.JButton botonCambiarCuenta1
+- javax.swing.JButton botonCuenta1
+- javax.swing.JButton botonSesiones1
+- javax.swing.JButton botoniniciar
+- javax.swing.JButton botonreiniciar
+- java.awt.Canvas canvas1
+- javax.swing.JLabel espacio1
+- javax.swing.JLabel espacio10
+- javax.swing.JLabel espacio11
+- javax.swing.JLabel espacio2
+- javax.swing.JLabel espacio3
+- javax.swing.JLabel espacio4
+- javax.swing.JLabel espacio5
+- javax.swing.JLabel espacio6
+- javax.swing.JLabel espacio7
+- javax.swing.JLabel espacio8
+- javax.swing.JLabel espacio9
+- javax.swing.JLabel jLabel1
+- javax.swing.JLabel jLabel2
+- javax.swing.JLabel jLabel3
+- javax.swing.JLabel jLabel5
+- javax.swing.JLabel jLabel6
+- javax.swing.JPanel jPanel1
+- javax.swing.JPanel jPanel2
+- javax.swing.JPanel jPanel3
+- javax.swing.JTextField nombre1
+- javax.swing.JTextField nombre2
+- javax.swing.JLabel turnotext
++ void habilitarBotonIniciar()
+- void initComponents()
+- void botonCuenta1ActionPerformed(java.awt.event.ActionEvent)
+- void botonSesiones1ActionPerformed(java.awt.event.ActionEvent)
+- void botonCambiarCuenta1ActionPerformed(java.awt.event.ActionEvent)
+- void botonAtras1ActionPerformed(java.awt.event.ActionEvent)
+- void botonCalendario1ActionPerformed(java.awt.event.ActionEvent)
+- void espacio2MouseClicked(java.awt.event.MouseEvent)
+- void espacio2MousePressed(java.awt.event.MouseEvent)
+- void espacio1MouseClicked(java.awt.event.MouseEvent)
+- void espacio1MousePressed(java.awt.event.MouseEvent)
+- void espacio3MouseClicked(java.awt.event.MouseEvent)
+- void espacio3MousePressed(java.awt.event.MouseEvent)
+- void espacio4MouseClicked(java.awt.event.MouseEvent)
+- void espacio4MousePressed(java.awt.event.MouseEvent)
+- void espacio5MouseClicked(java.awt.event.MouseEvent)
+- void espacio5MousePressed(java.awt.event.MouseEvent)
+- void espacio6MouseClicked(java.awt.event.MouseEvent)
+- void espacio6MousePressed(java.awt.event.MouseEvent)
+- void espacio7MouseClicked(java.awt.event.MouseEvent)
+- void espacio7MousePressed(java.awt.event.MouseEvent)
+- void espacio8MouseClicked(java.awt.event.MouseEvent)
+- void espacio8MousePressed(java.awt.event.MouseEvent)
+- void espacio9MouseClicked(java.awt.event.MouseEvent)
+- void espacio9MousePressed(java.awt.event.MouseEvent)
+- void botonreiniciarActionPerformed(java.awt.event.ActionEvent)
+- void botoniniciarActionPerformed(java.awt.event.ActionEvent)
+- void espacio10MouseClicked(java.awt.event.MouseEvent)
+- void espacio10MousePressed(java.awt.event.MouseEvent)
+- void espacio11MouseClicked(java.awt.event.MouseEvent)
+- void espacio11MousePressed(java.awt.event.MouseEvent)
+- void nombre1ActionPerformed(java.awt.event.ActionEvent)
+- void nombre1KeyReleased(java.awt.event.KeyEvent)
+- void nombre2KeyReleased(java.awt.event.KeyEvent)
++ void presionar(int)
++ void cambiarTurno()
+- void comprobarGanador()
++ {static} void main(String[])
+}
+class com.toedter.calendar.MinMaxDateEvaluator {
+- DateUtil dateUtil
++ boolean isSpecial(Date)
++ Color getSpecialForegroundColor()
++ Color getSpecialBackroundColor()
++ String getSpecialTooltip()
++ boolean isInvalid(Date)
++ Color getInvalidForegroundColor()
++ Color getInvalidBackroundColor()
++ String getInvalidTooltip()
++ Date setMaxSelectableDate(Date)
++ Date setMinSelectableDate(Date)
++ Date getMaxSelectableDate()
++ Date getMinSelectableDate()
+}
+class com.toedter.components.JTitlePanel {
+- {static} long serialVersionUID
+# JPanel northPanel
+# JLabel label
++ void setTitle(String,Icon)
+}
+class com.toedter.components.JTitlePanel.GradientPanel {
+- {static} long serialVersionUID
++ void paintComponent(Graphics)
+}
+interface archivo.InterfaceCuenta {
++ {abstract}void mostrarInfo(String,String,String)
++ {abstract}Cuenta guardar(String)
++ void cancelar(String)
+}
+class archivo.Cuenta {
++ {static} String biografia
+- javax.swing.JTextPane biografiaescribir
+- javax.swing.JLabel biografiamostrar
+- javax.swing.JButton botonAtras
+- javax.swing.JButton botonCalendario
+- javax.swing.JButton botonCambiarCuenta
+- javax.swing.JButton botonCancelar
+- javax.swing.JButton botonCuenta
+- javax.swing.JButton botonGuardar
+- javax.swing.JButton botonSesiones
+- java.awt.Canvas canvas1
+- javax.swing.JLabel correo
+- javax.swing.JLabel jLabel1
+- javax.swing.JLabel jLabel2
+- javax.swing.JLabel jLabel3
+- javax.swing.JLabel jLabel4
+- javax.swing.JLabel jLabel5
+- javax.swing.JLabel jLabel6
+- javax.swing.JLabel jLabel7
+- javax.swing.JPanel jPanel1
+- javax.swing.JScrollPane jScrollPane2
+- javax.swing.JLabel nombretxt
++ void habilitarBotonGuardar()
++ void habilitarBotonCancelar()
+- void initComponents()
+- void biografiaescribirKeyReleased(java.awt.event.KeyEvent)
+- void botonCalendarioActionPerformed(java.awt.event.ActionEvent)
+- void botonAtrasActionPerformed(java.awt.event.ActionEvent)
+- void botonCambiarCuentaActionPerformed(java.awt.event.ActionEvent)
+- void botonSesionesActionPerformed(java.awt.event.ActionEvent)
+- void botonCuentaActionPerformed(java.awt.event.ActionEvent)
+- void botonGuardarActionPerformed(java.awt.event.ActionEvent)
+- void botonCancelarActionPerformed(java.awt.event.ActionEvent)
++ {static} void main(String[])
+}
+class com.toedter.calendar.demo.TestDateEvaluator {
+- Calendar calendar
+- Calendar calendar2
+- Color darkGreen
+- Color lightGreen
+- Color darkRed
+- Color lightRed
++ boolean isSpecial(Date)
++ Color getSpecialForegroundColor()
++ Color getSpecialBackroundColor()
++ String getSpecialTooltip()
++ boolean isInvalid(Date)
++ Color getInvalidForegroundColor()
++ Color getInvalidBackroundColor()
++ String getInvalidTooltip()
+}
+class com.toedter.calendar.JDateChooserCellEditor {
+- {static} long serialVersionUID
+- JDateChooser dateChooser
++ Component getTableCellEditorComponent(JTable,Object,boolean,int,int)
++ Object getCellEditorValue()
+}
+class archivo.Principal {
+- javax.swing.JButton botonAtras1
+- javax.swing.JButton botonCalendario1
+- javax.swing.JButton botonCambiarCuenta1
+- javax.swing.JButton botonCuenta1
+- javax.swing.JButton botonSesiones1
+- java.awt.Canvas canvas1
+- javax.swing.JLabel jLabel5
+- javax.swing.JLabel jLabel6
+- javax.swing.JPanel jPanel1
+- void initComponents()
+- void botonCuenta1ActionPerformed(java.awt.event.ActionEvent)
+- void botonSesiones1ActionPerformed(java.awt.event.ActionEvent)
+- void botonCambiarCuenta1ActionPerformed(java.awt.event.ActionEvent)
+- void botonAtras1ActionPerformed(java.awt.event.ActionEvent)
+- void botonCalendario1ActionPerformed(java.awt.event.ActionEvent)
++ {static} void main(String[])
+}
+class com.toedter.calendar.demo.DateChooserPanelBeanInfo {
+}
+class archivo.Persona {
+- String link
+- String fecha
+- String materia
++ String getMateria()
++ void setMateria(String)
++ String getLink()
++ void setLink(String)
++ String getFecha()
++ void setFecha(String)
+}
+class com.toedter.components.JSpinFieldBeanInfo {
+}
+class com.toedter.calendar.JSpinnerDateEditor {
+- {static} long serialVersionUID
+# Date date
+# String dateFormatString
+# SimpleDateFormat dateFormatter
++ Date getDate()
++ void setDate(Date)
++ void setDate(Date,boolean)
++ void setDateFormatString(String)
++ String getDateFormatString()
++ JComponent getUiComponent()
++ void setLocale(Locale)
++ void focusLost(FocusEvent)
++ void focusGained(FocusEvent)
++ void setEnabled(boolean)
++ Date getMaxSelectableDate()
++ Date getMinSelectableDate()
++ void setMaxSelectableDate(Date)
++ void setMinSelectableDate(Date)
++ void setSelectableDateRange(Date,Date)
++ void stateChanged(ChangeEvent)
+}
+class com.toedter.calendar.JYearChooserBeanInfo {
+}
+class com.toedter.calendar.JDayChooser {
+- {static} long serialVersionUID
+# JButton[] days
+# JButton[] weeks
+# JButton selectedDay
+# JPanel weekPanel
+# JPanel dayPanel
+# int day
+# Color oldDayBackgroundColor
+# Color selectedColor
+# Color sundayForeground
+# Color weekdayForeground
+# Color decorationBackgroundColor
+# String[] dayNames
+# Calendar calendar
+# Calendar today
+# Locale locale
+# boolean initialized
+# boolean weekOfYearVisible
+# boolean decorationBackgroundVisible
+# boolean decorationBordersVisible
+# boolean dayBordersVisible
+- boolean alwaysFireDayProperty
+# int maxDayCharacters
+# List dateEvaluators
+# MinMaxDateEvaluator minMaxDateEvaluator
+# void init()
+- void drawDayNames()
+# void initDecorations()
+# void drawWeeks()
+# void drawDays()
++ Locale getLocale()
++ void setLocale(Locale)
++ void setDay(int)
++ void setAlwaysFireDayProperty(boolean)
++ int getDay()
++ void setMonth(int)
++ void setYear(int)
++ void setCalendar(Calendar)
++ void setFont(Font)
++ void setForeground(Color)
++ void actionPerformed(ActionEvent)
++ void focusGained(FocusEvent)
++ void focusLost(FocusEvent)
++ void keyPressed(KeyEvent)
++ void keyTyped(KeyEvent)
++ void keyReleased(KeyEvent)
++ void setEnabled(boolean)
++ boolean isWeekOfYearVisible()
++ void setWeekOfYearVisible(boolean)
++ JPanel getDayPanel()
++ Color getDecorationBackgroundColor()
++ void setDecorationBackgroundColor(Color)
++ Color getSundayForeground()
++ Color getWeekdayForeground()
++ void setSundayForeground(Color)
++ void setWeekdayForeground(Color)
++ void setFocus()
++ boolean isDecorationBackgroundVisible()
++ void setDecorationBackgroundVisible(boolean)
++ boolean isDecorationBordersVisible()
++ boolean isDayBordersVisible()
++ void setDecorationBordersVisible(boolean)
++ void setDayBordersVisible(boolean)
++ void updateUI()
++ void setSelectableDateRange(Date,Date)
++ Date setMaxSelectableDate(Date)
++ Date setMinSelectableDate(Date)
++ Date getMaxSelectableDate()
++ Date getMinSelectableDate()
++ int getMaxDayCharacters()
++ void setMaxDayCharacters(int)
++ {static} void main(String[])
++ void addDateEvaluator(IDateEvaluator)
++ void removeDateEvaluator(IDateEvaluator)
+}
+class com.toedter.calendar.JDayChooser.DecoratorButton {
+- {static} long serialVersionUID
++ void addMouseListener(MouseListener)
++ boolean isFocusable()
++ void paint(Graphics)
+}
+class com.toedter.calendar.demo.DateChooserPanel {
+- {static} long serialVersionUID
+- JComponent[] components
+- void addEntry(String,JComponent,GridBagLayout)
++ String getDateFormatString()
++ void setDateFormatString(String)
++ Date getDate()
++ void setDate(Date)
++ void propertyChange(PropertyChangeEvent)
++ Locale getLocale()
++ void setLocale(Locale)
++ boolean isEnabled()
++ void setEnabled(boolean)
++ Date getMinSelectableDate()
++ void setMinSelectableDate(Date)
++ Date getMaxSelectableDate()
++ void setMaxSelectableDate(Date)
+}
+class archivo.Calendario {
+~ String texto
+~ String materiac
+~ String horita
+~ String fechayhora
+- javax.swing.JButton botonAtras1
+- javax.swing.JButton botonCalendario1
+- javax.swing.JButton botonCambiarCuenta1
+- javax.swing.JButton botonCuenta1
+- javax.swing.JButton botonSesiones1
+- javax.swing.JButton botonsolicitar
+- javax.swing.JButton btnlistausers
+- java.awt.Canvas canvas1
+- javax.swing.JComboBox<String> horacombo
+- com.toedter.calendar.JCalendar jCalendar1
+- javax.swing.JLabel jLabel1
+- javax.swing.JLabel jLabel2
+- javax.swing.JLabel jLabel3
+- javax.swing.JLabel jLabel4
+- javax.swing.JLabel jLabel5
+- javax.swing.JPanel jPanel1
+- javax.swing.JComboBox<String> materiascombo1
+- javax.swing.JTextField txt1
++ void habilitarBotonSolicitar()
+- void initComponents()
+- void txt1ActionPerformed(java.awt.event.ActionEvent)
+- void materiascombo1ActionPerformed(java.awt.event.ActionEvent)
+- void jCalendar1AncestorAdded(javax.swing.event.AncestorEvent)
+- void jCalendar1HierarchyChanged(java.awt.event.HierarchyEvent)
+- void horacomboActionPerformed(java.awt.event.ActionEvent)
+- void horacomboItemStateChanged(java.awt.event.ItemEvent)
+- void txt1KeyReleased(java.awt.event.KeyEvent)
+- void btnlistausersActionPerformed(java.awt.event.ActionEvent)
+- void botonCuenta1ActionPerformed(java.awt.event.ActionEvent)
+- void botonSesiones1ActionPerformed(java.awt.event.ActionEvent)
+- void botonCambiarCuenta1ActionPerformed(java.awt.event.ActionEvent)
+- void botonAtras1ActionPerformed(java.awt.event.ActionEvent)
+- void botonCalendario1ActionPerformed(java.awt.event.ActionEvent)
+- void botonsolicitarActionPerformed(java.awt.event.ActionEvent)
++ {static} void main(String[])
+}
+class archivo.PrincipalView {
+~ Servidor server
+- javax.swing.JButton btnCliente
+- javax.swing.JButton btnServidor
+- void initComponents()
+- void btnServidorActionPerformed(java.awt.event.ActionEvent)
+- void btnClienteActionPerformed(java.awt.event.ActionEvent)
++ {static} void main(String[])
+}
+class com.toedter.components.JLocaleChooserBeanInfo {
+}
+class com.toedter.components.LocaleEditor {
+- Locale[] locales
+- String[] localeStrings
+- Locale locale
+- int length
++ String[] getTags()
++ void setAsText(String)
++ String getAsText()
+}
+class com.toedter.calendar.demo.DemoTable {
+- {static} long serialVersionUID
+}
+class com.toedter.calendar.demo.DemoTable.DemoTableModel {
+- {static} long serialVersionUID
+- String[] columnNames
+- Object[][] data
++ int getColumnCount()
++ int getRowCount()
++ String getColumnName(int)
++ Object getValueAt(int,int)
++ Class getColumnClass(int)
++ boolean isCellEditable(int,int)
++ void setValueAt(Object,int,int)
+}
+class com.toedter.calendar.DateUtil {
+# Date minSelectableDate
+# Date maxSelectableDate
+# Date defaultMinSelectableDate
+# Date defaultMaxSelectableDate
++ void setSelectableDateRange(Date,Date)
++ Date setMaxSelectableDate(Date)
++ Date setMinSelectableDate(Date)
++ Date getMaxSelectableDate()
++ Date getMinSelectableDate()
++ boolean checkDate(Date)
+}
+class com.toedter.plaf.JCalendarTheme {
+~ {static} ColorUIResource secondary1
+~ {static} ColorUIResource secondary2
+~ {static} ColorUIResource secondary3
+~ {static} ColorUIResource BLUE_LOW_MEDIUM
+~ {static} ColorUIResource BLUE_LOW_LIGHTEST
+~ {static} ColorUIResource BLUE_MEDIUM_DARKEST
+~ {static} ColorUIResource BLUE_MEDIUM_DARK
+~ {static} ColorUIResource BLUE_MEDIUM_MEDIUM
+~ {static} ColorUIResource ORANGE_FOCUS
+~ {static} ColorUIResource GREEN_CHECK
+~ {static} ColorUIResource WHITE
+~ {static} FontUIResource standardFont
++ String getName()
+# Font getFont()
++ FontUIResource getSystemTextFont()
++ FontUIResource getUserTextFont()
++ FontUIResource getControlTextFont()
++ FontUIResource getMenuTextFont()
+# ColorUIResource getPrimary1()
+# ColorUIResource getPrimary2()
+# ColorUIResource getPrimary3()
+# ColorUIResource getSecondary1()
+# ColorUIResource getSecondary2()
+# ColorUIResource getSecondary3()
++ ColorUIResource getFocusColor()
++ ColorUIResource getPrimaryControlShadow()
++ ColorUIResource getMenuSelectedBackground()
++ ColorUIResource getMenuSelectedForeground()
++ ColorUIResource getMenuItemBackground()
++ ColorUIResource getToggleButtonCheckColor()
+}
+class archivo.ListaEstudiantes {
+~ Conexion con1
+~ Connection conet
+~ DefaultTableModel modelo
+~ Statement st
+~ ResultSet rs
+~ int idc
+- javax.swing.JTable Tabla
+- javax.swing.JButton botonAtras1
+- javax.swing.JButton botonCalendario1
+- javax.swing.JButton botonCambiarCuenta1
+- javax.swing.JButton botonCuenta1
+- javax.swing.JButton botonSesiones1
+- javax.swing.JButton btnIniciar
+- javax.swing.JButton btnjugartiki
+- java.awt.Canvas canvas1
+- javax.swing.JLabel jLabel4
+- javax.swing.JLabel jLabel5
+- javax.swing.JLabel jLabel6
+- javax.swing.JLabel jLabel7
+- javax.swing.JPanel jPanel1
+- javax.swing.JScrollPane jScrollPane1
+~ void consultar()
+- void initComponents()
+- void botonCuenta1ActionPerformed(java.awt.event.ActionEvent)
+- void botonSesiones1ActionPerformed(java.awt.event.ActionEvent)
+- void botonCambiarCuenta1ActionPerformed(java.awt.event.ActionEvent)
+- void botonAtras1ActionPerformed(java.awt.event.ActionEvent)
+- void botonCalendario1ActionPerformed(java.awt.event.ActionEvent)
+- void btnjugartikiActionPerformed(java.awt.event.ActionEvent)
+- void btnIniciarActionPerformed(java.awt.event.ActionEvent)
++ {static} void main(String[])
+}
+class com.toedter.calendar.JYearChooser {
+- {static} long serialVersionUID
+# JDayChooser dayChooser
+# int oldYear
+# int startYear
+# int endYear
++ void setYear(int)
++ void setValue(int)
++ int getYear()
++ void setDayChooser(JDayChooser)
++ int getEndYear()
++ void setEndYear(int)
++ int getStartYear()
++ void setStartYear(int)
++ {static} void main(String[])
+}
+interface archivo.InterfaceCienteView {
++ {abstract}void ClienteView(String,String,String)
++ {abstract}ClienteView update(Observable,Object)
++ void enviar(String,String)
+}
+class archivo.Archivo {
+~ File archivo
++ void crearArchivo()
++ void escribirEnArchivo(Persona)
+}
+class archivo.ClienteView {
+- String nombre
+- Cliente cliente
+- String mensaje
+- javax.swing.JButton btnEmpezar
+- javax.swing.JButton btnEnviar
+- javax.swing.JButton btnSalir
+- javax.swing.JLabel jLabel3
+- javax.swing.JScrollPane jScrollPane1
+- javax.swing.JTextArea txtConversacion
+- javax.swing.JTextField txtMensaje
+- javax.swing.JTextField txtNombre
+- void initComponents()
+- void btnEmpezarActionPerformed(java.awt.event.ActionEvent)
+- void btnEnviarActionPerformed(java.awt.event.ActionEvent)
+- void btnSalirActionPerformed(java.awt.event.ActionEvent)
++ {static} void main(String[])
++ void update(Observable,Object)
+}
+class com.toedter.calendar.JDateChooser {
+- {static} long serialVersionUID
+# IDateEditor dateEditor
+# JButton calendarButton
+# JCalendar jcalendar
+# JPopupMenu popup
+# boolean isInitialized
+# boolean dateSelected
+# Date lastSelectedDate
+- ChangeListener changeListener
++ void actionPerformed(ActionEvent)
++ void propertyChange(PropertyChangeEvent)
++ void updateUI()
++ void setLocale(Locale)
++ String getDateFormatString()
++ void setDateFormatString(String)
++ Date getDate()
++ void setDate(Date)
++ Calendar getCalendar()
++ void setCalendar(Calendar)
++ void setEnabled(boolean)
++ boolean isEnabled()
++ void setIcon(ImageIcon)
++ void setFont(Font)
++ JCalendar getJCalendar()
++ JButton getCalendarButton()
++ IDateEditor getDateEditor()
++ void setSelectableDateRange(Date,Date)
++ void setMaxSelectableDate(Date)
++ void setMinSelectableDate(Date)
++ Date getMaxSelectableDate()
++ Date getMinSelectableDate()
++ void cleanup()
++ boolean requestFocusInWindow()
++ {static} void main(String[])
+}
+class com.toedter.components.GenericBeanInfo {
+# Image iconColor16
+# Image iconColor32
+# Image iconMono16
+# Image iconMono32
++ Image getIcon(int)
+}
+interface com.toedter.calendar.IDateEvaluator {
+~ boolean isSpecial(Date)
+~ Color getSpecialForegroundColor()
+~ Color getSpecialBackroundColor()
+~ String getSpecialTooltip()
+~ boolean isInvalid(Date)
+~ Color getInvalidForegroundColor()
+~ Color getInvalidBackroundColor()
+~ String getInvalidTooltip()
+}
+class archivo.ServidorView {
+- javax.swing.JLabel jLabel1
+- javax.swing.JScrollPane jScrollPane1
+- javax.swing.JTextArea txtHistorial
++ void notificarConexion(String)
+- void initComponents()
++ {static} void main(String[])
++ void update(Observable,Object)
+}
+class com.toedter.calendar.JMonthChooser {
+- {static} long serialVersionUID
+# boolean hasSpinner
+- Locale locale
+- int month
+- int oldSpinnerValue
+- JDayChooser dayChooser
+- JYearChooser yearChooser
+- JComboBox comboBox
+- JSpinner spinner
+- boolean initialized
+- boolean localInitialize
++ void initNames()
++ void stateChanged(ChangeEvent)
++ void itemStateChanged(ItemEvent)
+- void setMonth(int,boolean)
++ void setMonth(int)
++ int getMonth()
++ void setDayChooser(JDayChooser)
++ void setYearChooser(JYearChooser)
++ Locale getLocale()
++ void setLocale(Locale)
++ void setEnabled(boolean)
++ Component getComboBox()
++ Component getSpinner()
++ boolean hasSpinner()
++ void setFont(Font)
++ void updateUI()
++ {static} void main(String[])
+}
+class com.toedter.components.JSpinField {
+- {static} long serialVersionUID
+# JSpinner spinner
+# JTextField textField
+# int min
+# int max
+# int value
+# Color darkGreen
++ void adjustWidthToMaximumValue()
++ void stateChanged(ChangeEvent)
+# void setValue(int,boolean,boolean)
++ void setValue(int)
++ int getValue()
++ void setMinimum(int)
++ int getMinimum()
++ void setMaximum(int)
++ void setHorizontalAlignment(int)
++ int getMaximum()
++ void setFont(Font)
++ void setForeground(Color)
++ void caretUpdate(CaretEvent)
++ void actionPerformed(ActionEvent)
++ void setEnabled(boolean)
++ Component getSpinner()
++ {static} void main(String[])
++ void focusGained(FocusEvent)
++ void focusLost(FocusEvent)
+}
+class archivo.PantallaInicio {
++ {static} String correolog
+~ Connection con
+~ Statement stmt
+~ PreparedStatement pst
+~ ResultSet rs
+- javax.swing.JButton Ingresar
+- java.awt.Canvas canvas1
+- javax.swing.JPasswordField contraseña
+- javax.swing.JTextPane email
+- javax.swing.JLabel jLabel1
+- javax.swing.JLabel jLabel2
+- javax.swing.JLabel jLabel3
+- javax.swing.JLabel jLabel5
+- javax.swing.JPanel jPanel1
+- javax.swing.JScrollPane jScrollPane1
+- javax.swing.JButton registrar
++ void habilitarBotonIngresar()
+- void initComponents()
+- void contraseñaActionPerformed(java.awt.event.ActionEvent)
+- void IngresarActionPerformed(java.awt.event.ActionEvent)
+- void registrarActionPerformed(java.awt.event.ActionEvent)
+- void emailKeyReleased(java.awt.event.KeyEvent)
+- void contraseñaKeyReleased(java.awt.event.KeyEvent)
++ {static} void main(String[])
+}
+class archivo.Conexion {
+~ PreparedStatement ps
+~ ResultSet rs
++ {static} Connection getConection()
+}
+class com.toedter.calendar.demo.BirthdayEvaluator {
+- Calendar calendar
+- Color darkGreen
+- Color lightGreen
++ boolean isSpecial(Date)
++ Color getSpecialForegroundColor()
++ Color getSpecialBackroundColor()
++ String getSpecialTooltip()
++ boolean isInvalid(Date)
++ Color getInvalidForegroundColor()
++ Color getInvalidBackroundColor()
++ String getInvalidTooltip()
+}
+interface archivo.InterfacePersona {
++ {abstract}void Persona(String,String,String)
++ {abstract}Persona verInfo(String)
+}
+class com.toedter.calendar.JCalendar {
+- {static} long serialVersionUID
+- Calendar calendar
+- boolean initialized
+- JPanel monthYearPanel
+- JPanel specialButtonPanel
+- boolean isTodayButtonVisible
+- boolean isNullDateButtonVisible
+- String defaultTodayButtonText
+- String defaultNullDateButtonText
+- String todayButtonText
+- String nullDateButtonText
+# JDayChooser dayChooser
+# boolean weekOfYearVisible
+# Locale locale
+# JMonthChooser monthChooser
+# JYearChooser yearChooser
+- JButton todayButton
+- JButton nullDateButton
++ {static} void main(String[])
++ Calendar getCalendar()
++ JDayChooser getDayChooser()
++ Locale getLocale()
++ JMonthChooser getMonthChooser()
++ JYearChooser getYearChooser()
++ boolean isWeekOfYearVisible()
++ void propertyChange(PropertyChangeEvent)
++ void setBackground(Color)
++ void setCalendar(Calendar)
+- void setCalendar(Calendar,boolean)
++ void setEnabled(boolean)
++ boolean isEnabled()
++ void setFont(Font)
++ void setForeground(Color)
++ void setLocale(Locale)
++ void setWeekOfYearVisible(boolean)
++ boolean isDecorationBackgroundVisible()
++ void setDecorationBackgroundVisible(boolean)
++ boolean isDecorationBordersVisible()
++ void setDecorationBordersVisible(boolean)
++ Color getDecorationBackgroundColor()
++ void setDecorationBackgroundColor(Color)
++ Color getSundayForeground()
++ Color getWeekdayForeground()
++ void setSundayForeground(Color)
++ void setWeekdayForeground(Color)
++ Date getDate()
++ void setDate(Date)
++ void setSelectableDateRange(Date,Date)
++ Date getMaxSelectableDate()
++ Date getMinSelectableDate()
++ void setMaxSelectableDate(Date)
++ void setMinSelectableDate(Date)
++ int getMaxDayCharacters()
++ void setMaxDayCharacters(int)
++ void setTodayButtonVisible(boolean)
++ boolean isTodayButtonVisible()
++ void setNullDateButtonVisible(boolean)
++ boolean isNullDateButtonVisible()
+- void relayoutSpecialButtonPanel()
++ String getTodayButtonText()
++ void setTodayButtonText(String)
++ String getNullDateButtonText()
++ void setNullDateButtonText(String)
+}
+interface archivo.InterfaceConexion {
++ {abstract}void Conexion(String,String)
++ {abstract}Conexion getConection(String,String,String,String)
+}
+interface com.toedter.calendar.IDateEditor {
++ Date getDate()
++ void setDate(Date)
++ void setDateFormatString(String)
++ String getDateFormatString()
++ void setSelectableDateRange(Date,Date)
++ Date getMaxSelectableDate()
++ Date getMinSelectableDate()
++ void setMaxSelectableDate(Date)
++ void setMinSelectableDate(Date)
++ JComponent getUiComponent()
++ void setLocale(Locale)
++ void setEnabled(boolean)
++ void addPropertyChangeListener(PropertyChangeListener)
++ void addPropertyChangeListener(String,PropertyChangeListener)
++ void removePropertyChangeListener(PropertyChangeListener)
++ void removePropertyChangeListener(String,PropertyChangeListener)
+}
+class modelo.Asistente {
+- Socket sc
+- DataInputStream in
+- Servidor server
+- boolean centinela
++ void run()
+}
+class com.toedter.calendar.JMonthChooserBeanInfo {
+}
+abstract class com.toedter.components.UTF8ResourceBundle {
++ {static} ResourceBundle getBundle(String,Locale)
+}
+class com.toedter.components.UTF8ResourceBundle.UTF8PropertyResourceBundle {
+~ PropertyResourceBundle propertyResourceBundle
++ Enumeration getKeys()
+# Object handleGetObject(String)
+}
+class com.toedter.components.JLocaleChooser {
+- {static} long serialVersionUID
+# JComponent component
+- Locale[] locales
+- Locale locale
+- int localeCount
++ String getName()
++ void itemStateChanged(ItemEvent)
+- void setLocale(Locale,boolean)
++ void setLocale(Locale)
++ Locale getLocale()
++ {static} void main(String[])
+}
+class modelo.Servidor {
+- ServerSocket server
+- Socket sc
+- int puerto
+- ServidorView vistaServidor
++ void setVistaServidor(ServidorView)
++ void run()
++ void notificacion(String)
++ void desconectarCliente(String)
+}
+class archivo.Sesiones {
+~ DefaultTableModel modelo
+- javax.swing.JButton botonAtras1
+- javax.swing.JButton botonCalendario1
+- javax.swing.JButton botonCambiarCuenta1
+- javax.swing.JButton botonCuenta1
+- javax.swing.JButton botonSesiones1
+- java.awt.Canvas canvas1
+- javax.swing.JLabel jLabel1
+- javax.swing.JLabel jLabel4
+- javax.swing.JPanel jPanel1
+- javax.swing.JScrollPane jScrollPane1
+- java.awt.PopupMenu popupMenu1
+- java.awt.PopupMenu popupMenu2
+- javax.swing.JTable tablaRegistros
+- void cargarModelo()
+- void cargarArchivo()
+- void initComponents()
+- void botonCuenta1ActionPerformed(java.awt.event.ActionEvent)
+- void botonCalendario1ActionPerformed(java.awt.event.ActionEvent)
+- void botonSesiones1ActionPerformed(java.awt.event.ActionEvent)
+- void botonCambiarCuenta1ActionPerformed(java.awt.event.ActionEvent)
+- void botonAtras1ActionPerformed(java.awt.event.ActionEvent)
++ {static} void main(String[])
+}
+class com.toedter.calendar.JDayChooserBeanInfo {
+}
+class modelo.Cliente {
+- Socket socketCliente
+- int puerto
+- DataOutputStream out
+~ String HOST
++ void iniciar()
++ void enviarMensaje(String)
+}
+
+
+com.toedter.components.GenericBeanInfo <|-- com.toedter.calendar.JDateChooserBeanInfo
+archivo.JFrame <|-- archivo.Registrar
+com.toedter.calendar.IDateEditor <|.. com.toedter.calendar.JTextFieldDateEditor
+javax.swing.event.CaretListener <|.. com.toedter.calendar.JTextFieldDateEditor
+java.awt.event.FocusListener <|.. com.toedter.calendar.JTextFieldDateEditor
+java.awt.event.ActionListener <|.. com.toedter.calendar.JTextFieldDateEditor
+javax.swing.JFormattedTextField <|-- com.toedter.calendar.JTextFieldDateEditor
+com.toedter.components.GenericBeanInfo <|-- com.toedter.calendar.JCalendarBeanInfo
+archivo.JFrame <|-- archivo.TrikiVisual
+com.toedter.calendar.IDateEvaluator <|.. com.toedter.calendar.MinMaxDateEvaluator
+javax.swing.JPanel <|-- com.toedter.components.JTitlePanel
+com.toedter.components.JTitlePanel +.. com.toedter.components.JTitlePanel.GradientPanel
+com.toedter.components.JPanel <|-- com.toedter.components.JTitlePanel.GradientPanel
+archivo.JFrame <|-- archivo.Cuenta
+com.toedter.calendar.IDateEvaluator <|.. com.toedter.calendar.demo.TestDateEvaluator
+javax.swing.table.TableCellEditor <|.. com.toedter.calendar.JDateChooserCellEditor
+javax.swing.AbstractCellEditor <|-- com.toedter.calendar.JDateChooserCellEditor
+archivo.JFrame <|-- archivo.Principal
+com.toedter.components.GenericBeanInfo <|-- com.toedter.calendar.demo.DateChooserPanelBeanInfo
+com.toedter.components.GenericBeanInfo <|-- com.toedter.components.JSpinFieldBeanInfo
+com.toedter.calendar.IDateEditor <|.. com.toedter.calendar.JSpinnerDateEditor
+java.awt.event.FocusListener <|.. com.toedter.calendar.JSpinnerDateEditor
+javax.swing.event.ChangeListener <|.. com.toedter.calendar.JSpinnerDateEditor
+javax.swing.JSpinner <|-- com.toedter.calendar.JSpinnerDateEditor
+com.toedter.components.GenericBeanInfo <|-- com.toedter.calendar.JYearChooserBeanInfo
+java.awt.event.ActionListener <|.. com.toedter.calendar.JDayChooser
+java.awt.event.KeyListener <|.. com.toedter.calendar.JDayChooser
+java.awt.event.FocusListener <|.. com.toedter.calendar.JDayChooser
+javax.swing.JPanel <|-- com.toedter.calendar.JDayChooser
+com.toedter.calendar.JDayChooser +.. com.toedter.calendar.JDayChooser.DecoratorButton
+com.toedter.calendar.JButton <|-- com.toedter.calendar.JDayChooser.DecoratorButton
+java.beans.PropertyChangeListener <|.. com.toedter.calendar.demo.DateChooserPanel
+javax.swing.JPanel <|-- com.toedter.calendar.demo.DateChooserPanel
+archivo.JFrame <|-- archivo.Calendario
+archivo.JFrame <|-- archivo.PrincipalView
+com.toedter.components.GenericBeanInfo <|-- com.toedter.components.JLocaleChooserBeanInfo
+com.toedter.components.PropertyEditorSupport <|-- com.toedter.components.LocaleEditor
+javax.swing.JPanel <|-- com.toedter.calendar.demo.DemoTable
+com.toedter.calendar.demo.DemoTable +.. com.toedter.calendar.demo.DemoTable.DemoTableModel
+com.toedter.calendar.demo.AbstractTableModel <|-- com.toedter.calendar.demo.DemoTable.DemoTableModel
+javax.swing.plaf.metal.DefaultMetalTheme <|-- com.toedter.plaf.JCalendarTheme
+archivo.JFrame <|-- archivo.ListaEstudiantes
+com.toedter.components.JSpinField <|-- com.toedter.calendar.JYearChooser
+java.util.Observer <|.. archivo.ClienteView
+archivo.JFrame <|-- archivo.ClienteView
+java.awt.event.ActionListener <|.. com.toedter.calendar.JDateChooser
+java.beans.PropertyChangeListener <|.. com.toedter.calendar.JDateChooser
+javax.swing.JPanel <|-- com.toedter.calendar.JDateChooser
+java.beans.SimpleBeanInfo <|-- com.toedter.components.GenericBeanInfo
+java.util.Observer <|.. archivo.ServidorView
+archivo.JFrame <|-- archivo.ServidorView
+java.awt.event.ItemListener <|.. com.toedter.calendar.JMonthChooser
+javax.swing.event.ChangeListener <|.. com.toedter.calendar.JMonthChooser
+javax.swing.JPanel <|-- com.toedter.calendar.JMonthChooser
+javax.swing.event.ChangeListener <|.. com.toedter.components.JSpinField
+javax.swing.event.CaretListener <|.. com.toedter.components.JSpinField
+java.awt.event.ActionListener <|.. com.toedter.components.JSpinField
+java.awt.event.FocusListener <|.. com.toedter.components.JSpinField
+javax.swing.JPanel <|-- com.toedter.components.JSpinField
+archivo.JFrame <|-- archivo.PantallaInicio
+com.toedter.calendar.IDateEvaluator <|.. com.toedter.calendar.demo.BirthdayEvaluator
+java.beans.PropertyChangeListener <|.. com.toedter.calendar.JCalendar
+javax.swing.JPanel <|-- com.toedter.calendar.JCalendar
+modelo.Runnable <|.. modelo.Asistente
+com.toedter.components.GenericBeanInfo <|-- com.toedter.calendar.JMonthChooserBeanInfo
+com.toedter.components.UTF8ResourceBundle +.. com.toedter.components.UTF8ResourceBundle.UTF8PropertyResourceBundle
+com.toedter.components.ResourceBundle <|-- com.toedter.components.UTF8ResourceBundle.UTF8PropertyResourceBundle
+java.awt.event.ItemListener <|.. com.toedter.components.JLocaleChooser
+javax.swing.JComboBox <|-- com.toedter.components.JLocaleChooser
+modelo.Runnable <|.. modelo.Servidor
+java.util.Observable <|-- modelo.Servidor
+archivo.JFrame <|-- archivo.Sesiones
+com.toedter.components.GenericBeanInfo <|-- com.toedter.calendar.JDayChooserBeanInfo
+@enduml

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="TutosUMB1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/TutosUMB.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
