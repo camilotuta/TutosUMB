@@ -218,7 +218,7 @@ public class PantallaCalendario extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(118, 159, 205));
-        jLabel2.setText("FECHA NUEVA SESION");
+        jLabel2.setText("FECHA NUEVA SESIÓN");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 390, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
@@ -322,6 +322,7 @@ public class PantallaCalendario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // ! NO ELIMINAR ESTOS MÉTODOS VACÍOS
     protected void jCalendarAncestorAdded(AncestorEvent evt) {
     }
 
@@ -340,7 +341,11 @@ public class PantallaCalendario extends javax.swing.JFrame {
     private void cbMateriaPropertyChange(java.beans.PropertyChangeEvent evt) {
     }
 
-    // TODO: Mejorar el funcionamiento del tfFechaNuevaSesion
+    private void cbHoraItemStateChanged(java.awt.event.ItemEvent evt) {
+    }
+
+    private void tfFechaNuevaSesionKeyReleased(java.awt.event.KeyEvent evt) {
+    }
 
     private void cbHoraActionPerformed(java.awt.event.ActionEvent evt) {
         cambiarHoraMateria();
@@ -356,12 +361,6 @@ public class PantallaCalendario extends javax.swing.JFrame {
     private void jCalendarHierarchyChanged(java.awt.event.HierarchyEvent evt) {
         cambiarTexto();
         btnSolicitar.setEnabled(desactivarBotonSolicitar());
-    }
-
-    private void cbHoraItemStateChanged(java.awt.event.ItemEvent evt) {
-    }
-
-    private void tfFechaNuevaSesionKeyReleased(java.awt.event.KeyEvent evt) {
     }
 
     private void btnVerListaEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {
@@ -420,7 +419,6 @@ public class PantallaCalendario extends javax.swing.JFrame {
         Sesion ses = new Sesion(materia, link, fecha);
         archivo.escribirEnArchivo(ses);
         JOptionPane.showMessageDialog(null, "SE HIZO LA SOLICITUD.");
-
     }
 
     /**

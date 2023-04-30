@@ -35,10 +35,8 @@ public class PantallaInicio extends javax.swing.JFrame {
     public void habilitarBotonIngresar() {
         if (tfCorreo.getText().length() >= 20 && tfContraseña.getText().length() >= 8) {
             btnIngresar.setEnabled(true);
-
         } else {
             btnIngresar.setEnabled(false);
-
         }
     }
 

@@ -196,6 +196,7 @@ public class PantallaRegistro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // ! NO ELIMINAR ESTOS MÉTODOS VACÍOS
     protected void tfConfirmarContraseñaActionPerformed(ActionEvent evt) {
     }
 
@@ -226,16 +227,13 @@ public class PantallaRegistro extends javax.swing.JFrame {
                     javax.swing.JOptionPane.INFORMATION_MESSAGE);
             tfNombre.requestFocus();
         } else if (tfContraseña.getText().equals(tfConfirmarContraseña.getText())) {
-
             Conexion cx = new Conexion();
             try {
-
                 cx.con = Conexion.getConection();
                 if (cx.con == null) {
                     JOptionPane.showMessageDialog(null, "Se ha establecido una conexión a la base de datos "
                             + "\n " + cx.url + ".");
                 }
-
                 cx.stmt = cx.con.createStatement();
                 cx.stmt.executeUpdate(
                         "INSERT INTO usuarios VALUES('" + nombre + "','" + correo + "','" + contraseña + "')");

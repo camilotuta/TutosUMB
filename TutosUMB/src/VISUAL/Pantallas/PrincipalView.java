@@ -79,7 +79,6 @@ public class PrincipalView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnServidorActionPerformed(java.awt.event.ActionEvent evt) {
-
         server = new Servidor(6000);
         Thread t = new Thread(server);
         t.start();
@@ -91,11 +90,9 @@ public class PrincipalView extends javax.swing.JFrame {
         server.setVistaServidor(sv);
 
         btnServidor.setEnabled(false);
-
     }
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {
-
         PantallaChat cv = new PantallaChat();
         server.addObserver(cv);
         cv.setVisible(true);

@@ -31,7 +31,7 @@ public class PantallaToDoUMB extends javax.swing.JFrame {
     public PantallaToDoUMB() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("LISTA ESTUDIANTES");
+        this.setTitle("TO-DO UMB");
         this.setResizable(false);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
 
@@ -47,7 +47,8 @@ public class PantallaToDoUMB extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -139,23 +140,20 @@ public class PantallaToDoUMB extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 940, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 940, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 550, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnTusTareasActionPerformed(java.awt.event.ActionEvent evt) {
-    }
 
     private void btnCuentaActionPerformed(java.awt.event.ActionEvent evt) {
         PantallaCuenta pp = new PantallaCuenta();
@@ -183,29 +181,6 @@ public class PantallaToDoUMB extends javax.swing.JFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {
         System.exit(0);
-    }
-
-    private void btnNuevoChatActionPerformed(java.awt.event.ActionEvent evt) {
-        PrincipalView pv = new PrincipalView();
-        pv.server = new Servidor(6000);
-        Thread t = new Thread(pv.server);
-        t.start();
-
-        ServidorView sv = new ServidorView();
-
-        pv.server.addObserver(sv);
-        pv.server.setVistaServidor(sv);
-
-        PantallaChat pc = new PantallaChat();
-
-        pv.server.addObserver(pc);
-        pc.setVisible(true);
-    }
-
-    private void btnJugarTrikiActionPerformed(java.awt.event.ActionEvent evt) {
-        PantallaTriki pt = new PantallaTriki();
-        pt.setVisible(true);
-        this.setVisible(false);
     }
 
     /**

@@ -635,7 +635,6 @@ public class PantallaTriki extends javax.swing.JFrame {
             if (lbs[vs[i][0] - 1].getText().equals("X")
                     && lbs[vs[i][1] - 1].getText().equals("X")
                     && lbs[vs[i][2] - 1].getText().equals("X")) {
-
                 JOptionPane.showMessageDialog(null, "GANÓ " + nombreJ1);
             }
         }
@@ -643,7 +642,6 @@ public class PantallaTriki extends javax.swing.JFrame {
             if (lbs[vs[i][0] - 1].getText().equals("O")
                     && lbs[vs[i][1] - 1].getText().equals("O")
                     && lbs[vs[i][2] - 1].getText().equals("O")) {
-
                 JOptionPane.showMessageDialog(null, "GANÓ " + nombreJ2);
             }
         }
