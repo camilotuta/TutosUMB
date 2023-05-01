@@ -116,10 +116,10 @@ public class PantallaBienvenida extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(118, 159, 205));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Textos/imgBienvenido.png"))); // NOI18N
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Ilustraciones/7 (Pequeño) (Teléfono).png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 400, 330));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 400, 330));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBGrande.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, 560, -1));

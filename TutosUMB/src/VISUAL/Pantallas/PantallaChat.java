@@ -6,7 +6,6 @@
 package VISUAL.Pantallas;
 
 import java.awt.Toolkit;
-import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -40,7 +39,7 @@ public class PantallaChat extends javax.swing.JFrame implements Observer {
     }
 
     public void iniciandoChat() {
-        String correoBuscar = PantallaInicio.correoBuscar;
+        String correoBuscar = PantallaRegistro.correoPoner;
         Conexion cx = new Conexion();
         try {
             cx.con = Conexion.getConection();
@@ -75,9 +74,11 @@ public class PantallaChat extends javax.swing.JFrame implements Observer {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel6 = new javax.swing.JLabel();
         tfMensaje = new javax.swing.JTextField();
         btnEnviar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -87,6 +88,12 @@ public class PantallaChat extends javax.swing.JFrame implements Observer {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(247, 251, 252));
+        setFocusCycleRoot(false);
+        setResizable(false);
+
+        jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(118, 159, 205));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeño.png"))); // NOI18N
 
         tfMensaje.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -124,42 +131,54 @@ public class PantallaChat extends javax.swing.JFrame implements Observer {
                         .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(tfMensaje)
+                                                .addGap(158, 158, 158)
+                                                .addComponent(jLabel1))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(6, 6, 6)
+                                                .addGroup(layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jScrollPane1,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 393,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(294, 294, 294)
+                                                                .addComponent(jLabel6,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(6, 6, 6)
+                                                .addComponent(tfMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 312,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 75,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(btnEnviar))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(159, 159, 159)
-                                                .addComponent(btnSalir)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                layout.createSequentialGroup()
-                                                        .addContainerGap()
-                                                        .addComponent(jScrollPane1)))
-                                .addContainerGap())
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(158, 158, 158)
-                                .addComponent(jLabel1)
-                                .addContainerGap(160, Short.MAX_VALUE)));
+                                                .addComponent(btnSalir)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
+                                .addGap(6, 6, 6)
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18,
-                                        Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(tfMensaje, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276,
                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(3, 3, 3)
+                                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(3, 3, 3)
+                                                .addComponent(tfMensaje, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(btnEnviar))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(12, 12, 12)
                                 .addComponent(btnSalir)
-                                .addGap(7, 7, 7)));
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -224,6 +243,7 @@ public class PantallaChat extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton btnEnviar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea tfConversacion;
     private javax.swing.JTextField tfMensaje;

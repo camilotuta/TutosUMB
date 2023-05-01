@@ -21,19 +21,20 @@ public class PantallaInicio extends javax.swing.JFrame {
     /**
      * Creates new form PantallaInicio
      */
-    public static String correoBuscar = "";
 
+    // TODO: RECUPERAR CONTRASEÑA O CAMBIARLA
+    // TODO: QUE NO HAYAN NOMBRES NI CORREO REPETIDOS EN LA BASE DE DATOS
     public PantallaInicio() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("INGRESAR");
         this.setResizable(false);
-        tfCorreo.setText("adriantuta.cc@academia.umb.edu.co");
-        tfContraseña.setText("Dulcehelado123.");
+
+        tfCorreo.setText(PantallaRegistro.correoPoner);
+        tfContraseña.setText(PantallaRegistro.contraseñaPoner);
         habilitarBotonIngresar();
 
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
-
     }
 
     public void habilitarBotonIngresar() {
@@ -53,6 +54,9 @@ public class PantallaInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -67,17 +71,15 @@ public class PantallaInicio extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        btnErroresComunes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(247, 251, 252));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 496, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(118, 159, 205));
         jLabel1.setText("CORREO:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 60, 40));
 
         tfCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -86,12 +88,9 @@ public class PantallaInicio extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tfCorreo);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 270, 30));
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(118, 159, 205));
         jLabel2.setText("CONTRASEÑA:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, 100, 40));
 
         tfContraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +102,6 @@ public class PantallaInicio extends javax.swing.JFrame {
                 tfContraseñaKeyReleased(evt);
             }
         });
-        jPanel1.add(tfContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 270, 30));
 
         btnIngresar.setBackground(new java.awt.Color(185, 215, 234));
         btnIngresar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -114,7 +112,6 @@ public class PantallaInicio extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 440, 110, 40));
 
         jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(118, 159, 205));
@@ -122,7 +119,6 @@ public class PantallaInicio extends javax.swing.JFrame {
         jLabel3.setText("TUTOS-UMB");
         jLabel3.setMaximumSize(new java.awt.Dimension(600, 150));
         jLabel3.setMinimumSize(new java.awt.Dimension(600, 150));
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 630, 210));
 
         btnRegistrar.setBackground(new java.awt.Color(185, 215, 234));
         btnRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -133,28 +129,130 @@ public class PantallaInicio extends javax.swing.JFrame {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, 110, 40));
 
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(118, 159, 205));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeño.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 100, -1));
+
+        btnErroresComunes.setBackground(new java.awt.Color(185, 215, 234));
+        btnErroresComunes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnErroresComunes.setForeground(new java.awt.Color(66, 120, 181));
+        btnErroresComunes.setText("i");
+        btnErroresComunes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnErroresComunesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addComponent(canvas1,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(160, 160, 160)
+                                                                .addComponent(jLabel3,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 630,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addContainerGap()
+                                                                .addComponent(btnErroresComunes)))
+                                                .addGap(40, 40, 40)
+                                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(330, 330, 330)
+                                                .addGroup(jPanel1Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addComponent(jLabel1)
+                                                                .addGap(58, 58, 58)
+                                                                .addComponent(jScrollPane1,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 270,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addComponent(jLabel2,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(tfContraseña,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 270,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addComponent(btnRegistrar,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 110,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(168, 168, 168)
+                                                                .addComponent(btnIngresar,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 110,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(6, 6, 6)));
+        jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnErroresComunes))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(30, 30, 30)
+                                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 210,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel5))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jLabel1))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(42, 42, 42)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jLabel2))
+                                        .addComponent(tfContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(80, 80, 80)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(70, Short.MAX_VALUE)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, 936, Short.MAX_VALUE));
+                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE));
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 550,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)));
+                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnErroresComunesActionPerformed(java.awt.event.ActionEvent evt) {
+        String texto = "¡Hola! Aquí te dejo un apartado de ayuda con algunos errores comunes y sus\nposibles soluciones:\nDisculpa por la confusión. Aquí te dejo las soluciones a los errores y al\nfinal del apartado encontrarás los correos de contacto:\n\nNo puedes ingresar:\nVerifica tus credenciales de inicio de sesión.\nRestablece tu contraseña si la has olvidado.\nVerifica tu conexión a internet.\nSi el problema persiste, contacta al soporte técnico de la plataforma.\n\nNo puedes registrarte:\nVerifica que completaste todos los campos requeridos y que usaste una\ndirección de correo electrónico válida.\nSi el problema persiste, intenta utilizar una dirección de correo electrónico\ndiferente o contacta al soporte técnico de la plataforma.\n\nError al actualizar biografía:\nAsegúrate de seguir los requisitos de longitud y formato para la biografía.\nVerifica que la imagen que intentas subir cumpla con los requisitos de la\nplataforma.\nSi el problema persiste, intenta actualizar tu biografía desde otro\ndispositivo o navegador o contacta al soporte técnico de la plataforma.\n\nError al agendar tutoría:\nVerifica que seleccionaste la fecha y hora correctas.\nVerifica que tienes los permisos necesarios para agendar una tutoría.\nSi el problema persiste, intenta utilizar otro dispositivo o navegador o\ncontacta al soporte técnico de la plataforma.\n\nError al actualizar lista de tareas:\nAsegúrate de seguir los requisitos de longitud y formato para cada tarea en\nla lista.\nVerifica que tienes los permisos necesarios para actualizar la lista de\ntareas en la plataforma.\n\nSi necesitas ayuda adicional, por favor envía un correo electrónico a alguno\nde los siguientes correos de contacto:\n\nAdrian Camilo Tuta Cortes: adriantuta.cc@academia.umb.edu.co\nOscar Andrés Garcia Gonzalez: oscargarcia.ag@academia.umb.edu.co\nCristóbal Moncada Duarte: cristobalmoncada.d@academia.umb.edu.co";
+
+        JOptionPane.showMessageDialog(null, texto, "AYUDA", JOptionPane.INFORMATION_MESSAGE);
+    }
 
     // ! NO BORRAR
     private void tfContraseñaActionPerformed(ActionEvent evt) {
@@ -164,7 +262,9 @@ public class PantallaInicio extends javax.swing.JFrame {
         String correo = tfCorreo.getText();
         String contraseña = tfContraseña.getText();
 
-        correoBuscar = correo;
+        PantallaRegistro.correoPoner = correo;
+        PantallaRegistro.contraseñaPoner = contraseña;
+
         Conexion cx = new Conexion();
         Connection con;
         try {
@@ -250,6 +350,7 @@ public class PantallaInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnErroresComunes;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnRegistrar;
     private java.awt.Canvas canvas1;

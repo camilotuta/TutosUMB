@@ -3,6 +3,8 @@ package CODE.Clases;
 import java.io.*;
 import javax.swing.JOptionPane;
 
+import VISUAL.Pantallas.PantallaRegistro;
+
 /**
  *
  * @author tutaa
@@ -13,7 +15,9 @@ public class Archivo {
 
     public void crearArchivo() {
         try {
-            archivo = new File("SesionesProgramadas.txt");
+            String nombreArchivo = PantallaRegistro.correoPoner + ".txt";
+            String rutaCompleta = System.getProperty("user.home") + "/Documents/" + nombreArchivo;
+            archivo = new File(rutaCompleta);
             if (archivo.createNewFile()) {
                 JOptionPane.showMessageDialog(null, "GRACIAS POR CONFIAR EN NOSOTROS...");
             }
@@ -22,10 +26,10 @@ public class Archivo {
         }
     }
 
-    public void escribirEnArchivo(Sesion persona) {
+    public void escribirEnArchivo(Sesion sesion) {
         try {
             FileWriter escritura = new FileWriter(archivo, true);
-            escritura.write(persona.getMateria() + "%" + persona.getLink() + "%" + persona.getFecha() + "\r\n");
+            escritura.write(sesion.getMateria() + "%" + sesion.getLink() + "%" + sesion.getFecha() + "\r\n");
             escritura.close();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e);

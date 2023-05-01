@@ -23,7 +23,7 @@ import javax.swing.event.AncestorEvent;
  */
 public class PantallaCalendario extends javax.swing.JFrame {
 
-    String texto, materia, hora, fechaConHora;
+    String texto, materia, fecha, hora, fechaHoraMateria;
 
     /**
      * Creates new form Calendario
@@ -45,7 +45,7 @@ public class PantallaCalendario extends javax.swing.JFrame {
 
     public void cambiarTexto() {
         if (!tfFechaNuevaSesion.getText().isEmpty()) {
-            fechaConHora = null;
+            fechaHoraMateria = null;
             jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
                 @Override
                 public void propertyChange(PropertyChangeEvent evt) {
@@ -62,12 +62,13 @@ public class PantallaCalendario extends javax.swing.JFrame {
     public void cambiarHoraMateria() {
 
         SimpleDateFormat ff = new SimpleDateFormat("dd/MM/yyyy");
-        String fecha = (ff.format(jCalendar.getCalendar().getTime()));
+        fecha = (ff.format(jCalendar.getCalendar().getTime()));
 
-        String hora = cbHora.getSelectedItem().toString();
+        hora = cbHora.getSelectedItem().toString();
         materia = cbMateria.getSelectedItem().toString();
-        String fechaConHora = fecha + " - " + hora + " - " + materia;
-        tfFechaNuevaSesion.setText(fechaConHora);
+        fechaHoraMateria = fecha + " - " + hora + " - " + materia;
+
+        tfFechaNuevaSesion.setText(fechaHoraMateria);
         btnSolicitar.setEnabled(true);
     }
 
@@ -88,7 +89,9 @@ public class PantallaCalendario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -170,7 +173,8 @@ public class PantallaCalendario extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(118, 159, 205));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Textos/imgSesionesProgramadas.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(
+                getClass().getResource("/VISUAL/Imagenes/Textos/imgSesionesProgramadas.png"))); // NOI18N
 
         jCalendar.setBackground(new java.awt.Color(185, 215, 234));
         jCalendar.setForeground(new java.awt.Color(66, 120, 181));
@@ -184,8 +188,10 @@ public class PantallaCalendario extends javax.swing.JFrame {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jCalendarAncestorAdded(evt);
             }
+
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
+
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
@@ -223,7 +229,9 @@ public class PantallaCalendario extends javax.swing.JFrame {
             }
         });
 
-        cbMateria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Arquitectura de Hardware", "Cálculo Diferencial", "Desarrollo de App", "Física Mecánica", "Inglés Básico", "Programación Orientada a Objetos" }));
+        cbMateria.setModel(
+                new javax.swing.DefaultComboBoxModel<>(new String[] { "Arquitectura de Hardware", "Cálculo Diferencial",
+                        "Desarrollo de App", "Física Mecánica", "Inglés Básico", "Programación Orientada a Objetos" }));
         cbMateria.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbMateriaItemStateChanged(evt);
@@ -232,9 +240,11 @@ public class PantallaCalendario extends javax.swing.JFrame {
         cbMateria.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
+
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
                 cbMateriaAncestorMoved(evt);
             }
+
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
@@ -249,7 +259,9 @@ public class PantallaCalendario extends javax.swing.JFrame {
             }
         });
 
-        cbHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8:00 a.m", "9:00 a.m", "10:00 a.m", "11:00 a.m", "12:00 mm", "1:00 p.m", "2:00 p.m", "3:00 p.m", "4:00 p.m", "5:00 p.m", "6:00 p.m", "7:00 p.m", "8:00 p.m" }));
+        cbHora.setModel(new javax.swing.DefaultComboBoxModel<>(
+                new String[] { "8:00 a.m", "9:00 a.m", "10:00 a.m", "11:00 a.m", "12:00 mm", "1:00 p.m", "2:00 p.m",
+                        "3:00 p.m", "4:00 p.m", "5:00 p.m", "6:00 p.m", "7:00 p.m", "8:00 p.m" }));
         cbHora.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbHoraItemStateChanged(evt);
@@ -273,103 +285,146 @@ public class PantallaCalendario extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCambiarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel4)
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(70, 70, 70)
-                                        .addComponent(jLabel1))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(30, 30, 30)
-                                        .addComponent(cbHora, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(60, 60, 60)
-                                        .addComponent(jLabel3))
-                                    .addComponent(cbMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(100, 100, 100)
-                                .addComponent(tfFechaNuevaSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(230, 230, 230)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnSolicitar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(274, 274, 274)
-                        .addComponent(jLabel2))))
-        );
+                                        .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 210,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 210,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 210,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnCambiarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 210,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 210,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(70, 70, 70)
+                                                .addGroup(jPanel1Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addGap(10, 10, 10)
+                                                                .addComponent(jLabel4)
+                                                                .addGap(6, 6, 6)
+                                                                .addComponent(jLabel5,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addComponent(jCalendar,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 440,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(10, 10, 10)
+                                                                .addGroup(jPanel1Layout.createParallelGroup(
+                                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                                .addGap(70, 70, 70)
+                                                                                .addComponent(jLabel1))
+                                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                                .addGap(30, 30, 30)
+                                                                                .addComponent(cbHora,
+                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                        130,
+                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                                .addGap(60, 60, 60)
+                                                                                .addComponent(jLabel3))
+                                                                        .addComponent(cbMateria,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                190,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addGap(100, 100, 100)
+                                                                .addComponent(tfFechaNuevaSesion,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 352,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addGap(230, 230, 230)
+                                                                .addGroup(jPanel1Layout.createParallelGroup(
+                                                                        javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                        .addComponent(btnSolicitar,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                90,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(canvas1,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(274, 274, 274)
+                                                .addComponent(jLabel2)))));
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(btnCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(btnSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(btnCambiarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(jLabel4))
-                            .addComponent(jLabel5))
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(jLabel1)
-                                .addGap(10, 10, 10)
-                                .addComponent(cbHora, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(70, 70, 70)
-                                .addComponent(jLabel3)
-                                .addGap(10, 10, 10)
-                                .addComponent(cbMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfFechaNuevaSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSolicitar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(15, 15, 15)
+                                                .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 97,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(6, 6, 6)
+                                                .addComponent(btnCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 97,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(6, 6, 6)
+                                                .addComponent(btnSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 97,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(6, 6, 6)
+                                                .addComponent(btnCambiarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(6, 6, 6)
+                                                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 97,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addGap(30, 30, 30)
+                                                                .addComponent(jLabel4))
+                                                        .addComponent(jLabel5))
+                                                .addGap(10, 10, 10)
+                                                .addGroup(jPanel1Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jCalendar, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addGap(20, 20, 20)
+                                                                .addComponent(jLabel1)
+                                                                .addGap(10, 10, 10)
+                                                                .addComponent(cbHora,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 30,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(70, 70, 70)
+                                                                .addComponent(jLabel3)
+                                                                .addGap(10, 10, 10)
+                                                                .addComponent(cbMateria,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 30,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(24, 24, 24)
+                                                .addComponent(jLabel2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(tfFechaNuevaSesion,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 30,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(btnSolicitar, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(24, 24, 24)
+                                                .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(14, Short.MAX_VALUE)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -450,7 +505,8 @@ public class PantallaCalendario extends javax.swing.JFrame {
     private void btnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {
         Archivo archivo = new Archivo();
         archivo.crearArchivo();
-        String materia = cbMateria.getSelectedItem().toString();
+        materia = cbMateria.getSelectedItem().toString();
+
         String links[] = { "https://meet.google.com/abc-defg-hij", "https://meet.google.com/klm-nopq-rst",
                 "https://meet.google.com/uvw-xyz1-234", "https://meet.google.com/567-89ab-cde",
                 "https://meet.google.com/xyz-uvw5-678", "https://meet.google.com/pqr-stu2-vwx",
@@ -465,11 +521,10 @@ public class PantallaCalendario extends javax.swing.JFrame {
 
         Random rd = new Random();
         String link = links[rd.nextInt(links.length)];
-        String fecha = tfFechaNuevaSesion.getText();
-        fecha = fecha.replace("01", "");
+        fecha = fecha + " " + hora;
 
-        Sesion ses = new Sesion(materia, link, fecha);
-        archivo.escribirEnArchivo(ses);
+        Sesion sesion = new Sesion(materia, link, fecha);
+        archivo.escribirEnArchivo(sesion);
         JOptionPane.showMessageDialog(null, "SE HIZO LA SOLICITUD.");
     }
 

@@ -19,27 +19,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PantallaSesiones extends javax.swing.JFrame {
 
-    private final class DefaultTableModelExtension extends javax.swing.table.DefaultTableModel {
-        Class[] types = new Class[] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-        };
-        boolean[] canEdit = new boolean[] {
-                false, false, false
-        };
-
-        private DefaultTableModelExtension(Object[][] data, Object[] columnNames) {
-            super(data, columnNames);
-        }
-
-        public Class getColumnClass(int columnIndex) {
-            return types[columnIndex];
-        }
-
-        public boolean isCellEditable(int rowIndex, int columnIndex) {
-            return canEdit[columnIndex];
-        }
-    }
-
     DefaultTableModel modelo = new DefaultTableModel();
 
     public PantallaSesiones() {
@@ -66,7 +45,9 @@ public class PantallaSesiones extends javax.swing.JFrame {
     private void cargarArchivo() throws IOException {
         String fila[];
         try {
-            FileReader archivo = new FileReader("SesionesProgramadas.txt");
+            String rutaCompleta = System.getProperty("user.home") + "/Documents/" + PantallaRegistro.correoPoner
+                    + ".txt";
+            FileReader archivo = new FileReader(rutaCompleta);
             try (BufferedReader lectura = new BufferedReader(archivo)) {
                 String linea = lectura.readLine();
 
@@ -86,7 +67,8 @@ public class PantallaSesiones extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         popupMenu1 = new java.awt.PopupMenu();
@@ -110,53 +92,55 @@ public class PantallaSesiones extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(247, 251, 252));
+        jPanel1.setMinimumSize(new java.awt.Dimension(936, 550));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(118, 159, 205));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Textos/imgBandejaDeEntrada (Teléfono).png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(
+                getClass().getResource("/VISUAL/Imagenes/Textos/imgBandejaDeEntrada (Teléfono).png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(241, 30, -1, -1));
 
         tbSesionesProgramadas.setBackground(new java.awt.Color(214, 230, 242));
         tbSesionesProgramadas.setForeground(new java.awt.Color(51, 51, 51));
         tbSesionesProgramadas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "MATERIA", "MENSAJE", "FECHA"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                new Object[][] {
+                        { null, null, null },
+                        { null, null, null },
+                        { null, null, null },
+                        { null, null, null }
+                },
+                new String[] {
+                        "MATERIA", "MENSAJE", "FECHA"
+                }) {
+            Class[] types = new Class[] {
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
+            boolean[] canEdit = new boolean[] {
+                    false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         tbSesionesProgramadas.setColumnSelectionAllowed(true);
         tbSesionesProgramadas.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbSesionesProgramadas);
-        tbSesionesProgramadas.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tbSesionesProgramadas.getColumnModel().getSelectionModel()
+                .setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tbSesionesProgramadas.getColumnModel().getColumnCount() > 0) {
             tbSesionesProgramadas.getColumnModel().getColumn(0).setResizable(false);
             tbSesionesProgramadas.getColumnModel().getColumn(1).setResizable(false);
             tbSesionesProgramadas.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(237, 132, 588, 340));
-        jPanel1.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(871, 508, -1, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 132, 588, 340));
+        jPanel1.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         btnCuenta.setBackground(new java.awt.Color(185, 215, 234));
         btnCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -168,7 +152,7 @@ public class PantallaSesiones extends javax.swing.JFrame {
                 btnCuentaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 15, 209, 97));
+        jPanel1.add(btnCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 15, 210, 97));
 
         btnCalendario.setBackground(new java.awt.Color(185, 215, 234));
         btnCalendario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -180,7 +164,7 @@ public class PantallaSesiones extends javax.swing.JFrame {
                 btnCalendarioActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 118, 209, 97));
+        jPanel1.add(btnCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 118, 210, 97));
 
         btnSesiones.setBackground(new java.awt.Color(185, 215, 234));
         btnSesiones.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -192,7 +176,7 @@ public class PantallaSesiones extends javax.swing.JFrame {
                 btnSesionesActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSesiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 221, 209, 97));
+        jPanel1.add(btnSesiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 221, 210, 97));
 
         btnCambiarCuenta.setBackground(new java.awt.Color(185, 215, 234));
         btnCambiarCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -204,7 +188,7 @@ public class PantallaSesiones extends javax.swing.JFrame {
                 btnCambiarCuentaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCambiarCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 324, -1, 97));
+        jPanel1.add(btnCambiarCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 324, 210, 97));
 
         btnCerrar.setBackground(new java.awt.Color(185, 215, 234));
         btnCerrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -216,23 +200,23 @@ public class PantallaSesiones extends javax.swing.JFrame {
                 btnCerrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 427, 209, 97));
+        jPanel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 427, 210, 97));
 
         jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(118, 159, 205));
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeño.png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 100, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(831, 0, 100, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

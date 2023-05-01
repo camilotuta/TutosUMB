@@ -58,7 +58,7 @@ public class PantallaCuenta extends javax.swing.JFrame {
     }
 
     public void mostrarDatosUsuario() {
-        String correoBuscar = PantallaInicio.correoBuscar;
+        String correoBuscar = PantallaRegistro.correoPoner;
         try {
             cx.con = Conexion.getConection();
             cx.ps = cx.con.prepareCall("SELECT nombre, correo, biografia FROM usuarios WHERE correo = ?");
@@ -113,7 +113,8 @@ public class PantallaCuenta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -281,7 +282,8 @@ public class PantallaCuenta extends javax.swing.JFrame {
         btnPanelDeControl.setBackground(new java.awt.Color(185, 215, 234));
         btnPanelDeControl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnPanelDeControl.setForeground(new java.awt.Color(118, 159, 205));
-        btnPanelDeControl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgComputerPequeño.png"))); // NOI18N
+        btnPanelDeControl.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgComputerPequeño.png"))); // NOI18N
         btnPanelDeControl.setText("Panel de Control");
         btnPanelDeControl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

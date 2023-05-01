@@ -4,14 +4,10 @@
  */
 package VISUAL.Pantallas;
 
-import CODE.Clases.Conexion;
 import java.awt.Toolkit;
 import java.sql.*;
 
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import CODE.Clases.Servidor;
-import java.awt.event.ActionEvent;
 
 /**
  *
@@ -48,7 +44,8 @@ public class PantallaToDoUMB extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -64,8 +61,6 @@ public class PantallaToDoUMB extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(247, 251, 252));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         btnCuenta.setBackground(new java.awt.Color(185, 215, 234));
         btnCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -77,7 +72,6 @@ public class PantallaToDoUMB extends javax.swing.JFrame {
                 btnCuentaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 15, 210, 97));
 
         btnSesiones.setBackground(new java.awt.Color(185, 215, 234));
         btnSesiones.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -89,7 +83,6 @@ public class PantallaToDoUMB extends javax.swing.JFrame {
                 btnSesionesActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSesiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 221, 210, 97));
 
         btnCambiarCuenta.setBackground(new java.awt.Color(185, 215, 234));
         btnCambiarCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -101,7 +94,6 @@ public class PantallaToDoUMB extends javax.swing.JFrame {
                 btnCambiarCuentaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCambiarCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 324, 210, 97));
 
         btnCerrar.setBackground(new java.awt.Color(185, 215, 234));
         btnCerrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -113,7 +105,6 @@ public class PantallaToDoUMB extends javax.swing.JFrame {
                 btnCerrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 427, 210, 97));
 
         btnCalendario.setBackground(new java.awt.Color(185, 215, 234));
         btnCalendario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -125,32 +116,83 @@ public class PantallaToDoUMB extends javax.swing.JFrame {
                 btnCalendarioActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 118, 210, 97));
 
         jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(118, 159, 205));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Textos/imgToDoUMB.png"))); // NOI18N
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 440, 90));
 
         jLabel9.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(118, 159, 205));
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeño.png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 100, -1));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 210,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 210,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(120, 120, 120)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 440,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(60, 60, 60)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 210,
+                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCambiarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 210,
+                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 210,
+                                javax.swing.GroupLayout.PREFERRED_SIZE));
+        jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(15, 15, 15)
+                                                .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 97,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(6, 6, 6)
+                                                .addComponent(btnCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 97,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(30, 30, 30)
+                                                .addComponent(jLabel6))
+                                        .addComponent(jLabel9))
+                                .addGap(6, 6, 6)
+                                .addComponent(btnSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 97,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(btnCambiarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 97,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 97,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 936, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 936, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 550, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        Short.MAX_VALUE)));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
