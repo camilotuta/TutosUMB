@@ -334,16 +334,18 @@ public class PantallaRegistro extends javax.swing.JFrame {
                 if (tfContraseña.getText().equals(tfConfirmarContraseña.getText())) {
                         Conexion cx = new Conexion();
                         try {
+                                cx.con = Conexion.getConection();
                                 if (cx.con == null) {
                                         JOptionPane.showMessageDialog(null,
-                                                        "Se ha establecido una conexión a la base de datos "
-                                                                        + "\n " + cx.url + ".");
+                                                        "No se pudo establecer una conexión a la base de datos.");
+                                } else {
+                                        cx.stmt = cx.con.createStatement();
+                                        cx.stmt.executeUpdate(
+                                                        "INSERT INTO usuarios(nombre, correo, contraseña, biografia) VALUES('"
+                                                                        + nombre + "','" + correo + "','"
+                                                                        + contraseña + "','"
+                                                                        + biografia + "')");
                                 }
-                                cx.stmt = cx.con.createStatement();
-                                cx.stmt.executeUpdate(
-                                                "INSERT INTO usuarios VALUES('" + nombre + "','" + correo + "','"
-                                                                + contraseña + "','"
-                                                                + biografia + "')");
                         } catch (SQLException ex) {
                                 Logger.getLogger(PantallaRegistro.class.getName()).log(Level.SEVERE, null, ex);
                         } finally {
@@ -357,7 +359,7 @@ public class PantallaRegistro extends javax.swing.JFrame {
                                 }
                         }
 
-                        JOptionPane.showMessageDialog(this, "Registro exitoso! \n", "AVISO!",
+                        JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "¡AVISO!",
                                         javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                         PantallaInicio pi = new PantallaInicio();
@@ -365,7 +367,7 @@ public class PantallaRegistro extends javax.swing.JFrame {
 
                         this.setVisible(false);
                 } else {
-                        JOptionPane.showMessageDialog(this, "LAS CONTRASEÑAS DEBEN COINCIDIR \n", "AVISO!",
+                        JOptionPane.showMessageDialog(this, "LAS CONTRASEÑAS DEBEN COINCIDIR", "AVISO!",
                                         javax.swing.JOptionPane.INFORMATION_MESSAGE);
                 }
         }
