@@ -166,10 +166,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="tfContrase&#xf1;a">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfContrase&#xf1;aActionPerformed"/>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfContrase&#xf1;aKeyReleased"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnIngresar">
           <Properties>

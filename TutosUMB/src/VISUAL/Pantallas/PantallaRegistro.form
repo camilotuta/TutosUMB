@@ -158,7 +158,6 @@
             <Component class="javax.swing.JTextPane" name="tfCorreo">
               <Events>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfCorreoKeyReleased"/>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfCorreoKeyTyped"/>
               </Events>
             </Component>
           </SubComponents>
@@ -223,7 +222,6 @@
         </Component>
         <Component class="javax.swing.JPasswordField" name="tfContrase&#xf1;a">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfContrase&#xf1;aActionPerformed"/>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfContrase&#xf1;aKeyReleased"/>
           </Events>
         </Component>
@@ -261,14 +259,12 @@
             <Component class="javax.swing.JTextPane" name="tfNombre">
               <Events>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfNombreKeyReleased"/>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfNombreKeyTyped"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
         <Component class="javax.swing.JPasswordField" name="tfConfirmarContrase&#xf1;a">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfConfirmarContrase&#xf1;aActionPerformed"/>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfConfirmarContrase&#xf1;aKeyReleased"/>
           </Events>
         </Component>

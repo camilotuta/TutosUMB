@@ -284,7 +284,6 @@
           </Properties>
           <Events>
             <EventHandler event="hierarchyChanged" listener="java.awt.event.HierarchyListener" parameters="java.awt.event.HierarchyEvent" handler="jCalendarHierarchyChanged"/>
-            <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jCalendarAncestorAdded"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
@@ -340,10 +339,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfFechaNuevaSesion">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfFechaNuevaSesionActionPerformed"/>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfFechaNuevaSesionKeyReleased"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="cbMateria">
           <Properties>
@@ -359,10 +354,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbMateriaItemStateChanged"/>
-            <EventHandler event="ancestorMoved" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="cbMateriaAncestorMoved"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbMateriaActionPerformed"/>
-            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="cbMateriaPropertyChange"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -389,9 +381,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbHoraItemStateChanged"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbHoraActionPerformed"/>
-            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="cbHoraPropertyChange"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

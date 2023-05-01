@@ -320,10 +320,6 @@
                 <Property name="text" type="java.lang.String" value="O"/>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="OMouseClicked"/>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="OMousePressed"/>
-              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel3">
               <Properties>
@@ -406,7 +402,6 @@
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="espacio1MouseClicked"/>
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="espacio1MousePressed"/>
                   </Events>
                 </Component>
@@ -425,7 +420,6 @@
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="espacio2MouseClicked"/>
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="espacio2MousePressed"/>
                   </Events>
                 </Component>
@@ -444,7 +438,6 @@
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="espacio3MouseClicked"/>
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="espacio3MousePressed"/>
                   </Events>
                 </Component>
@@ -463,7 +456,6 @@
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="espacio4MouseClicked"/>
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="espacio4MousePressed"/>
                   </Events>
                 </Component>
@@ -482,7 +474,6 @@
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="espacio5MouseClicked"/>
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="espacio5MousePressed"/>
                   </Events>
                 </Component>
@@ -501,7 +492,6 @@
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="espacio6MouseClicked"/>
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="espacio6MousePressed"/>
                   </Events>
                 </Component>
@@ -520,7 +510,6 @@
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="espacio7MouseClicked"/>
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="espacio7MousePressed"/>
                   </Events>
                 </Component>
@@ -539,7 +528,6 @@
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="espacio8MouseClicked"/>
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="espacio8MousePressed"/>
                   </Events>
                 </Component>
@@ -558,7 +546,6 @@
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="espacio9MouseClicked"/>
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="espacio9MousePressed"/>
                   </Events>
                 </Component>
@@ -579,10 +566,6 @@
                 <Property name="text" type="java.lang.String" value="X"/>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="XMouseClicked"/>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="XMousePressed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tfNombreJ1">
               <Properties>
@@ -591,7 +574,6 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfNombreJ1ActionPerformed"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfNombreJ1KeyReleased"/>
               </Events>
             </Component>

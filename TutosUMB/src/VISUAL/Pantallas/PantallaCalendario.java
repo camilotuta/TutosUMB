@@ -91,6 +91,7 @@ public class PantallaCalendario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -184,17 +185,6 @@ public class PantallaCalendario extends javax.swing.JFrame {
                 jCalendarHierarchyChanged(evt);
             }
         });
-        jCalendar.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jCalendarAncestorAdded(evt);
-            }
-
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(118, 159, 205));
@@ -218,63 +208,21 @@ public class PantallaCalendario extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(118, 159, 205));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeño.png"))); // NOI18N
 
-        tfFechaNuevaSesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfFechaNuevaSesionActionPerformed(evt);
-            }
-        });
-        tfFechaNuevaSesion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tfFechaNuevaSesionKeyReleased(evt);
-            }
-        });
-
         cbMateria.setModel(
                 new javax.swing.DefaultComboBoxModel<>(new String[] { "Arquitectura de Hardware", "Cálculo Diferencial",
                         "Desarrollo de App", "Física Mecánica", "Inglés Básico", "Programación Orientada a Objetos" }));
-        cbMateria.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbMateriaItemStateChanged(evt);
-            }
-        });
-        cbMateria.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-            }
-
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                cbMateriaAncestorMoved(evt);
-            }
-
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         cbMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbMateriaActionPerformed(evt);
-            }
-        });
-        cbMateria.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                cbMateriaPropertyChange(evt);
             }
         });
 
         cbHora.setModel(new javax.swing.DefaultComboBoxModel<>(
                 new String[] { "8:00 a.m", "9:00 a.m", "10:00 a.m", "11:00 a.m", "12:00 mm", "1:00 p.m", "2:00 p.m",
                         "3:00 p.m", "4:00 p.m", "5:00 p.m", "6:00 p.m", "7:00 p.m", "8:00 p.m" }));
-        cbHora.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbHoraItemStateChanged(evt);
-            }
-        });
         cbHora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbHoraActionPerformed(evt);
-            }
-        });
-        cbHora.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                cbHoraPropertyChange(evt);
             }
         });
 
@@ -429,31 +377,6 @@ public class PantallaCalendario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // ! NO ELIMINAR ESTOS MÉTODOS VACÍOS
-    protected void jCalendarAncestorAdded(AncestorEvent evt) {
-    }
-
-    protected void tfFechaNuevaSesionActionPerformed(ActionEvent evt) {
-    }
-
-    protected void cbMateriaAncestorMoved(AncestorEvent evt) {
-    }
-
-    private void cbMateriaItemStateChanged(java.awt.event.ItemEvent evt) {
-    }
-
-    private void cbHoraPropertyChange(java.beans.PropertyChangeEvent evt) {
-    }
-
-    private void cbMateriaPropertyChange(java.beans.PropertyChangeEvent evt) {
-    }
-
-    private void cbHoraItemStateChanged(java.awt.event.ItemEvent evt) {
-    }
-
-    private void tfFechaNuevaSesionKeyReleased(java.awt.event.KeyEvent evt) {
-    }
-
     private void cbHoraActionPerformed(java.awt.event.ActionEvent evt) {
         cambiarHoraMateria();
         btnSolicitar.setEnabled(desactivarBotonSolicitar());
@@ -462,18 +385,11 @@ public class PantallaCalendario extends javax.swing.JFrame {
     private void cbMateriaActionPerformed(java.awt.event.ActionEvent evt) {
         cambiarHoraMateria();
         btnSolicitar.setEnabled(desactivarBotonSolicitar());
-
     }
 
     private void jCalendarHierarchyChanged(java.awt.event.HierarchyEvent evt) {
         cambiarTexto();
         btnSolicitar.setEnabled(desactivarBotonSolicitar());
-    }
-
-    private void btnVerListaEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {
-        PantallaPanelDeControl lista = new PantallaPanelDeControl();
-        lista.setVisible(true);
-        this.setVisible(false);
     }
 
     private void btnCuentaActionPerformed(java.awt.event.ActionEvent evt) {
