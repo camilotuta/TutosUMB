@@ -32,17 +32,13 @@ public class PantallaInicio extends javax.swing.JFrame {
 
         tfCorreo.setText(PantallaRegistro.correoPoner);
         tfContraseña.setText(PantallaRegistro.contraseñaPoner);
-        habilitarBotonIngresar();
+        btnIngresar.setEnabled(habilitarBotonIngresar());
 
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
     }
 
-    public void habilitarBotonIngresar() {
-        if (tfCorreo.getText().length() >= 20 && tfContraseña.getText().length() >= 8) {
-            btnIngresar.setEnabled(true);
-        } else {
-            btnIngresar.setEnabled(false);
-        }
+    public boolean habilitarBotonIngresar() {
+        return tfCorreo.getText().contains("@academia.umb.edu.co") && tfContraseña.getText().length() >= 8;
     }
 
     /**
@@ -295,11 +291,11 @@ public class PantallaInicio extends javax.swing.JFrame {
     }
 
     private void tfCorreoKeyReleased(java.awt.event.KeyEvent evt) {
-        habilitarBotonIngresar();
+        btnIngresar.setEnabled(habilitarBotonIngresar());
     }
 
     private void tfContraseñaKeyReleased(java.awt.event.KeyEvent evt) {
-        habilitarBotonIngresar();
+        btnIngresar.setEnabled(habilitarBotonIngresar());
     }
 
     /**

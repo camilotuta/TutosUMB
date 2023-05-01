@@ -32,18 +32,13 @@ public class PantallaRegistro extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("REGISTRO");
         this.setResizable(false);
-        habilitarBotonRegistrarse();
+        btnRegistrarse.setEnabled(habilitarBotonRegistrarse());
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
     }
 
-    public void habilitarBotonRegistrarse() {
-        if (tfNombre.getText().length() < 10 || tfCorreo.getText().length() < 20 || tfContraseña.getText().length() < 8
-                || tfConfirmarContraseña.getText().length() < 8) {
-            btnRegistrarse.setEnabled(false);
-        } else {
-            btnRegistrarse.setEnabled(true);
-
-        }
+    public boolean habilitarBotonRegistrarse() {
+        return tfCorreo.getText().contains("@academia.umb.edu.co") && tfNombre.getText().length() >= 10
+                && tfContraseña.getText().length() >= 8 && tfConfirmarContraseña.getText().length() >= 8;
     }
 
     /**
@@ -302,7 +297,6 @@ public class PantallaRegistro extends javax.swing.JFrame {
     }
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {
-
         String nombre = "", correo = "", contraseña = "", biografia = "";
         nombre = tfNombre.getText();
         correo = tfCorreo.getText();
@@ -337,7 +331,7 @@ public class PantallaRegistro extends javax.swing.JFrame {
                 }
             }
 
-            javax.swing.JOptionPane.showMessageDialog(this, "Registro exitoso! \n", "AVISO!",
+            JOptionPane.showMessageDialog(this, "Registro exitoso! \n", "AVISO!",
                     javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
             PantallaInicio pi = new PantallaInicio();
@@ -345,25 +339,25 @@ public class PantallaRegistro extends javax.swing.JFrame {
 
             this.setVisible(false);
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "LAS CONTRASEÑAS DEBEN COINCIDIR \n", "AVISO!",
+            JOptionPane.showMessageDialog(this, "LAS CONTRASEÑAS DEBEN COINCIDIR \n", "AVISO!",
                     javax.swing.JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
     private void tfNombreKeyReleased(java.awt.event.KeyEvent evt) {
-        habilitarBotonRegistrarse();
+        btnRegistrarse.setEnabled(habilitarBotonRegistrarse());
     }
 
     private void tfCorreoKeyReleased(java.awt.event.KeyEvent evt) {
-        habilitarBotonRegistrarse();
+        btnRegistrarse.setEnabled(habilitarBotonRegistrarse());
     }
 
     private void tfContraseñaKeyReleased(java.awt.event.KeyEvent evt) {
-        habilitarBotonRegistrarse();
+        btnRegistrarse.setEnabled(habilitarBotonRegistrarse());
     }
 
     private void tfConfirmarContraseñaKeyReleased(java.awt.event.KeyEvent evt) {
-        habilitarBotonRegistrarse();
+        btnRegistrarse.setEnabled(habilitarBotonRegistrarse());
     }
 
     /**
