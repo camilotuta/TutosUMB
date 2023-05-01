@@ -5,8 +5,12 @@
 package VISUAL.Pantallas;
 
 import CODE.Clases.Conexion;
+
+import java.awt.Color;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import javax.swing.border.EmptyBorder;
+
 import java.sql.*;
 
 /**
@@ -18,37 +22,21 @@ public class PantallaCuenta extends javax.swing.JFrame {
     /**
      * Creates new form Cuenta
      */
-    public static String biografia = "";
+
+    Conexion cx = new Conexion();
 
     public PantallaCuenta() {
         initComponents();
 
         this.setLocationRelativeTo(null);
-        this.setTitle("CUENTA");
+        this.setTitle("PERFIL");
         this.setResizable(false);
 
-        String correoBuscar = PantallaInicio.correoBuscar;
-
-        txtMostrarBiografia.setText(biografia);
+        jTxtMostrarBiografia.setLineWrap(true);
+        jTxtMostrarBiografia.setBorder(new EmptyBorder(0, 0, 0, 0));
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
 
-        Conexion cx = new Conexion();
-        try {
-            cx.con = Conexion.getConection();
-            cx.ps = cx.con.prepareCall("SELECT nombre, correo FROM usuarios WHERE correo = ?");
-            cx.ps.setString(1, correoBuscar);
-
-            cx.rs = cx.ps.executeQuery();
-            if (cx.rs.next()) {
-                txtMostrarNombre.setText(cx.rs.getString("nombre"));
-                txtMostrarCorreo.setText(cx.rs.getString("correo"));
-            } else {
-                JOptionPane.showMessageDialog(null, "NO HAY RESULTADOS.");
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
+        mostrarDatosUsuario();
         habilitarBotonGuardar();
         habilitarBotonCancelar();
     }
@@ -69,6 +57,48 @@ public class PantallaCuenta extends javax.swing.JFrame {
         }
     }
 
+    public void mostrarDatosUsuario() {
+        String correoBuscar = PantallaInicio.correoBuscar;
+        try {
+            cx.con = Conexion.getConection();
+            cx.ps = cx.con.prepareCall("SELECT nombre, correo, biografia FROM usuarios WHERE correo = ?");
+            cx.ps.setString(1, correoBuscar);
+
+            cx.rs = cx.ps.executeQuery();
+            if (cx.rs.next()) {
+                txtMostrarNombre.setText(cx.rs.getString("nombre"));
+                txtMostrarCorreo.setText(cx.rs.getString("correo"));
+                jTxtMostrarBiografia.setText(cx.rs.getString("biografia"));
+            } else {
+                JOptionPane.showMessageDialog(null, "NO HAY RESULTADOS.");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
+    public void actualizarBiografia() {
+        cx.con = Conexion.getConection();
+        try {
+            cx.stmt = cx.con.createStatement();
+            String sql = "UPDATE usuarios SET biografia = '" + tfBiografia.getText() + "' WHERE correo = '"
+                    + txtMostrarCorreo.getText() + "'";
+            cx.stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cx.con != null) {
+                    cx.con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        mostrarDatosUsuario();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,7 +109,11 @@ public class PantallaCuenta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -100,8 +134,10 @@ public class PantallaCuenta extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtMostrarNombre = new javax.swing.JLabel();
-        txtMostrarBiografia = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        btnPanelDeControl = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTxtMostrarBiografia = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -113,8 +149,8 @@ public class PantallaCuenta extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(118, 159, 205));
         jLabel1.setText("Biografía:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, -1, -1));
-        jPanel1.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 496, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, -1, -1));
+        jPanel1.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 553, -1, -1));
 
         btnCuenta.setBackground(new java.awt.Color(185, 215, 234));
         btnCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -183,22 +219,22 @@ public class PantallaCuenta extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tfBiografia);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 392, 311, 60));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(349, 419, 311, 60));
 
         jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(118, 159, 205));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Textos/imgPerfil.jpeg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Textos/imgPerfil.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(118, 159, 205));
         jLabel3.setText("Correo:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(349, 192, -1, -1));
 
         txtMostrarCorreo.setFont(new java.awt.Font("Arial Narrow", 2, 18)); // NOI18N
         txtMostrarCorreo.setForeground(new java.awt.Color(118, 159, 205));
         txtMostrarCorreo.setText(" ");
-        jPanel1.add(txtMostrarCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 190, 290, -1));
+        jPanel1.add(txtMostrarCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(469, 192, 290, -1));
 
         btnGuardar.setBackground(new java.awt.Color(185, 215, 234));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -209,7 +245,7 @@ public class PantallaCuenta extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 464, 113, 37));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(349, 499, 113, 37));
 
         btnCancelar.setBackground(new java.awt.Color(185, 215, 234));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -220,7 +256,7 @@ public class PantallaCuenta extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(637, 464, 113, 37));
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(539, 499, 113, 37));
 
         jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(118, 159, 205));
@@ -230,22 +266,39 @@ public class PantallaCuenta extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(118, 159, 205));
         jLabel7.setText("Nombre:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(349, 132, -1, -1));
 
         txtMostrarNombre.setFont(new java.awt.Font("Arial Narrow", 2, 18)); // NOI18N
         txtMostrarNombre.setForeground(new java.awt.Color(118, 159, 205));
         txtMostrarNombre.setText(" ");
-        jPanel1.add(txtMostrarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 130, 290, -1));
-
-        txtMostrarBiografia.setFont(new java.awt.Font("Arial Narrow", 2, 18)); // NOI18N
-        txtMostrarBiografia.setForeground(new java.awt.Color(118, 159, 205));
-        txtMostrarBiografia.setText(" ");
-        jPanel1.add(txtMostrarBiografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 360, -1));
+        jPanel1.add(txtMostrarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(469, 132, 290, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(118, 159, 205));
-        jLabel4.setText("Biografía:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 360, -1, -1));
+        jLabel4.setText("Cambiar biografía:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(349, 389, -1, -1));
+
+        btnPanelDeControl.setBackground(new java.awt.Color(185, 215, 234));
+        btnPanelDeControl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnPanelDeControl.setForeground(new java.awt.Color(118, 159, 205));
+        btnPanelDeControl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgComputerPequeño.png"))); // NOI18N
+        btnPanelDeControl.setText("Panel de Control");
+        btnPanelDeControl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPanelDeControlActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnPanelDeControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 420, 250, 110));
+
+        jTxtMostrarBiografia.setEditable(false);
+        jTxtMostrarBiografia.setBackground(new java.awt.Color(247, 251, 252));
+        jTxtMostrarBiografia.setColumns(1);
+        jTxtMostrarBiografia.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTxtMostrarBiografia.setForeground(new java.awt.Color(118, 159, 205));
+        jTxtMostrarBiografia.setRows(3);
+        jScrollPane1.setViewportView(jTxtMostrarBiografia);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 390, 80));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 550));
 
@@ -256,6 +309,12 @@ public class PantallaCuenta extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPanelDeControlActionPerformed(java.awt.event.ActionEvent evt) {
+        PantallaPanelDeControl pPan = new PantallaPanelDeControl();
+        pPan.setVisible(true);
+        this.setVisible(false);
+    }
 
     private void tfBiografiaKeyReleased(java.awt.event.KeyEvent evt) {
         habilitarBotonGuardar();
@@ -289,13 +348,14 @@ public class PantallaCuenta extends javax.swing.JFrame {
     }
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {
-        biografia = tfBiografia.getText();
-        txtMostrarBiografia.setText(biografia);
-        JOptionPane.showMessageDialog(null, "GUARDADO CORRECTAMENTE");
+        actualizarBiografia();
+        JOptionPane.showMessageDialog(null, "GUARDADO CORRECTAMENTE.");
+        tfBiografia.setText("");
     }
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
         tfBiografia.setText("");
+        habilitarBotonGuardar();
     }
 
     /**
@@ -355,6 +415,7 @@ public class PantallaCuenta extends javax.swing.JFrame {
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnCuenta;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnPanelDeControl;
     private javax.swing.JButton btnSesiones;
     private java.awt.Canvas canvas1;
     private javax.swing.JLabel jLabel1;
@@ -365,9 +426,10 @@ public class PantallaCuenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTxtMostrarBiografia;
     private javax.swing.JTextPane tfBiografia;
-    private javax.swing.JLabel txtMostrarBiografia;
     private javax.swing.JLabel txtMostrarCorreo;
     private javax.swing.JLabel txtMostrarNombre;
     // End of variables declaration//GEN-END:variables

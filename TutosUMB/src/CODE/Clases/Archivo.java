@@ -15,7 +15,7 @@ public class Archivo {
         try {
             archivo = new File("SesionesProgramadas.txt");
             if (archivo.createNewFile()) {
-                JOptionPane.showMessageDialog(null, "GRACIAS POR INICIAR CON NOSOTROS.");
+                JOptionPane.showMessageDialog(null, "GRACIAS POR CONFIAR EN NOSOTROS...");
             }
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e);

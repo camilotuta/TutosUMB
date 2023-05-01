@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.event.AncestorEvent;
 
 /**
@@ -34,6 +35,7 @@ public class PantallaCalendario extends javax.swing.JFrame {
         this.setTitle("CALENDARIO");
         this.setResizable(false);
         tfFechaNuevaSesion.setEditable(false);
+        tfFechaNuevaSesion.setHorizontalAlignment(JTextField.CENTER);
         tfFechaNuevaSesion.setText("SELECCIONE EL DIA.");
         btnSolicitar.setEnabled(desactivarBotonSolicitar());
 
@@ -85,7 +87,8 @@ public class PantallaCalendario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -105,13 +108,10 @@ public class PantallaCalendario extends javax.swing.JFrame {
         cbMateria = new javax.swing.JComboBox<>();
         cbHora = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        btnVerListaEstudiantes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(247, 251, 252));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 496, -1, -1));
 
         btnCuenta.setBackground(new java.awt.Color(185, 215, 234));
         btnCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -123,7 +123,6 @@ public class PantallaCalendario extends javax.swing.JFrame {
                 btnCuentaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 15, 210, 97));
 
         btnSesiones.setBackground(new java.awt.Color(185, 215, 234));
         btnSesiones.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -135,7 +134,6 @@ public class PantallaCalendario extends javax.swing.JFrame {
                 btnSesionesActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSesiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 221, 210, 97));
 
         btnCambiarCuenta.setBackground(new java.awt.Color(185, 215, 234));
         btnCambiarCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -147,7 +145,6 @@ public class PantallaCalendario extends javax.swing.JFrame {
                 btnCambiarCuentaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCambiarCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 324, 210, 97));
 
         btnCerrar.setBackground(new java.awt.Color(185, 215, 234));
         btnCerrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -159,7 +156,6 @@ public class PantallaCalendario extends javax.swing.JFrame {
                 btnCerrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 427, 210, 97));
 
         btnCalendario.setBackground(new java.awt.Color(185, 215, 234));
         btnCalendario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -171,13 +167,10 @@ public class PantallaCalendario extends javax.swing.JFrame {
                 btnCalendarioActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 118, 210, 97));
 
         jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(118, 159, 205));
-        jLabel4.setIcon(new javax.swing.ImageIcon(
-                getClass().getResource("/VISUAL/Imagenes/Textos/imgSesionesProgramadas.jpeg"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, -1));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Textos/imgSesionesProgramadas.png"))); // NOI18N
 
         jCalendar.setBackground(new java.awt.Color(185, 215, 234));
         jCalendar.setForeground(new java.awt.Color(66, 120, 181));
@@ -191,19 +184,15 @@ public class PantallaCalendario extends javax.swing.JFrame {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jCalendarAncestorAdded(evt);
             }
-
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
-
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        jPanel1.add(jCalendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 390, 230));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(118, 159, 205));
         jLabel1.setText("HORA");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 120, -1, -1));
 
         btnSolicitar.setBackground(new java.awt.Color(185, 215, 234));
         btnSolicitar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -214,17 +203,14 @@ public class PantallaCalendario extends javax.swing.JFrame {
                 btnSolicitarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSolicitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 470, 90, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(118, 159, 205));
-        jLabel2.setText("FECHA NUEVA SESIÓN");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 390, -1, -1));
+        jLabel2.setText("FECHA NUEVA SESION");
 
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(118, 159, 205));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeño.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 100, -1));
 
         tfFechaNuevaSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -236,11 +222,8 @@ public class PantallaCalendario extends javax.swing.JFrame {
                 tfFechaNuevaSesionKeyReleased(evt);
             }
         });
-        jPanel1.add(tfFechaNuevaSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 420, 290, 30));
 
-        cbMateria.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Arquitectura de Hardware", "Cálculo Diferencial",
-                        "Desarrollo de App", "Física Mecánica", "Inglés Básico", "Programación Orientada a Objetos" }));
+        cbMateria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Arquitectura de Hardware", "Cálculo Diferencial", "Desarrollo de App", "Física Mecánica", "Inglés Básico", "Programación Orientada a Objetos" }));
         cbMateria.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbMateriaItemStateChanged(evt);
@@ -249,11 +232,9 @@ public class PantallaCalendario extends javax.swing.JFrame {
         cbMateria.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
-
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
                 cbMateriaAncestorMoved(evt);
             }
-
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
@@ -267,11 +248,8 @@ public class PantallaCalendario extends javax.swing.JFrame {
                 cbMateriaPropertyChange(evt);
             }
         });
-        jPanel1.add(cbMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 240, 190, 30));
 
-        cbHora.setModel(new javax.swing.DefaultComboBoxModel<>(
-                new String[] { "8:00 a.m", "9:00 a.m", "10:00 a.m", "11:00 a.m", "12:00 mm", "1:00 p.m", "2:00 p.m",
-                        "3:00 p.m", "4:00 p.m", "5:00 p.m", "6:00 p.m", "7:00 p.m", "8:00 p.m" }));
+        cbHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8:00 a.m", "9:00 a.m", "10:00 a.m", "11:00 a.m", "12:00 mm", "1:00 p.m", "2:00 p.m", "3:00 p.m", "4:00 p.m", "5:00 p.m", "6:00 p.m", "7:00 p.m", "8:00 p.m" }));
         cbHora.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbHoraItemStateChanged(evt);
@@ -287,37 +265,111 @@ public class PantallaCalendario extends javax.swing.JFrame {
                 cbHoraPropertyChange(evt);
             }
         });
-        jPanel1.add(cbHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 150, 130, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(118, 159, 205));
         jLabel3.setText("MATERIA");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 210, -1, -1));
 
-        btnVerListaEstudiantes.setBackground(new java.awt.Color(185, 215, 234));
-        btnVerListaEstudiantes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnVerListaEstudiantes.setForeground(new java.awt.Color(118, 159, 205));
-        btnVerListaEstudiantes.setText("Ver lista de estudiantes");
-        btnVerListaEstudiantes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerListaEstudiantesActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnVerListaEstudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 480, 190, 30));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCambiarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel4)
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(70, 70, 70)
+                                        .addComponent(jLabel1))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(30, 30, 30)
+                                        .addComponent(cbHora, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(60, 60, 60)
+                                        .addComponent(jLabel3))
+                                    .addComponent(cbMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(100, 100, 100)
+                                .addComponent(tfFechaNuevaSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(230, 230, 230)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnSolicitar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(274, 274, 274)
+                        .addComponent(jLabel2))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(btnCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(btnSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(btnCambiarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel4))
+                            .addComponent(jLabel5))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel1)
+                                .addGap(10, 10, 10)
+                                .addComponent(cbHora, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(70, 70, 70)
+                                .addComponent(jLabel3)
+                                .addGap(10, 10, 10)
+                                .addComponent(cbMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfFechaNuevaSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSolicitar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 550,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -364,7 +416,7 @@ public class PantallaCalendario extends javax.swing.JFrame {
     }
 
     private void btnVerListaEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {
-        PantallaListaEstudiantes lista = new PantallaListaEstudiantes();
+        PantallaPanelDeControl lista = new PantallaPanelDeControl();
         lista.setVisible(true);
         this.setVisible(false);
     }
@@ -476,7 +528,6 @@ public class PantallaCalendario extends javax.swing.JFrame {
     private javax.swing.JButton btnCuenta;
     private javax.swing.JButton btnSesiones;
     private javax.swing.JButton btnSolicitar;
-    private javax.swing.JButton btnVerListaEstudiantes;
     private java.awt.Canvas canvas1;
     private javax.swing.JComboBox<String> cbHora;
     private javax.swing.JComboBox<String> cbMateria;

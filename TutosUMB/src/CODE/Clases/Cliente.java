@@ -23,7 +23,7 @@ public class Cliente {
     }
 
     /**
-     * metodo para iniciar el socket
+     * método para iniciar el socket
      */
     public void iniciar() {
 
@@ -34,10 +34,11 @@ public class Cliente {
         } catch (IOException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     /**
-     * metodo con el cual enviamos un mensaje
+     * método con el cual enviamos un mensaje
      * 
      * @param msj
      */
@@ -55,4 +56,5 @@ public class Cliente {
             }
         }
     }
+
 }

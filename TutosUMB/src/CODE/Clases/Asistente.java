@@ -29,7 +29,7 @@ public class Asistente implements Runnable {
     }
 
     /**
-     * metodo run
+     * método run
      */
     @Override
     public void run() {
@@ -44,11 +44,10 @@ public class Asistente implements Runnable {
                 if (mensaje.equalsIgnoreCase("cerrar")) {
                     centinela = false;
 
-                    server.desconectarCliente("UN CLIENTE SE DESCONECTO");
                     in.close();
                     sc.close();
                 } else {
-                    // envio el mensaje al servidor
+                    // envió el mensaje al servidor
                     server.notificacion(mensaje);
                 }
             }

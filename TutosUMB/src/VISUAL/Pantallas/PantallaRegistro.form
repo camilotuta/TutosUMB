@@ -137,7 +137,7 @@
               <Color blue="cd" green="9f" red="76" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/VISUAL/Imagenes/Textos/imgRegistro.jpeg"/>
+              <Image iconType="3" name="/VISUAL/Imagenes/Textos/imgRegistro.png"/>
             </Property>
           </Properties>
           <Constraints>

@@ -6,9 +6,14 @@
 package VISUAL.Pantallas;
 
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.swing.JOptionPane;
+
 import CODE.Clases.Cliente;
+import CODE.Clases.Conexion;
 
 /**
  *
@@ -25,17 +30,38 @@ public class PantallaChat extends javax.swing.JFrame implements Observer {
     public PantallaChat() {
         initComponents();
         setDefaultCloseOperation(0);
-        tfMensaje.setEnabled(false);
-        btnEnviar.setEnabled(false);
-        btnSalir.setEnabled(false);
-        tfNombre.setEnabled(true);
         tfConversacion.setEnabled(false);
-        btnEmpezar.setEnabled(true);
-
         this.setLocationRelativeTo(null);
-        this.setTitle("CALENDARIO");
+        this.setTitle("CHAT");
         this.setResizable(false);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
+
+        iniciandoChat();
+    }
+
+    public void iniciandoChat() {
+        String correoBuscar = PantallaInicio.correoBuscar;
+        Conexion cx = new Conexion();
+        try {
+            cx.con = Conexion.getConection();
+            cx.ps = cx.con.prepareCall("SELECT nombre FROM usuarios WHERE correo = ?");
+            cx.ps.setString(1, correoBuscar);
+            cx.rs = cx.ps.executeQuery();
+
+            if (cx.rs.next()) {
+                nombre = (cx.rs.getString("nombre"));
+
+                String primerNombre[] = nombre.split(" ");
+
+                nombre = primerNombre[0];
+
+                cliente = new Cliente(6000);
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR.");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
     /**
@@ -45,32 +71,22 @@ public class PantallaChat extends javax.swing.JFrame implements Observer {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tfNombre = new javax.swing.JTextField();
-        btnEmpezar = new javax.swing.JButton();
         tfMensaje = new javax.swing.JTextField();
         btnEnviar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tfConversacion = new javax.swing.JTextArea();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(247, 251, 252));
-
-        tfNombre.setBackground(new java.awt.Color(255, 255, 255));
-
-        btnEmpezar.setBackground(new java.awt.Color(185, 215, 234));
-        btnEmpezar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnEmpezar.setForeground(new java.awt.Color(118, 159, 205));
-        btnEmpezar.setText("Empezar");
-        btnEmpezar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEmpezarActionPerformed(evt);
-            }
-        });
 
         tfMensaje.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -99,9 +115,7 @@ public class PantallaChat extends javax.swing.JFrame implements Observer {
         tfConversacion.setRows(5);
         jScrollPane1.setViewportView(tfConversacion);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(118, 159, 205));
-        jLabel3.setText("NOMBRE:");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Textos/imgChat.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,52 +125,33 @@ public class PantallaChat extends javax.swing.JFrame implements Observer {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addContainerGap()
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(tfMensaje)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(btnEnviar,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 75,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addGap(68, 68, 68)
-                                                                .addComponent(jLabel3)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE)
-                                                                .addComponent(tfNombre,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 139,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(btnEmpezar)
-                                                                .addGap(22, 22, 22))))
+                                                .addComponent(tfMensaje)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 75,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(159, 159, 159)
-                                                .addComponent(btnSalir))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 378,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+                                                .addComponent(btnSalir)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                layout.createSequentialGroup()
+                                                        .addContainerGap()
+                                                        .addComponent(jScrollPane1)))
+                                .addContainerGap())
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(158, 158, 158)
+                                .addComponent(jLabel1)
+                                .addContainerGap(160, Short.MAX_VALUE)));
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnEmpezar)
-                                        .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48,
+                                .addContainerGap()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18,
                                         Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(tfMensaje, javax.swing.GroupLayout.PREFERRED_SIZE,
                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -169,28 +164,15 @@ public class PantallaChat extends javax.swing.JFrame implements Observer {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {
-        if (!(tfNombre.getText().equalsIgnoreCase(""))) {
-            nombre = tfNombre.getText();
-            cliente = new Cliente(6000);
-
-            tfMensaje.setEnabled(true);
-            btnEnviar.setEnabled(true);
-            btnSalir.setEnabled(true);
-            tfNombre.setEnabled(false);
-            btnEmpezar.setEnabled(false);
-        }
-    }
-
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {
         mensaje = tfMensaje.getText();
+
         cliente.enviarMensaje(nombre + " --> " + mensaje + "\n");
+
         tfMensaje.setText("");
     }
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {
-        cliente.enviarMensaje("cerrar");
-        this.setVisible(false);
         this.dispose();
     }
 
@@ -239,14 +221,12 @@ public class PantallaChat extends javax.swing.JFrame implements Observer {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEmpezar;
     private javax.swing.JButton btnEnviar;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea tfConversacion;
     private javax.swing.JTextField tfMensaje;
-    private javax.swing.JTextField tfNombre;
     // End of variables declaration//GEN-END:variables
 
     @Override

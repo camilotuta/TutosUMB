@@ -23,6 +23,7 @@ public class Conexion {
     public String url;
     public Statement stmt;
     public Connection con;
+    public String driver;
 
     public static Connection getConection() {
         Connection con = null;
