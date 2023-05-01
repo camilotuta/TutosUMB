@@ -6,6 +6,7 @@
 package VISUAL.Pantallas;
 
 import java.awt.Toolkit;
+import java.sql.SQLException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -39,8 +40,8 @@ public class PantallaChat extends javax.swing.JFrame implements Observer {
     }
 
     public void iniciandoChat() {
-        String correoBuscar = PantallaRegistro.correoPoner;
         Conexion cx = new Conexion();
+        String correoBuscar = PantallaRegistro.correoPoner;
         try {
             cx.con = Conexion.getConection();
             cx.ps = cx.con.prepareCall("SELECT nombre FROM usuarios WHERE correo = ?");
@@ -48,18 +49,26 @@ public class PantallaChat extends javax.swing.JFrame implements Observer {
             cx.rs = cx.ps.executeQuery();
 
             if (cx.rs.next()) {
-                nombre = (cx.rs.getString("nombre"));
-
-                String primerNombre[] = nombre.split(" ");
-
-                nombre = primerNombre[0];
-
+                String nombreCompleto = cx.rs.getString("nombre");
+                String primerNombre = nombreCompleto.split(" ")[0];
+                nombre = primerNombre;
                 cliente = new Cliente(6000);
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR.");
+                JOptionPane.showMessageDialog(null, "No se encontró el nombre del usuario con correo " + correoBuscar);
             }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al consultar la base de datos:\n" + e.getMessage());
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Error al iniciar el chat:\n" + e.getMessage());
+        } finally {
+            try {
+                if (cx.con != null) {
+                    cx.con.close();
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null,
+                        "Error al cerrar la conexión con la base de datos:\n" + e.getMessage());
+            }
         }
     }
 

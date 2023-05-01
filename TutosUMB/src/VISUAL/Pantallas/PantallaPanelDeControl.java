@@ -19,11 +19,7 @@ import java.awt.event.ActionEvent;
  */
 public class PantallaPanelDeControl extends javax.swing.JFrame {
 
-    Connection cone;
     DefaultTableModel modelo;
-    Statement st;
-    ResultSet rs;
-    int idc;
 
     Servidor server;
 
@@ -46,21 +42,38 @@ public class PantallaPanelDeControl extends javax.swing.JFrame {
     }
 
     void consultar() {
+        Conexion cx = new Conexion();
         String sql = "select * from usuarios";
         try {
-            cone = Conexion.getConection();
-            st = cone.createStatement();
-            rs = st.executeQuery(sql);
+            cx.con = cx.getConection();
+            cx.stmt = cx.con.createStatement();
+            cx.rs = cx.stmt.executeQuery(sql);
             Object[] cliente = new Object[1];
             modelo = (DefaultTableModel) tbListaEstudiantes.getModel();
-            while (rs.next()) {
-                cliente[0] = rs.getString("nombre");
+            modelo.setRowCount(0); // limpiar la tabla antes de agregar nuevas filas
+            while (cx.rs.next()) {
+                cliente[0] = cx.rs.getString("nombre");
                 modelo.addRow(cliente);
             }
             tbListaEstudiantes.setModel(modelo);
             tbListaEstudiantes.setEnabled(false);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ERROR.");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al consultar la base de datos: " + e.getMessage());
+        } finally {
+            // cerrar la conexión y liberar los recursos
+            try {
+                if (cx.rs != null) {
+                    cx.rs.close();
+                }
+                if (cx.stmt != null) {
+                    cx.stmt.close();
+                }
+                if (cx.con != null) {
+                    cx.con.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + ex.getMessage());
+            }
         }
     }
 
@@ -77,7 +90,8 @@ public class PantallaPanelDeControl extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -173,7 +187,8 @@ public class PantallaPanelDeControl extends javax.swing.JFrame {
         btnTusTareas.setBackground(new java.awt.Color(185, 215, 234));
         btnTusTareas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnTusTareas.setForeground(new java.awt.Color(66, 120, 181));
-        btnTusTareas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCheck.png"))); // NOI18N
+        btnTusTareas
+                .setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCheck.png"))); // NOI18N
         btnTusTareas.setText("TUS TAREAS");
         btnTusTareas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,13 +217,12 @@ public class PantallaPanelDeControl extends javax.swing.JFrame {
         tbListaEstudiantes.setBackground(new java.awt.Color(247, 251, 252));
         tbListaEstudiantes.setForeground(new java.awt.Color(118, 159, 205));
         tbListaEstudiantes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object[][] {
 
-            },
-            new String [] {
-                "NOMBRE"
-            }
-        ));
+                },
+                new String[] {
+                        "NOMBRE"
+                }));
         jScrollPane1.setViewportView(tbListaEstudiantes);
         if (tbListaEstudiantes.getColumnModel().getColumnCount() > 0) {
             tbListaEstudiantes.getColumnModel().getColumn(0).setResizable(false);
@@ -229,7 +243,8 @@ public class PantallaPanelDeControl extends javax.swing.JFrame {
         btnJugarTriki.setBackground(new java.awt.Color(185, 215, 234));
         btnJugarTriki.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnJugarTriki.setForeground(new java.awt.Color(66, 120, 181));
-        btnJugarTriki.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgJuego.png"))); // NOI18N
+        btnJugarTriki
+                .setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgJuego.png"))); // NOI18N
         btnJugarTriki.setText("JUGAR TRIKI");
         btnJugarTriki.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,26 +255,28 @@ public class PantallaPanelDeControl extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(118, 159, 205));
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Textos/imgToDoUMBPequeño.png"))); // NOI18N
+        jLabel10.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Textos/imgToDoUMBPequeño.png"))); // NOI18N
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Textos/imgPanelDeControl (Teléfono).png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(
+                getClass().getResource("/VISUAL/Imagenes/Textos/imgPanelDeControl (Teléfono).png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1010, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 1010, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 551, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 551, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

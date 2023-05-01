@@ -61,7 +61,7 @@ public class PantallaCuenta extends javax.swing.JFrame {
         String correoBuscar = PantallaRegistro.correoPoner;
         try {
             cx.con = Conexion.getConection();
-            cx.ps = cx.con.prepareCall("SELECT nombre, correo, biografia FROM usuarios WHERE correo = ?");
+            cx.ps = cx.con.prepareStatement("SELECT nombre, correo, biografia FROM usuarios WHERE correo = ?");
             cx.ps.setString(1, correoBuscar);
 
             cx.rs = cx.ps.executeQuery();
@@ -73,18 +73,28 @@ public class PantallaCuenta extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "NO HAY RESULTADOS.");
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                if (cx.con != null) {
+                    cx.con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public void actualizarBiografia() {
         cx.con = Conexion.getConection();
         try {
-            cx.stmt = cx.con.createStatement();
-            String sql = "UPDATE usuarios SET biografia = '" + tfBiografia.getText() + "' WHERE correo = '"
-                    + txtMostrarCorreo.getText() + "'";
-            cx.stmt.executeUpdate(sql);
+            String sql = "UPDATE usuarios SET biografia = ? WHERE correo = ?";
+            cx.ps = cx.con.prepareStatement(sql);
+            cx.ps.setString(1, tfBiografia.getText());
+            cx.ps.setString(2, txtMostrarCorreo.getText());
+
+            cx.ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

@@ -1,21 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package CODE.Clases;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.*;
-import java.sql.Statement;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author tutaa
- */
 public class Conexion {
 
     public PreparedStatement ps;
@@ -29,10 +16,10 @@ public class Conexion {
         Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;
-        String url = "jdbc:mysql://localhost:3306/tutosumb";
+        String url = "jdbc:mysql://localhost:3306/tutosumb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Bogota";
         String usuario = "root";
         String contraseñaBD = "";
-        String driver = "com.mysql.jdbc.Driver";
+        String driver = "com.mysql.cj.jdbc.Driver";
 
         con = null;
         try {
