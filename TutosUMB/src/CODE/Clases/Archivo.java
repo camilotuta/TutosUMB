@@ -3,7 +3,7 @@ package CODE.Clases;
 import java.io.*;
 import javax.swing.JOptionPane;
 
-import VISUAL.Pantallas.Users.PantallaRegistro;
+import VISUAL.Pantallas.General.PantallaRegistro;
 
 /**
  *
@@ -13,9 +13,9 @@ public class Archivo {
 
     File archivo;
 
-    public void crearArchivo() {
+    public void crearArchivo(String tipoArchivo) {
         try {
-            String nombreArchivo = PantallaRegistro.correoPoner + ".txt";
+            String nombreArchivo = PantallaRegistro.correoPoner + tipoArchivo + ".txt";
             String rutaCompleta = System.getProperty("user.home") + "/Documents/" + nombreArchivo;
             archivo = new File(rutaCompleta);
             if (archivo.createNewFile()) {

@@ -1,8 +1,0 @@
-copyright-exclude
-LICENSE
-CONTRIBUTING.md
-README
-/META-INF/
-/speclicense.html
-doc/release/
-doc/spec/
