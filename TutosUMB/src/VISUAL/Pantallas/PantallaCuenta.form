@@ -76,7 +76,7 @@
               <Color blue="b5" green="78" red="42" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/archivo/notebook.png"/>
+              <Image iconType="3" name="/VISUAL/Imagenes/Botones/imgCuenta.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CUENTA"/>
           </Properties>
@@ -101,7 +101,7 @@
               <Color blue="b5" green="78" red="42" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/archivo/message.png"/>
+              <Image iconType="3" name="/VISUAL/Imagenes/Botones/imgSesiones.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SESIONES"/>
           </Properties>
@@ -126,7 +126,7 @@
               <Color blue="b5" green="78" red="42" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/archivo/arrows.png"/>
+              <Image iconType="3" name="/VISUAL/Imagenes/Botones/imgCambiarCuenta.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CAMBIAR CUENTA"/>
           </Properties>
@@ -151,7 +151,7 @@
               <Color blue="b5" green="78" red="42" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/archivo/close.png"/>
+              <Image iconType="3" name="/VISUAL/Imagenes/Botones/imgCerrar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CERRAR"/>
           </Properties>
@@ -176,7 +176,7 @@
               <Color blue="b5" green="78" red="42" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/archivo/calendar.png"/>
+              <Image iconType="3" name="/VISUAL/Imagenes/Botones/imgCalendario.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CALENDARIO"/>
           </Properties>
@@ -425,23 +425,5 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel5">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial Rounded MT Bold" size="36" style="1"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="cd" green="9f" red="76" type="rgb"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/archivo/image.png"/>
-        </Property>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="830" y="0" width="100" height="-1"/>
-        </Constraint>
-      </Constraints>
-    </Component>
   </SubComponents>
 </Form>

@@ -153,7 +153,7 @@
               <Color blue="b5" green="78" red="42" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/archivo/notebook.png"/>
+              <Image iconType="3" name="/VISUAL/Imagenes/Botones/imgCuenta.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CUENTA"/>
           </Properties>
@@ -178,7 +178,7 @@
               <Color blue="b5" green="78" red="42" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/archivo/calendar.png"/>
+              <Image iconType="3" name="/VISUAL/Imagenes/Botones/imgCalendario.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CALENDARIO"/>
           </Properties>
@@ -203,7 +203,7 @@
               <Color blue="b5" green="78" red="42" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/archivo/message.png"/>
+              <Image iconType="3" name="/VISUAL/Imagenes/Botones/imgSesiones.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SESIONES"/>
           </Properties>
@@ -228,7 +228,7 @@
               <Color blue="b5" green="78" red="42" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/archivo/arrows.png"/>
+              <Image iconType="3" name="/VISUAL/Imagenes/Botones/imgCambiarCuenta.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CAMBIAR CUENTA"/>
           </Properties>
@@ -253,7 +253,7 @@
               <Color blue="b5" green="78" red="42" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/archivo/close.png"/>
+              <Image iconType="3" name="/VISUAL/Imagenes/Botones/imgCerrar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CERRAR"/>
           </Properties>

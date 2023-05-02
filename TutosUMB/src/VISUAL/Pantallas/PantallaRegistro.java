@@ -40,12 +40,105 @@ public class PantallaRegistro extends javax.swing.JFrame {
                                 && tfConfirmarContraseña.getText().length() >= 8;
         }
 
+        public boolean usuarioRegistrado() {
+                Conexion cx = new Conexion();
+                String sql = "select * from usuarios";
+                boolean bool = false;
+
+                try {
+                        cx.con = cx.getConection();
+                        cx.stmt = cx.con.createStatement();
+                        cx.rs = cx.stmt.executeQuery(sql);
+                        while (cx.rs.next()) {
+                                String nombre = cx.rs.getString("nombre");
+                                String correo = cx.rs.getString("correo");
+                                bool = nombre.equals(tfNombre.getText()) || correo.equals(tfCorreo.getText());
+                                break;
+                        }
+                        return bool;
+                } catch (SQLException e) {
+                        JOptionPane.showMessageDialog(null, "Error al consultar la base de datos: " + e.getMessage());
+                        return bool;
+                } finally {
+                        // cerrar la conexión y liberar los recursos
+                        try {
+                                if (cx.rs != null) {
+                                        cx.rs.close();
+                                }
+                                if (cx.stmt != null) {
+                                        cx.stmt.close();
+                                }
+                                if (cx.con != null) {
+                                        cx.con.close();
+                                }
+                        } catch (SQLException ex) {
+                                JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + ex.getMessage());
+                        }
+                }
+        }
+
+        public void registrarUsuario() {
+                String nombre = "", correo = "", contraseña = "", biografia = "";
+                nombre = tfNombre.getText();
+                correo = tfCorreo.getText();
+                contraseña = tfContraseña.getText().toString();
+
+                if (tfContraseña.getText().equals(tfConfirmarContraseña.getText())) {
+                        if (!usuarioRegistrado()) {
+
+                                Conexion cx = new Conexion();
+                                try {
+                                        cx.con = Conexion.getConection();
+                                        if (cx.con == null) {
+                                                JOptionPane.showMessageDialog(null,
+                                                                "No se pudo establecer una conexión a la base de datos.");
+                                        } else {
+                                                cx.stmt = cx.con.createStatement();
+                                                cx.stmt.executeUpdate(
+                                                                "INSERT INTO usuarios(nombre, correo, contraseña, biografia) VALUES('"
+                                                                                + nombre + "','" + correo + "','"
+                                                                                + contraseña + "','"
+                                                                                + biografia + "')");
+                                        }
+                                } catch (SQLException ex) {
+                                        Logger.getLogger(PantallaRegistro.class.getName()).log(Level.SEVERE, null, ex);
+                                } finally {
+                                        if (cx.con != null) {
+                                                try {
+                                                        cx.con.close();
+                                                        cx.stmt.close();
+                                                } catch (Exception e) {
+                                                        JOptionPane.showMessageDialog(null, e.getMessage());
+                                                }
+                                        }
+                                }
+
+                                JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "¡AVISO!",
+                                                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                correoPoner = correo;
+                                contraseñaPoner = contraseña;
+                                PantallaInicio pi = new PantallaInicio();
+                                pi.setVisible(true);
+
+                                this.setVisible(false);
+                        } else {
+                                JOptionPane.showMessageDialog(this, "LAS CONTRASEÑAS DEBEN COINCIDIR", "AVISO!",
+                                                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                        }
+                } else {
+                        JOptionPane.showMessageDialog(null, "YA HAY UNA CUENTA CON ESTE NOMBRE O CORREO.");
+
+                }
+
+        }
+
         /**
          * This method is called from within the constructor to initialize the form.
          * WARNING: Do NOT modify this code. The content of this method is always
          * regenerated by the Form Editor.
          */
         @SuppressWarnings("unchecked")
+        // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
@@ -323,53 +416,8 @@ public class PantallaRegistro extends javax.swing.JFrame {
         }
 
         private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {
-                String nombre = "", correo = "", contraseña = "", biografia = "";
-                nombre = tfNombre.getText();
-                correo = tfCorreo.getText();
-                contraseña = tfContraseña.getText().toString();
+                registrarUsuario();
 
-                correoPoner = correo;
-                contraseñaPoner = contraseña;
-
-                if (tfContraseña.getText().equals(tfConfirmarContraseña.getText())) {
-                        Conexion cx = new Conexion();
-                        try {
-                                cx.con = Conexion.getConection();
-                                if (cx.con == null) {
-                                        JOptionPane.showMessageDialog(null,
-                                                        "No se pudo establecer una conexión a la base de datos.");
-                                } else {
-                                        cx.stmt = cx.con.createStatement();
-                                        cx.stmt.executeUpdate(
-                                                        "INSERT INTO usuarios(nombre, correo, contraseña, biografia) VALUES('"
-                                                                        + nombre + "','" + correo + "','"
-                                                                        + contraseña + "','"
-                                                                        + biografia + "')");
-                                }
-                        } catch (SQLException ex) {
-                                Logger.getLogger(PantallaRegistro.class.getName()).log(Level.SEVERE, null, ex);
-                        } finally {
-                                if (cx.con != null) {
-                                        try {
-                                                cx.con.close();
-                                                cx.stmt.close();
-                                        } catch (Exception e) {
-                                                JOptionPane.showMessageDialog(null, e.getMessage());
-                                        }
-                                }
-                        }
-
-                        JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "¡AVISO!",
-                                        javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-                        PantallaInicio pi = new PantallaInicio();
-                        pi.setVisible(true);
-
-                        this.setVisible(false);
-                } else {
-                        JOptionPane.showMessageDialog(this, "LAS CONTRASEÑAS DEBEN COINCIDIR", "AVISO!",
-                                        javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                }
         }
 
         private void tfNombreKeyReleased(java.awt.event.KeyEvent evt) {

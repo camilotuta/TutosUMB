@@ -24,6 +24,7 @@ public class Servidor extends Observable implements Runnable {
     @Override
     public void run() {
         try {
+            // TODO: Hay error al iniciar el serversocket
             server = new ServerSocket(puerto);
             while (true) {
                 sc = server.accept();

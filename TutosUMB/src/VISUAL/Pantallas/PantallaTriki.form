@@ -75,7 +75,7 @@
               <Color blue="b5" green="78" red="42" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/archivo/notebook.png"/>
+              <Image iconType="3" name="/VISUAL/Imagenes/Botones/imgCuenta.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CUENTA"/>
           </Properties>
@@ -100,7 +100,7 @@
               <Color blue="b5" green="78" red="42" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/archivo/message.png"/>
+              <Image iconType="3" name="/VISUAL/Imagenes/Botones/imgSesiones.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SESIONES"/>
           </Properties>
@@ -125,7 +125,7 @@
               <Color blue="b5" green="78" red="42" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/archivo/arrows.png"/>
+              <Image iconType="3" name="/VISUAL/Imagenes/Botones/imgCambiarCuenta.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CAMBIAR CUENTA"/>
           </Properties>
@@ -150,7 +150,7 @@
               <Color blue="b5" green="78" red="42" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/archivo/close.png"/>
+              <Image iconType="3" name="/VISUAL/Imagenes/Botones/imgCerrar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CERRAR"/>
           </Properties>
@@ -175,7 +175,7 @@
               <Color blue="b5" green="78" red="42" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/archivo/calendar.png"/>
+              <Image iconType="3" name="/VISUAL/Imagenes/Botones/imgCalendario.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CALENDARIO"/>
           </Properties>
@@ -206,7 +206,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="600" y="480" width="90" height="30"/>
+              <AbsoluteConstraints x="650" y="480" width="90" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -224,7 +224,25 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="450" y="10" width="-1" height="-1"/>
+              <AbsoluteConstraints x="480" y="10" width="-1" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel8">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial Rounded MT Bold" size="36" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cd" green="9f" red="76" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/VISUAL/Imagenes/Logos/imgUMBPeque&#xf1;o.png"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="830" y="0" width="100" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -236,7 +254,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="260" y="50" width="590" height="420"/>
+              <AbsoluteConstraints x="290" y="60" width="590" height="420"/>
             </Constraint>
           </Constraints>
 
@@ -650,25 +668,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="400" y="480" width="90" height="30"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel8">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Rounded MT Bold" size="36" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cd" green="9f" red="76" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/VISUAL/Imagenes/Logos/imgUMBPeque&#xf1;o.png"/>
-            </Property>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="830" y="0" width="100" height="-1"/>
+              <AbsoluteConstraints x="410" y="480" width="90" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
