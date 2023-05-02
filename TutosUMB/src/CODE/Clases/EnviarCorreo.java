@@ -1,56 +1,74 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package CODE.Clases;
 
 import java.util.Properties;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.*;
 import javax.mail.internet.*;
+import javax.swing.JOptionPane;
 
 public class EnviarCorreo {
-    public EnviarCorreo(String mensajeCodigo) {
 
-        // Configuración de las propiedades del correo
-        Properties propiedades = new Properties();
-        propiedades.setProperty("mail.smtp.host", "smtp.gmail.com");
-        propiedades.setProperty("mail.smtp.starttls.enable", "true");
-        propiedades.setProperty("mail.smtp.auth", "true");
-        propiedades.setProperty("mail.smtp.port", "587");
+    private static String emailFrom = "codigodeverificaciontutosumb@gmail.com";
+    private static String passwordFrom = "dzfmmxpxosqjvsyx";
+    private String emailTo;
+    private String subject;
+    private String content;
 
-        // Creación de la sesión de correo
-        Session sesion = Session.getDefaultInstance(propiedades);
+    private Properties mProperties;
+    private Session mSession;
+    private MimeMessage mCorreo;
 
-        final String username = "codigodeverificaciontutosumb@gmail.com"; // Remitente
-        final String password = "TutosbProyecto1234";
-        final String destino = "cauntertut2004@gmail.com"; // Destinatario
+    public EnviarCorreo(String emailTo, String content) {
+        createEmail(emailTo, content);
+        sendEmail(emailTo, content);
 
-        String asunto = "CÓDIGO DE CONFIRMACIÓN.";
-        String mensaje = mensajeCodigo;
+    }
 
-        Message mail = new MimeMessage(sesion);
+    private void createEmail(String correoEnviar, String msgCodigo) {
+        mProperties = new Properties();
+        emailTo = correoEnviar;
+        subject = "CODIGO DE VERIFICACIÓN.";
+        content = msgCodigo;
+
+        // Simple mail transfer protocol
+        mProperties.put("mail.smtp.host", "smtp.gmail.com");
+        mProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        mProperties.setProperty("mail.smtp.starttls.enable", "true");
+        mProperties.setProperty("mail.smtp.port", "587");
+        mProperties.setProperty("mail.smtp.user", emailFrom);
+        mProperties.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
+        mProperties.setProperty("mail.smtp.auth", "true");
+
+        mSession = Session.getDefaultInstance(mProperties);
 
         try {
-            // Creación del mail
-            mail.setFrom(new InternetAddress(username));
-            mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destino));
-            mail.setSubject(asunto);
-            mail.setText(mensaje);
+            mCorreo = new MimeMessage(mSession);
+            mCorreo.setFrom(new InternetAddress(emailFrom));
+            mCorreo.setRecipient(Message.RecipientType.TO, new InternetAddress(emailTo));
+            mCorreo.setSubject(subject);
+            mCorreo.setText(content, "ISO-8859-1", "html");
 
-            Transport transporte = sesion.getTransport("smtp");
-            // Envío del correo
-            transporte.connect(username, password);
-            transporte.sendMessage(mail, mail.getRecipients(Message.RecipientType.TO));
-            transporte.close();
-
-            System.out.println("El correo ha sido enviado correctamente.");
-        } catch (MessagingException e) {
-            System.out.println("Error al enviar el correo: " + e.getMessage());
+        } catch (AddressException ex) {
+            Logger.getLogger(EnviarCorreo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MessagingException ex) {
+            Logger.getLogger(EnviarCorreo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public static void main(String[] args) {
-        new EnviarCorreo("Hola");
+    private void sendEmail(String emailTo, String content) {
+        try {
+            Transport mTransport = mSession.getTransport("smtp");
+            mTransport.connect(emailFrom, passwordFrom);
+            mTransport.sendMessage(mCorreo, mCorreo.getRecipients(Message.RecipientType.TO));
+            mTransport.close();
+
+            JOptionPane.showMessageDialog(null, "EL CÓDIGO HA SIDO ENVIADO A "+emailTo);
+        } catch (NoSuchProviderException ex) {
+            Logger.getLogger(EnviarCorreo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MessagingException ex) {
+            Logger.getLogger(EnviarCorreo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+
 }

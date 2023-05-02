@@ -3,7 +3,7 @@ package CODE.Clases;
 import java.io.*;
 import javax.swing.JOptionPane;
 
-import VISUAL.Pantallas.PantallaRegistro;
+import VISUAL.Pantallas.Users.PantallaRegistro;
 
 /**
  *
