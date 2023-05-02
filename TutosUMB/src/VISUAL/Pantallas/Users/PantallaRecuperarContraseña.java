@@ -83,6 +83,37 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
         }
     }
 
+    public String tomarNombre() {
+        String correoBuscar = tfCorreo.getText();
+        Conexion cx = new Conexion();
+        String nombre = "";
+        try {
+            cx.con = Conexion.getConection();
+            cx.ps = cx.con.prepareStatement("SELECT nombre FROM usuarios WHERE correo = ?");
+            cx.ps.setString(1, correoBuscar);
+
+            cx.rs = cx.ps.executeQuery();
+            if (cx.rs.next()) {
+                nombre = (cx.rs.getString("nombre"));
+            } else {
+                JOptionPane.showMessageDialog(null, "NO HAY RESULTADOS.");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                if (cx.con != null) {
+                    cx.con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return nombre;
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -375,8 +406,7 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
             }
         }
 
-        new EnviarCorreo(correo, text);
-
+        new EnviarCorreo(tomarNombre(), correo, text);
     }
 
     private void btnVerificarCodigoActionPerformed(java.awt.event.ActionEvent evt) {

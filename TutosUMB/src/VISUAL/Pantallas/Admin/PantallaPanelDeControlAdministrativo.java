@@ -4,6 +4,7 @@
  */
 package VISUAL.Pantallas.Admin;
 
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -24,9 +25,24 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
     /**
      * Creates new form PantallaPanelDeControlAdministrativo
      */
+
+    public static String nombreEditar = "";
+
     public PantallaPanelDeControlAdministrativo() {
         initComponents();
         mostrarTablaEstudiantes();
+        this.setLocationRelativeTo(null);
+        this.setTitle("PANEL DE CONTROL ADMINISTRATIVO");
+        this.setResizable(false);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
+
+        btnEditar.setEnabled(habilitarBotones());
+        btnEliminar.setEnabled(habilitarBotones());
+
+    }
+
+    public boolean habilitarBotones() {
+        return !cbNombreEstudiantes.getSelectedItem().toString().equals("Ninguno");
     }
 
     public void mostrarTablaEstudiantes() {
@@ -71,6 +87,7 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
             cx.stmt = cx.con.createStatement();
             cx.rs = cx.stmt.executeQuery(sql);
             ArrayList<String> nombresEstudiantes = new ArrayList<String>();
+            nombresEstudiantes.add("Ninguno");
             while (cx.rs.next()) {
                 nombresEstudiantes.add(cx.rs.getString("nombre"));
             }
@@ -136,17 +153,43 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        canvas1 = new java.awt.Canvas();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbUsuarios = new javax.swing.JTable();
-        btnEliminar = new javax.swing.JButton();
         cbNombreEstudiantes = new javax.swing.JComboBox<>();
-        btnActualizar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(247, 251, 252));
 
+        jPanel1.setForeground(new java.awt.Color(247, 251, 252));
+
+        jPanel2.setBackground(new java.awt.Color(247, 251, 252));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(
+                getClass().getResource("/VISUAL/Imagenes/Textos/imgAdministrar (Teléfono).png"))); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(118, 159, 205));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeño.png"))); // NOI18N
+
+        tbUsuarios.setBackground(new java.awt.Color(247, 251, 252));
+        tbUsuarios.setForeground(new java.awt.Color(66, 120, 181));
         tbUsuarios.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][] {
                         { null, null, null, null },
@@ -157,9 +200,27 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
                 new String[] {
                         "Title 1", "Title 2", "Title 3", "Title 4"
                 }));
+        tbUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbUsuariosMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbUsuarios);
 
+        cbNombreEstudiantes.setBackground(new java.awt.Color(185, 215, 234));
+        cbNombreEstudiantes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        cbNombreEstudiantes.setForeground(new java.awt.Color(66, 120, 181));
+        cbNombreEstudiantes.setModel(
+                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbNombreEstudiantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbNombreEstudiantesActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setBackground(new java.awt.Color(185, 215, 234));
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(66, 120, 181));
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,67 +228,127 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
             }
         });
 
-        cbNombreEstudiantes.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        cbNombreEstudiantes.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnActualizar.setText("Actualizar");
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setBackground(new java.awt.Color(185, 215, 234));
+        btnEditar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnEditar.setForeground(new java.awt.Color(66, 120, 181));
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addGap(70, 70, 70)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(86, 86, 86)
+                                .addGroup(jPanel2Layout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(cbNombreEstudiantes,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 475,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 114,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(btnEliminar))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 760,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(68, 68, 68)
+                                .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(19, Short.MAX_VALUE)));
+        jPanel2Layout.setVerticalGroup(
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel1))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(376, 376, 376)
+                                                .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 534,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(cbNombreEstudiantes,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btnEditar))
+                                        .addComponent(btnEliminar))
+                                .addContainerGap(22, Short.MAX_VALUE)));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+        jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(btnActualizar)
-                                        .addGroup(layout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(cbNombreEstudiantes,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 547,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(
-                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(btnEliminar))
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 760,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(57, Short.MAX_VALUE)));
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(53, Short.MAX_VALUE)
-                                .addComponent(btnActualizar)
-                                .addGap(45, 45, 45)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 534,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(cbNombreEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnEliminar))
-                                .addGap(26, 26, 26)));
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnActualizarActionPerformed
+    private void cbNombreEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {
+        btnEditar.setEnabled(habilitarBotones());
+        btnEliminar.setEnabled(habilitarBotones());
+
+    }
+
+    private void tbUsuariosMousePressed(java.awt.event.MouseEvent evt) {
         mostrarTablaEstudiantes();
-        tomarNombres();
-    }// GEN-LAST:event_btnActualizarActionPerformed
+
+        btnEditar.setEnabled(habilitarBotones());
+        btnEliminar.setEnabled(habilitarBotones());
+
+    }
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {
+        nombreEditar = cbNombreEstudiantes.getSelectedItem().toString();
+
+        PantallaModificarUsuario pModUser = new PantallaModificarUsuario();
+        pModUser.setVisible(true);
+        this.setVisible(false);
+    }
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {
         eliminarUsuario();
         mostrarTablaEstudiantes();
-        tomarNombres();
+        btnEditar.setEnabled(habilitarBotones());
+        btnEliminar.setEnabled(habilitarBotones());
+
     }
 
     /**
@@ -274,9 +395,14 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
+    private java.awt.Canvas canvas1;
     private javax.swing.JComboBox<String> cbNombreEstudiantes;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbUsuarios;
     // End of variables declaration//GEN-END:variables
