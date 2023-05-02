@@ -18,6 +18,8 @@ import VISUAL.Pantallas.Estudiante.PantallaBienvenida;
  */
 
 // TODO: SEGUN EL CORREO DIRIGIR A SU RESPECTIVA PANTALLA
+// TODO: CUANDO EL CURSOR ESTÉ ENCIMA DEL BTNRECUPERARCONTRASEÑA, SE MUESTRE EL
+// TEXTO "¿Olvidaste tu contraseña?"
 
 /*
  * ESTUDIANTE: @academia.umb.edu.co
