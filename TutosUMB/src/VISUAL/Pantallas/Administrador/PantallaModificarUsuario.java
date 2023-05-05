@@ -18,7 +18,7 @@ import CODE.Clases.Conexion;
 public class PantallaModificarUsuario extends javax.swing.JFrame {
 
     /**
-     * Creates new form PantallaPanelDeControl
+     * Creates new form PantallaPanelDeControlAdministrativo
      */
     public PantallaModificarUsuario() {
         initComponents();
@@ -32,7 +32,7 @@ public class PantallaModificarUsuario extends javax.swing.JFrame {
 
     public void mostrarDatosUsuario() {
         Conexion cx = new Conexion();
-        String nombreBuscar = PantallaPanelDeControl.nombreEditar;
+        String nombreBuscar = PantallaPanelDeControlAdministrativo.nombreEditar;
         try {
             cx.con = Conexion.getConection();
             cx.ps = cx.con
@@ -114,14 +114,13 @@ public class PantallaModificarUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         canvas1 = new java.awt.Canvas();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         btnConfirmar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -136,136 +135,100 @@ public class PantallaModificarUsuario extends javax.swing.JFrame {
         tfContraseña = new javax.swing.JTextPane();
         jScrollPane4 = new javax.swing.JScrollPane();
         tfBiografia = new javax.swing.JTextPane();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(247, 251, 252));
 
         jPanel1.setForeground(new java.awt.Color(247, 251, 252));
 
-        jPanel2.setBackground(new java.awt.Color(247, 251, 252));
+        jPanel2.setBackground(new java.awt.Color(247, 247, 247));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(914, 533, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Textos/imgPerfil.png"))); // NOI18N
-
-        jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(118, 159, 205));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeño.png"))); // NOI18N
-
-        btnCancelar.setBackground(new java.awt.Color(185, 215, 234));
+        btnCancelar.setBackground(new java.awt.Color(220, 220, 220));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(66, 120, 181));
+        btnCancelar.setForeground(new java.awt.Color(51, 51, 51));
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
             }
         });
+        jPanel2.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 422, -1, -1));
 
-        btnConfirmar.setBackground(new java.awt.Color(185, 215, 234));
+        btnConfirmar.setBackground(new java.awt.Color(220, 220, 220));
         btnConfirmar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnConfirmar.setForeground(new java.awt.Color(66, 120, 181));
+        btnConfirmar.setForeground(new java.awt.Color(51, 51, 51));
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarActionPerformed(evt);
             }
         });
+        jPanel2.add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 422, -1, -1));
 
+        tfNombre.setBackground(new java.awt.Color(247, 247, 247));
+        tfNombre.setForeground(new java.awt.Color(51, 51, 51));
         jScrollPane2.setViewportView(tfNombre);
 
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(339, 144, 307, 30));
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(118, 159, 205));
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("NOMBRE COMPLETO:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 154, 150, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(118, 159, 205));
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("CORREO INSTITUCIONAL:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 234, 170, -1));
 
+        tfCorreo.setBackground(new java.awt.Color(247, 247, 247));
+        tfCorreo.setForeground(new java.awt.Color(51, 51, 51));
         jScrollPane1.setViewportView(tfCorreo);
 
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(339, 224, 307, 30));
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(118, 159, 205));
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("CONTRASEÑA:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 314, 100, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(118, 159, 205));
+        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("BIOGRAFÍA:");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 384, 190, -1));
 
+        tfContraseña.setBackground(new java.awt.Color(247, 247, 247));
+        tfContraseña.setForeground(new java.awt.Color(51, 51, 51));
         jScrollPane3.setViewportView(tfContraseña);
 
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(339, 304, 307, 30));
+
+        tfBiografia.setBackground(new java.awt.Color(247, 247, 247));
+        tfBiografia.setForeground(new java.awt.Color(51, 51, 51));
         jScrollPane4.setViewportView(tfBiografia);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(914, 914, 914)
-                        .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnConfirmar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCancelar))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(2, 2, 2))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(60, 60, 60)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(126, 126, 126)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(153, 153, 153))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel1)))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(50, 50, 50)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(50, 50, 50)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnConfirmar))
-                .addGap(72, 72, 72)
-                .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 374, 307, 30));
+
+        jLabel8.setBackground(new java.awt.Color(85, 85, 85));
+        jLabel8.setFont(new java.awt.Font("Crabs", 1, 80)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel8.setText("Usuario");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(118, 159, 205));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeñoAdmnistrador.png"))); // NOI18N
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(118, 159, 205));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeñoAdministrador.png"))); // NOI18N
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, -1, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -297,7 +260,7 @@ public class PantallaModificarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
-        PantallaPanelDeControl pPanCon = new PantallaPanelDeControl();
+        PantallaPanelDeControlAdministrativo pPanCon = new PantallaPanelDeControlAdministrativo();
 
         pPanCon.setVisible(true);
         this.setVisible(false);
@@ -305,7 +268,7 @@ public class PantallaModificarUsuario extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {
         actualizarDatos();
-        PantallaPanelDeControl pPanCon = new PantallaPanelDeControl();
+        PantallaPanelDeControlAdministrativo pPanCon = new PantallaPanelDeControlAdministrativo();
 
         pPanCon.setVisible(true);
         this.setVisible(false);
@@ -359,12 +322,13 @@ public class PantallaModificarUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
     private java.awt.Canvas canvas1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

@@ -19,30 +19,16 @@ public class EnviarCorreo {
     private Session mSession;
     private MimeMessage mCorreo;
 
-    public EnviarCorreo(String nombre, String emailTo, String content) {
-        createEmail(nombre, emailTo, content);
-        sendEmail(emailTo, content);
-
+    public EnviarCorreo(String correoEnviar, String asunto, String mensaje) {
+        createEmail(correoEnviar, asunto, mensaje);
+        sendEmail(correoEnviar);
     }
 
-    private void createEmail(String nombre, String correoEnviar, String msgCodigo) {
+    private void createEmail(String correoEnviar, String asunto, String mensaje) {
         mProperties = new Properties();
         emailTo = correoEnviar;
-        subject = "Restablecer tu contraseña en TutosUMB.";
-        content = "&#x1F44B; Hola, " + nombre + ".<br><br>" +
-                "Has recibido este correo electrónico porque has solicitado restablecer tu contraseña en TutosUMB. Para continuar, utiliza el siguiente código de verificación:<br><br>"
-                +
-                "&#128273; <strong style=\"font-size: 24px;\">" + msgCodigo + "</strong><br><br>" +
-                "Por favor, ingresa este código en la página de restablecimiento de contraseña y sigue las instrucciones para crear una nueva contraseña segura.<br><br>"
-                +
-                "Si no has solicitado el restablecimiento de tu contraseña, por favor ignora este correo electrónico y asegúrate de proteger tu cuenta.<br><br>"
-                +
-                "Si tienes alguna pregunta o necesitas ayuda, no dudes en contactar a nuestro equipo de soporte. &#128516;<br><br>"
-                +
-                "¡Que tengas un excelente día! &#128077;<br><br>" +
-                "Atentamente,<br>" +
-                "El equipo de TutosUMB. &#128170;";
-        ;
+        subject = asunto;
+        content = mensaje;
 
         // Simple mail transfer protocol
         mProperties.put("mail.smtp.host", "smtp.gmail.com");
@@ -69,7 +55,7 @@ public class EnviarCorreo {
         }
     }
 
-    private void sendEmail(String emailTo, String content) {
+    private void sendEmail(String emailTo) {
         try {
             Transport mTransport = mSession.getTransport("smtp");
             mTransport.connect(emailFrom, passwordFrom);

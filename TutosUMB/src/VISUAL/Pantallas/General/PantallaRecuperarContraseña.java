@@ -17,14 +17,17 @@ import CODE.Clases.EnviarCorreo;
  *
  * @author tutaa
  */
+
+// TODO: MEJORAR LOS METODOS USUARIOREGISTRADO Y TOMAR NOMBRE PARA QUE NO HAGAN
+// LO MISMO
 public class PantallaRecuperarContraseña extends javax.swing.JFrame {
 
     /**
      * Creates new form PantallaInicio
      */
     String codigo;
+    public static int intentos = 3;
 
-    // TODO: CAMBIAR TITULO (IMAGEN)
     public PantallaRecuperarContraseña() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -36,6 +39,14 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
 
         tfContraseña.setEnabled(false);
         tfConfirmarContraseña.setEnabled(false);
+
+        if (intentos == 0) {
+            JOptionPane.showMessageDialog(rootPane, "VUELVA MÁS TARDE.");
+            tfCodigo.setEnabled(false);
+            tfCorreo.setEnabled(false);
+            btnEnviarCodigo.setEnabled(false);
+            btnVerificar.setEnabled(false);
+        }
 
         setIconImage(Toolkit.getDefaultToolkit()
                 .getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
@@ -102,7 +113,7 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
             if (cx.rs.next()) {
                 nombre = (cx.rs.getString("nombre"));
             } else {
-                JOptionPane.showMessageDialog(null, "NO HAY RESULTADOS.");
+                JOptionPane.showMessageDialog(null, "NO HAY CUENTA ASOCIADA A ESTE CORREO.");
             }
 
         } catch (SQLException e) {
@@ -118,6 +129,44 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
         }
         return nombre;
 
+    }
+
+    public boolean usuarioRegistrado() {
+        Conexion cx = new Conexion();
+        String sql = "select * from usuarios";
+        boolean bool = false;
+
+        try {
+            cx.con = cx.getConection();
+            cx.stmt = cx.con.createStatement();
+            cx.rs = cx.stmt.executeQuery(sql);
+            while (cx.rs.next()) {
+                String correo = cx.rs.getString("correo");
+                bool = correo.equals(tfCorreo.getText());
+                if (bool) {
+                    break;
+                }
+            }
+            return bool;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al consultar la base de datos: " + e.getMessage());
+            return bool;
+        } finally {
+            // cerrar la conexión y liberar los recursos
+            try {
+                if (cx.rs != null) {
+                    cx.rs.close();
+                }
+                if (cx.stmt != null) {
+                    cx.stmt.close();
+                }
+                if (cx.con != null) {
+                    cx.con.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + ex.getMessage());
+            }
+        }
     }
 
     /**
@@ -140,7 +189,8 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -149,7 +199,6 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
         tfCorreo = new javax.swing.JTextPane();
         jLabel2 = new javax.swing.JLabel();
         btnRegresar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
         tfContraseña = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
@@ -160,11 +209,15 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         btnVerificar = new javax.swing.JButton();
         btnEnviarCodigo = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(247, 251, 252));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        tfCorreo.setBackground(new java.awt.Color(247, 251, 252));
         tfCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tfCorreoKeyReleased(evt);
@@ -172,9 +225,12 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tfCorreo);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 138, 307, 30));
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(118, 159, 205));
         jLabel2.setText("NUEVA CONTRASEÑA:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 296, -1, -1));
 
         btnRegresar.setBackground(new java.awt.Color(185, 215, 234));
         btnRegresar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -185,10 +241,7 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
                 btnRegresarActionPerformed(evt);
             }
         });
-
-        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(118, 159, 205));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Textos/imgRegistro.png"))); // NOI18N
+        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 110, 40));
 
         btnConfirmar.setBackground(new java.awt.Color(185, 215, 234));
         btnConfirmar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -199,21 +252,27 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
                 btnConfirmarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, 110, 40));
 
+        tfContraseña.setBackground(new java.awt.Color(247, 251, 252));
         tfContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tfContraseñaKeyReleased(evt);
             }
         });
+        jPanel1.add(tfContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 286, 307, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(118, 159, 205));
         jLabel4.setText("CORREO INSTITUCIONAL:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 148, 170, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(118, 159, 205));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeño.png"))); // NOI18N
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 100, -1));
 
+        tfCodigo.setBackground(new java.awt.Color(247, 251, 252));
         tfCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tfCodigoKeyReleased(evt);
@@ -221,15 +280,20 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tfCodigo);
 
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 186, 200, 30));
+
+        tfConfirmarContraseña.setBackground(new java.awt.Color(247, 251, 252));
         tfConfirmarContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tfConfirmarContraseñaKeyReleased(evt);
             }
         });
+        jPanel1.add(tfConfirmarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 366, 307, 30));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(118, 159, 205));
         jLabel6.setText("CONFIRMAR CONTRASEÑA:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 376, 190, -1));
 
         btnVerificar.setBackground(new java.awt.Color(185, 215, 234));
         btnVerificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -240,6 +304,7 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
                 btnVerificarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnVerificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 189, -1, -1));
 
         btnEnviarCodigo.setBackground(new java.awt.Color(185, 215, 234));
         btnEnviarCodigo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -250,98 +315,28 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
                 btnEnviarCodigoActionPerformed(evt);
             }
         });
+        jPanel1.add(btnEnviarCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 189, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(jLabel3)
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(61, 61, 61)
-                                .addComponent(tfContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(tfConfirmarContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnEnviarCodigo))
-                                .addGap(40, 40, 40)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnVerificar))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(217, 217, 217)
-                .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel3)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEnviarCodigo)
-                    .addComponent(btnVerificar))
-                .addGap(70, 70, 70)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tfContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tfConfirmarContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41))
-        );
+        jLabel8.setFont(new java.awt.Font("Crabs", 1, 80)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(118, 159, 205));
+        jLabel8.setText("Restablecer");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // TODO: ACTIVAR BOTON VERIFICAR CUANDO EL TEXTO EN TFCODIGO SEA IGUAL A 6
     private void tfCodigoKeyReleased(java.awt.event.KeyEvent evt) {
         btnVerificar.setEnabled(habilitarBotonVerificar());
-        
     }
 
     private void btnEnviarCodigoActionPerformed(java.awt.event.ActionEvent evt) {
@@ -358,16 +353,44 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
                 text += listaCodigo[i];
             }
         }
-        new EnviarCorreo(tomarNombre(), correo, text);
+
+        String asunto = "Restablecer tu contraseña en TutosUMB.";
+        String mensaje = "&#x1F44B; Hola, " + tomarNombre() + ".<br><br>" +
+                "Has recibido este correo electrónico porque has solicitado restablecer tu contraseña en TutosUMB. Para continuar, utiliza el siguiente código de verificación:<br><br>"
+                +
+                "&#128273; <strong style=\"font-size: 24px;\">" + text + "</strong><br><br>" +
+                "Por favor, ingresa este código en la página de restablecimiento de contraseña y sigue las instrucciones para crear una nueva contraseña segura.<br><br>"
+                +
+                "Si no has solicitado el restablecimiento de tu contraseña, por favor ignora este correo electrónico y asegúrate de proteger tu cuenta.<br><br>"
+                +
+                "Si tienes alguna pregunta o necesitas ayuda, no dudes en contactar a nuestro equipo de soporte. &#128516;<br><br>"
+                +
+                "¡Que tengas un excelente día! &#128077;<br><br>" +
+                "Atentamente,<br>" +
+                "El equipo de TutosUMB. &#128170;";
+
+        new EnviarCorreo(correo, asunto, mensaje);
     }
 
     private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {
-        if (tfCodigo.getText().equals(codigo)) {
-            JOptionPane.showMessageDialog(null, "EL CÓDIGO ES CORRECTO.");
-            tfContraseña.setEnabled(true);
-            tfConfirmarContraseña.setEnabled(true);
+        if (usuarioRegistrado()) {
+            if (tfCodigo.getText().equals(codigo) && intentos > 0) {
+                JOptionPane.showMessageDialog(null, "EL CÓDIGO ES CORRECTO.");
+                tfContraseña.setEnabled(true);
+                tfConfirmarContraseña.setEnabled(true);
+                intentos = 3;
+            } else if (intentos == 0) {
+                JOptionPane.showMessageDialog(rootPane, "NO TIENE MÁS INTENTOS.");
+                tfCodigo.setEnabled(false);
+                tfCorreo.setEnabled(false);
+                btnEnviarCodigo.setEnabled(false);
+                btnVerificar.setEnabled(false);
+            } else {
+                intentos--;
+                JOptionPane.showMessageDialog(null, "EL CÓDIGO NO ES CORRECTO.\nTIENE " + intentos + " INTENTOS.");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "EL CÓDIGO NO ES CORRECTO.");
+            JOptionPane.showMessageDialog(null, "NO EXISTE UNA CUENTA CON ESE CORREO.");
         }
     }
 
@@ -458,10 +481,10 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
     private javax.swing.JButton btnVerificar;
     private java.awt.Canvas canvas1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

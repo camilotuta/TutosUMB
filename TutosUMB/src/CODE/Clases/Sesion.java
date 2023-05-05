@@ -9,11 +9,21 @@ public class Sesion {
     private String link;
     private String fecha;
     private String materia;
+    private String estado;
 
-    public Sesion(String materia, String link, String fecha) {
+    public Sesion(String materia, String link, String fecha, String estado) {
         this.materia = materia;
         this.link = link;
         this.fecha = fecha;
+        this.estado = estado;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getMateria() {
