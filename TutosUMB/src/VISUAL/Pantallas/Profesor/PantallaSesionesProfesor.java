@@ -7,7 +7,6 @@ package VISUAL.Pantallas.Profesor;
 
 import VISUAL.Pantallas.General.PantallaInicio;
 import VISUAL.Pantallas.General.PantallaRegistro;
-import VISUAL.Pantallas.Estudiante.*;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -73,6 +72,7 @@ public class PantallaSesionesProfesor extends javax.swing.JFrame {
         }
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
@@ -216,7 +216,7 @@ public class PantallaSesionesProfesor extends javax.swing.JFrame {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeñoProfesor.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
