@@ -89,7 +89,6 @@ public class PantallaCrearUsuario extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        canvas1 = new java.awt.Canvas();
         btnCancelar = new javax.swing.JButton();
         btnConfirmar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -114,7 +113,6 @@ public class PantallaCrearUsuario extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(247, 247, 247));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(914, 533, -1, -1));
 
         btnCancelar.setBackground(new java.awt.Color(220, 220, 220));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -286,7 +284,6 @@ public class PantallaCrearUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
-    private java.awt.Canvas canvas1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -90,7 +90,6 @@ public class PantallaSesionesProfesor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbSesionesProgramadas = new javax.swing.JTable();
-        canvas1 = new java.awt.Canvas();
         btnCuenta = new javax.swing.JButton();
         btnCalendario = new javax.swing.JButton();
         btnSesiones = new javax.swing.JButton();
@@ -148,7 +147,6 @@ public class PantallaSesionesProfesor extends javax.swing.JFrame {
         }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 132, 588, 340));
-        jPanel1.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         btnCuenta.setBackground(new java.awt.Color(212, 248, 215));
         btnCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -271,7 +269,6 @@ public class PantallaSesionesProfesor extends javax.swing.JFrame {
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnCuenta;
     private javax.swing.JButton btnSesiones;
-    private java.awt.Canvas canvas1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

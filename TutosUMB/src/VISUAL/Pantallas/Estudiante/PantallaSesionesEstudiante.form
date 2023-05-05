@@ -60,7 +60,6 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="canvas1" min="-2" max="-2" attributes="0"/>
                       <Component id="btnCuenta" min="-2" pref="210" max="-2" attributes="0"/>
                       <Component id="btnCalendario" min="-2" pref="210" max="-2" attributes="0"/>
                       <Component id="btnSesiones" min="-2" pref="210" max="-2" attributes="0"/>
@@ -89,8 +88,7 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="canvas1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Component id="btnCuenta" min="-2" pref="97" max="-2" attributes="0"/>
                           <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                           <Component id="btnCalendario" min="-2" pref="97" max="-2" attributes="0"/>
@@ -171,8 +169,6 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="java.awt.Canvas" name="canvas1">
-        </Component>
         <Component class="javax.swing.JButton" name="btnCuenta">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

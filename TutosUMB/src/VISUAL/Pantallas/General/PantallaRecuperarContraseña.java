@@ -194,7 +194,6 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        canvas1 = new java.awt.Canvas();
         jScrollPane1 = new javax.swing.JScrollPane();
         tfCorreo = new javax.swing.JTextPane();
         jLabel2 = new javax.swing.JLabel();
@@ -215,7 +214,6 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(247, 251, 252));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         tfCorreo.setBackground(new java.awt.Color(247, 251, 252));
         tfCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -480,7 +478,6 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
     private javax.swing.JButton btnEnviarCodigo;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnVerificar;
-    private java.awt.Canvas canvas1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

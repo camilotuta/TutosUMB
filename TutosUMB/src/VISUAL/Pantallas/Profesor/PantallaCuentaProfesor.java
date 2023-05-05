@@ -133,7 +133,6 @@ public class PantallaCuentaProfesor extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        canvas1 = new java.awt.Canvas();
         btnCuenta = new javax.swing.JButton();
         btnSesiones = new javax.swing.JButton();
         btnCambiarCuenta = new javax.swing.JButton();
@@ -164,7 +163,6 @@ public class PantallaCuentaProfesor extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(101, 67, 33));
         jLabel1.setText("Biografía:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, -1, -1));
-        jPanel1.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 553, -1, -1));
 
         btnCuenta.setBackground(new java.awt.Color(212, 248, 215));
         btnCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -226,7 +224,8 @@ public class PantallaCuentaProfesor extends javax.swing.JFrame {
         });
         jPanel1.add(btnCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 118, 210, 97));
 
-        tfBiografia.setBackground(java.awt.Color.lightGray);
+        tfBiografia.setBackground(new java.awt.Color(254, 251, 240));
+        tfBiografia.setForeground(new java.awt.Color(101, 67, 33));
         tfBiografia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tfBiografiaKeyReleased(evt);
@@ -296,7 +295,7 @@ public class PantallaCuentaProfesor extends javax.swing.JFrame {
         jPanel1.add(btnPanelDeControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 420, 250, 110));
 
         jTxtMostrarBiografia.setEditable(false);
-        jTxtMostrarBiografia.setBackground(java.awt.Color.lightGray);
+        jTxtMostrarBiografia.setBackground(new java.awt.Color(254, 251, 240));
         jTxtMostrarBiografia.setColumns(1);
         jTxtMostrarBiografia.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jTxtMostrarBiografia.setForeground(new java.awt.Color(101, 67, 33));
@@ -436,7 +435,6 @@ public class PantallaCuentaProfesor extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnPanelDeControl;
     private javax.swing.JButton btnSesiones;
-    private java.awt.Canvas canvas1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

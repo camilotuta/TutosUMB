@@ -27,6 +27,8 @@ import CODE.Clases.Conexion;
  */
 // TODO: MEJORAR EL GETTEXT() DE LOS PASSWORDS EL GETPASSWORD DA UNA LISTA, Y
 // TOCA PONER UN STRING PASS = NEW STRING(PASS)
+
+// TODO: CREAR LABEL CON COPYRIGHT Y AÑO
 public class PantallaInicio extends javax.swing.JFrame {
 
     /**
@@ -115,11 +117,11 @@ public class PantallaInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        canvas1 = new java.awt.Canvas();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tfCorreo = new javax.swing.JTextPane();
@@ -216,13 +218,8 @@ public class PantallaInicio extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(btnErroresComunes))
-                                        .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap()
+                                .addComponent(btnErroresComunes)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131,
                                         Short.MAX_VALUE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 633,
@@ -258,10 +255,7 @@ public class PantallaInicio extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGap(10, 10, 10)
                                                 .addComponent(btnErroresComunes))
                                         .addComponent(jLabel5)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -319,7 +313,7 @@ public class PantallaInicio extends javax.swing.JFrame {
     }
 
     private void btnErroresComunesActionPerformed(java.awt.event.ActionEvent evt) {
-        String texto = "¡Hola! Aquí te dejo un apartado de ayuda con algunos errores comunes y sus\nposibles soluciones:\n\nNo puedes ingresar:\nVerifica tus credenciales de inicio de sesión.\nRestablece tu contraseña si la has olvidado.\nVerifica tu conexión a internet.\nSi el problema persiste, contacta al soporte técnico de la plataforma.\n\nNo puedes registrarte:\nVerifica que completaste todos los campos requeridos y que usaste una\ndirección de correo electrónico válida.\nSi el problema persiste, intenta utilizar una dirección de correo electrónico\ndiferente o contacta al soporte técnico de la plataforma.\n\nError al actualizar biografía:\nAsegúrate de seguir los requisitos de longitud y formato para la biografía.\nVerifica que la imagen que intentas subir cumpla con los requisitos de la\nplataforma.\nSi el problema persiste, intenta actualizar tu biografía desde otro\ndispositivo o navegador o contacta al soporte técnico de la plataforma.\n\nError al agendar tutoría:\nVerifica que seleccionaste la fecha y hora correctas.\nVerifica que tienes los permisos necesarios para agendar una tutoría.\nSi el problema persiste, intenta utilizar otro dispositivo o navegador o\ncontacta al soporte técnico de la plataforma.\n\nError al actualizar lista de tareas:\nAsegúrate de seguir los requisitos de longitud y formato para cada tarea en\nla lista.\nVerifica que tienes los permisos necesarios para actualizar la lista de\ntareas en la plataforma.\n\nSi necesitas ayuda adicional, por favor envía un correo electrónico a alguno\nde los siguientes correos de contacto:\n\nAdrian Camilo Tuta Cortes: adriantuta.cc@academia.umb.edu.co\nCristóbal Moncada Duarte: cristobalmoncada.d@academia.umb.edu.co";
+        String texto = "¡Hola! Aquí te dejo un apartado de ayuda con algunos errores comunes y sus\nposibles soluciones:\n\nNo puedes ingresar:\nVerifica tus credenciales de inicio de sesión.\nRestablece tu contraseña si la has olvidado.\nVerifica tu conexión a internet.\nSi el problema persiste, contacta al soporte técnico de la plataforma.\n\nNo puedes registrarte:\nVerifica que completaste todos los campos requeridos y que usaste una\ndirección de correo institucional válida.\nSi el problema persiste, intenta utilizar una dirección de correo electrónico\ndiferente o contacta al soporte técnico de la plataforma.\n\nError al actualizar biografía:\nAsegúrate de seguir los requisitos de longitud y formato para la biografía.\nSi el problema persiste, intenta actualizar tu biografía desde otro\ndispositivo o navegador o contacta al soporte técnico de la plataforma.\n\nError al agendar tutoría:\nVerifica que seleccionaste la fecha y hora correctas.\nVerifica que tienes los permisos necesarios para agendar una tutoría.\nSi el problema persiste, intenta utilizar otro dispositivo o navegador o\ncontacta al soporte técnico de la plataforma.\n\nError al actualizar lista de tareas:\nAsegúrate de seguir los requisitos de longitud y formato para cada tarea en\nla lista.\nVerifica que tienes los permisos necesarios para actualizar la lista de\ntareas en la plataforma.\n\nSi necesitas ayuda adicional, por favor envía un correo especificando tu problema a alguno\nde los siguientes correos de contacto:\n\nAdrian Camilo Tuta Cortes: adriantuta.cc@academia.umb.edu.co\nCristóbal Moncada Duarte: cristobalmoncada.d@academia.umb.edu.co";
         // String texto = "¡Hola! 👋 Aquí te dejo un apartado de ayuda con algunos
         // errores comunes y sus posibles soluciones: 😊\nDisculpa por la confusión.
         // Aquí te dejo las soluciones a los errores y al final del apartado encontrarás
@@ -417,7 +411,6 @@ public class PantallaInicio extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnRecuperarContraseña;
     private javax.swing.JButton btnRegistrar;
-    private java.awt.Canvas canvas1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

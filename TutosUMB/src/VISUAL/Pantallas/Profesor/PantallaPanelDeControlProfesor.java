@@ -116,7 +116,6 @@ public class PantallaPanelDeControlProfesor extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        canvas1 = new java.awt.Canvas();
         btnCuenta = new javax.swing.JButton();
         btnSesiones = new javax.swing.JButton();
         btnCambiarCuenta = new javax.swing.JButton();
@@ -138,7 +137,6 @@ public class PantallaPanelDeControlProfesor extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(254, 251, 240));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         btnCuenta.setBackground(new java.awt.Color(212, 248, 215));
         btnCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -427,7 +425,6 @@ public class PantallaPanelDeControlProfesor extends javax.swing.JFrame {
     private javax.swing.JButton btnNuevoChat;
     private javax.swing.JButton btnSesiones;
     private javax.swing.JButton btnTusTareas;
-    private java.awt.Canvas canvas1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

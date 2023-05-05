@@ -132,7 +132,6 @@ public class PantallaCuentaEstudiante extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        canvas1 = new java.awt.Canvas();
         btnCuenta = new javax.swing.JButton();
         btnSesiones = new javax.swing.JButton();
         btnCambiarCuenta = new javax.swing.JButton();
@@ -163,7 +162,6 @@ public class PantallaCuentaEstudiante extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(118, 159, 205));
         jLabel1.setText("Biografía:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, -1, -1));
-        jPanel1.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         btnCuenta.setBackground(new java.awt.Color(185, 215, 234));
         btnCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -225,6 +223,7 @@ public class PantallaCuentaEstudiante extends javax.swing.JFrame {
         });
         jPanel1.add(btnCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 118, 210, 97));
 
+        tfBiografia.setBackground(new java.awt.Color(247, 251, 252));
         tfBiografia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tfBiografiaKeyReleased(evt);
@@ -431,7 +430,6 @@ public class PantallaCuentaEstudiante extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnPanelDeControl;
     private javax.swing.JButton btnSesiones;
-    private java.awt.Canvas canvas1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
