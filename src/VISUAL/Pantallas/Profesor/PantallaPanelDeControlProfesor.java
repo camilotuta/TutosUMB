@@ -26,7 +26,7 @@ public class PantallaPanelDeControlProfesor extends javax.swing.JFrame {
     Thread t;
 
     /**
-     * Creates new form PantallaListaEstudiantes
+     * Creates new form PantallaPanelDeControlProfesor
      */
     public PantallaPanelDeControlProfesor() {
         initComponents();
@@ -112,7 +112,8 @@ public class PantallaPanelDeControlProfesor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -153,7 +154,8 @@ public class PantallaPanelDeControlProfesor extends javax.swing.JFrame {
         btnSesiones.setBackground(new java.awt.Color(212, 248, 215));
         btnSesiones.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSesiones.setForeground(new java.awt.Color(101, 67, 33));
-        btnSesiones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgSesiones.png"))); // NOI18N
+        btnSesiones
+                .setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgSesiones.png"))); // NOI18N
         btnSesiones.setText("SESIONES");
         btnSesiones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +167,8 @@ public class PantallaPanelDeControlProfesor extends javax.swing.JFrame {
         btnCambiarCuenta.setBackground(new java.awt.Color(212, 248, 215));
         btnCambiarCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCambiarCuenta.setForeground(new java.awt.Color(101, 67, 33));
-        btnCambiarCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCambiarCuenta.png"))); // NOI18N
+        btnCambiarCuenta.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCambiarCuenta.png"))); // NOI18N
         btnCambiarCuenta.setText("CAMBIAR CUENTA");
         btnCambiarCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,7 +192,8 @@ public class PantallaPanelDeControlProfesor extends javax.swing.JFrame {
         btnCalendario.setBackground(new java.awt.Color(212, 248, 215));
         btnCalendario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCalendario.setForeground(new java.awt.Color(101, 67, 33));
-        btnCalendario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCalendario.png"))); // NOI18N
+        btnCalendario.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCalendario.png"))); // NOI18N
         btnCalendario.setText("CALENDARIO");
         btnCalendario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,7 +205,8 @@ public class PantallaPanelDeControlProfesor extends javax.swing.JFrame {
         btnTusTareas.setBackground(new java.awt.Color(212, 248, 215));
         btnTusTareas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnTusTareas.setForeground(new java.awt.Color(101, 67, 33));
-        btnTusTareas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCheck.png"))); // NOI18N
+        btnTusTareas
+                .setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCheck.png"))); // NOI18N
         btnTusTareas.setText("TUS TAREAS");
         btnTusTareas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,13 +230,12 @@ public class PantallaPanelDeControlProfesor extends javax.swing.JFrame {
         tbListaEstudiantes.setBackground(new java.awt.Color(254, 251, 240));
         tbListaEstudiantes.setForeground(new java.awt.Color(101, 67, 33));
         tbListaEstudiantes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object[][] {
 
-            },
-            new String [] {
-                "NOMBRE"
-            }
-        ));
+                },
+                new String[] {
+                        "NOMBRE"
+                }));
         jScrollPane1.setViewportView(tbListaEstudiantes);
         if (tbListaEstudiantes.getColumnModel().getColumnCount() > 0) {
             tbListaEstudiantes.getColumnModel().getColumn(0).setResizable(false);
@@ -242,7 +246,8 @@ public class PantallaPanelDeControlProfesor extends javax.swing.JFrame {
         btnJugarTriki.setBackground(new java.awt.Color(212, 248, 215));
         btnJugarTriki.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnJugarTriki.setForeground(new java.awt.Color(101, 67, 33));
-        btnJugarTriki.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgJuego.png"))); // NOI18N
+        btnJugarTriki
+                .setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgJuego.png"))); // NOI18N
         btnJugarTriki.setText("JUGAR TRIKI");
         btnJugarTriki.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -276,23 +281,24 @@ public class PantallaPanelDeControlProfesor extends javax.swing.JFrame {
         jLabel11.setText("ToDoUMB");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeñoProfesor.png"))); // NOI18N
+        jLabel3.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeñoProfesor.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, 100, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1010, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 1010, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 551, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 551, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -323,9 +329,9 @@ public class PantallaPanelDeControlProfesor extends javax.swing.JFrame {
         System.exit(0);
     }
 
+    @SuppressWarnings("deprecation")
     private void btnNuevoChatActionPerformed(java.awt.event.ActionEvent evt) {
         PantallaChatEstudiante pc = new PantallaChatEstudiante();
-
         server.addObserver(pc);
         pc.setVisible(true);
     }

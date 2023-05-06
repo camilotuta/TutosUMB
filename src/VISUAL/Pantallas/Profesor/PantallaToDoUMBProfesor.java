@@ -17,7 +17,7 @@ import java.awt.Toolkit;
 
 public class PantallaToDoUMBProfesor extends javax.swing.JFrame {
     /**
-     * Creates new form PantallaListaEstudiantes
+     * Creates new form PantallaToDoUMBProfesor
      */
     public PantallaToDoUMBProfesor() {
         initComponents();
@@ -44,7 +44,8 @@ public class PantallaToDoUMBProfesor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -78,7 +79,8 @@ public class PantallaToDoUMBProfesor extends javax.swing.JFrame {
         btnSesiones.setBackground(new java.awt.Color(212, 248, 215));
         btnSesiones.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSesiones.setForeground(new java.awt.Color(101, 67, 33));
-        btnSesiones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgSesiones.png"))); // NOI18N
+        btnSesiones
+                .setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgSesiones.png"))); // NOI18N
         btnSesiones.setText("SESIONES");
         btnSesiones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,7 +92,8 @@ public class PantallaToDoUMBProfesor extends javax.swing.JFrame {
         btnCambiarCuenta.setBackground(new java.awt.Color(212, 248, 215));
         btnCambiarCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCambiarCuenta.setForeground(new java.awt.Color(101, 67, 33));
-        btnCambiarCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCambiarCuenta.png"))); // NOI18N
+        btnCambiarCuenta.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCambiarCuenta.png"))); // NOI18N
         btnCambiarCuenta.setText("CAMBIAR CUENTA");
         btnCambiarCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +117,8 @@ public class PantallaToDoUMBProfesor extends javax.swing.JFrame {
         btnCalendario.setBackground(new java.awt.Color(212, 248, 215));
         btnCalendario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCalendario.setForeground(new java.awt.Color(101, 67, 33));
-        btnCalendario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCalendario.png"))); // NOI18N
+        btnCalendario.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCalendario.png"))); // NOI18N
         btnCalendario.setText("CALENDARIO");
         btnCalendario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,23 +132,24 @@ public class PantallaToDoUMBProfesor extends javax.swing.JFrame {
         jLabel8.setText("ToDoUMB");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(347, 15, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeñoProfesor.png"))); // NOI18N
+        jLabel3.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeñoProfesor.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 936, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 936, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 936, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 936, Short.MAX_VALUE)));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 550, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        Short.MAX_VALUE)));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

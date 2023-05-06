@@ -3,6 +3,7 @@ package CODE.Clases;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
+//TODO: HACER ESTA DB PUBLICA ALOJÁNDOLA EN UN SERVIDOR
 public class Conexion {
 
     public PreparedStatement ps;

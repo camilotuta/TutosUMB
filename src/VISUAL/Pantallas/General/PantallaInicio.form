@@ -55,24 +55,32 @@
                   <Component id="jLabel5" min="-2" pref="100" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
-                  <EmptySpace min="330" pref="330" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="58" pref="58" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="270" max="-2" attributes="0"/>
+                          <EmptySpace min="330" pref="330" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="58" pref="58" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane1" min="-2" pref="270" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel2" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                                  <Component id="tfContraseña" min="-2" pref="270" max="-2" attributes="0"/>
+                                  <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                                  <Component id="btnRecuperarContraseña" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="btnRegistrar" min="-2" pref="110" max="-2" attributes="0"/>
+                                  <EmptySpace min="168" pref="168" max="-2" attributes="0"/>
+                                  <Component id="btnIngresar" min="-2" pref="110" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel2" min="-2" pref="100" max="-2" attributes="0"/>
-                          <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                          <Component id="tfContraseña" min="-2" pref="270" max="-2" attributes="0"/>
-                          <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                          <Component id="btnRecuperarContraseña" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="btnRegistrar" min="-2" pref="110" max="-2" attributes="0"/>
-                          <EmptySpace min="168" pref="168" max="-2" attributes="0"/>
-                          <Component id="btnIngresar" min="-2" pref="110" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="txtMostrarCopy" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -117,6 +125,9 @@
                       <Component id="btnRegistrar" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="btnIngresar" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace pref="48" max="32767" attributes="0"/>
+                  <Component id="txtMostrarCopy" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -273,6 +284,14 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRecuperarContrase&#xf1;aActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="txtMostrarCopy">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cd" green="9f" red="76" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&#xa9; TutosUMB. Todos los derechos reservados."/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

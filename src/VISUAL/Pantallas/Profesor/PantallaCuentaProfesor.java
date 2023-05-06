@@ -21,7 +21,7 @@ import java.sql.*;
 public class PantallaCuentaProfesor extends javax.swing.JFrame {
 
     /**
-     * Creates new form Cuenta
+     * Creates new form PantallaCuentaProfesor
      */
 
     Conexion cx = new Conexion();
@@ -128,7 +128,8 @@ public class PantallaCuentaProfesor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -179,7 +180,8 @@ public class PantallaCuentaProfesor extends javax.swing.JFrame {
         btnSesiones.setBackground(new java.awt.Color(212, 248, 215));
         btnSesiones.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSesiones.setForeground(new java.awt.Color(101, 67, 33));
-        btnSesiones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgSesiones.png"))); // NOI18N
+        btnSesiones
+                .setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgSesiones.png"))); // NOI18N
         btnSesiones.setText("SESIONES");
         btnSesiones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,7 +193,8 @@ public class PantallaCuentaProfesor extends javax.swing.JFrame {
         btnCambiarCuenta.setBackground(new java.awt.Color(212, 248, 215));
         btnCambiarCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCambiarCuenta.setForeground(new java.awt.Color(101, 67, 33));
-        btnCambiarCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCambiarCuenta.png"))); // NOI18N
+        btnCambiarCuenta.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCambiarCuenta.png"))); // NOI18N
         btnCambiarCuenta.setText("CAMBIAR CUENTA");
         btnCambiarCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,7 +218,8 @@ public class PantallaCuentaProfesor extends javax.swing.JFrame {
         btnCalendario.setBackground(new java.awt.Color(212, 248, 215));
         btnCalendario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCalendario.setForeground(new java.awt.Color(101, 67, 33));
-        btnCalendario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCalendario.png"))); // NOI18N
+        btnCalendario.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCalendario.png"))); // NOI18N
         btnCalendario.setText("CALENDARIO");
         btnCalendario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -285,7 +289,8 @@ public class PantallaCuentaProfesor extends javax.swing.JFrame {
         btnPanelDeControl.setBackground(new java.awt.Color(212, 248, 215));
         btnPanelDeControl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnPanelDeControl.setForeground(new java.awt.Color(101, 67, 33));
-        btnPanelDeControl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgComputerPequeño.png"))); // NOI18N
+        btnPanelDeControl.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgComputerPequeño.png"))); // NOI18N
         btnPanelDeControl.setText("Panel de Control");
         btnPanelDeControl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -309,7 +314,8 @@ public class PantallaCuentaProfesor extends javax.swing.JFrame {
         jLabel8.setText("Perfil");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeñoProfesor.png"))); // NOI18N
+        jLabel6.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeñoProfesor.png"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 550));

@@ -18,12 +18,11 @@ import CODE.Clases.EnviarCorreo;
  * @author tutaa
  */
 
-// TODO: MEJORAR LOS METODOS USUARIOREGISTRADO Y TOMAR NOMBRE PARA QUE NO HAGAN
-// LO MISMO
+// TODO: CAMBIAR EL GETTEXT POR GETPASSWORD
 public class PantallaRecuperarContraseña extends javax.swing.JFrame {
 
     /**
-     * Creates new form PantallaInicio
+     * Creates new form PantallaRecuperarContraseña
      */
     String codigo;
     public static int intentos = 3;
@@ -53,7 +52,11 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
     }
 
     public boolean habilitarBotonConfirmar() {
-        return tfContraseña.getText().length() >= 8 && tfConfirmarContraseña.getText().length() >= 8;
+        char[] contraseñaEncriptada = tfContraseña.getPassword();
+        char[] confirmarContraseñaEncriptada = tfContraseña.getPassword();
+        String contraseña = new String(contraseñaEncriptada);
+        String confirmarContraseña = new String(confirmarContraseñaEncriptada);
+        return contraseña.length() >= 8 && confirmarContraseña.length() >= 8;
     }
 
     public boolean habilitarBotonEnviarCodigo() {
@@ -65,18 +68,23 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
     }
 
     public void actualizarContraseña() {
-        if (tfContraseña.getText().equals(tfConfirmarContraseña.getText())) {
+        char[] contraseñaEncriptada = tfContraseña.getPassword();
+        char[] confirmarContraseñaEncriptada = tfContraseña.getPassword();
+        String contraseña = new String(contraseñaEncriptada);
+        String confirmarContraseña = new String(confirmarContraseñaEncriptada);
+
+        if (contraseña.equals(confirmarContraseña)) {
             Conexion cx = new Conexion();
             cx.con = Conexion.getConection();
             try {
                 String sql = "UPDATE usuarios SET contraseña = ? WHERE correo = ?";
                 cx.ps = cx.con.prepareStatement(sql);
-                cx.ps.setString(1, tfContraseña.getText());
+                cx.ps.setString(1, contraseña);
                 cx.ps.setString(2, tfCorreo.getText());
 
                 cx.ps.executeUpdate();
                 PantallaRegistro.correoPoner = tfCorreo.getText();
-                PantallaRegistro.contraseñaPoner = tfContraseña.getText();
+                PantallaRegistro.contraseñaPoner = contraseña;
                 JOptionPane.showMessageDialog(null, "SU CONTRASEÑA HA SIDO ACTUALIZADA.");
 
                 PantallaInicio pi = new PantallaInicio();
@@ -169,6 +177,61 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
         }
     }
 
+    public void enviarCodigoCorreo() {
+        String correo = tfCorreo.getText();
+        Random rand = new Random();
+        codigo = String.valueOf(rand.nextInt(100_000, 999_999));
+
+        String listaCodigo[] = codigo.split(""), text = "";
+
+        for (int i = 0; i < listaCodigo.length; i++) {
+            if (i != listaCodigo.length - 1) {
+                text += listaCodigo[i] + "-";
+            } else {
+                text += listaCodigo[i];
+            }
+        }
+
+        String asunto = "Restablecer tu contraseña en TutosUMB.";
+        String mensaje = "&#x1F44B; Hola, " + tomarNombre() + ".<br><br>" +
+                "Has recibido este correo electrónico porque has solicitado restablecer tu contraseña en TutosUMB. Para continuar, utiliza el siguiente código de verificación:<br><br>"
+                +
+                "&#128273; <strong style=\"font-size: 24px;\">" + text + "</strong><br><br>" +
+                "Por favor, ingresa este código en la página de restablecimiento de contraseña y sigue las instrucciones para crear una nueva contraseña segura.<br><br>"
+                +
+                "Si no has solicitado el restablecimiento de tu contraseña, por favor ignora este correo electrónico y asegúrate de proteger tu cuenta.<br><br>"
+                +
+                "Si tienes alguna pregunta o necesitas ayuda, no dudes en contactar a nuestro equipo de soporte. &#128516;<br><br>"
+                +
+                "¡Que tengas un excelente día! &#128077;<br><br>" +
+                "Atentamente,<br>" +
+                "El equipo de TutosUMB. &#128170;";
+
+        new EnviarCorreo(correo, asunto, mensaje);
+    }
+
+    public void verificarCodigo() {
+        if (usuarioRegistrado()) {
+            if (tfCodigo.getText().equals(codigo) && intentos > 0) {
+                JOptionPane.showMessageDialog(null, "EL CÓDIGO ES CORRECTO.");
+                tfContraseña.setEnabled(true);
+                tfConfirmarContraseña.setEnabled(true);
+                intentos = 3;
+            } else if (intentos == 0) {
+                JOptionPane.showMessageDialog(rootPane, "NO TIENE MÁS INTENTOS.");
+                tfCodigo.setEnabled(false);
+                tfCorreo.setEnabled(false);
+                btnEnviarCodigo.setEnabled(false);
+                btnVerificar.setEnabled(false);
+            } else {
+                intentos--;
+                JOptionPane.showMessageDialog(null, "EL CÓDIGO NO ES CORRECTO.\nTIENE " + intentos + " INTENTOS.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "NO EXISTE UNA CUENTA CON ESE CORREO.");
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -190,7 +253,8 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -323,13 +387,11 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -339,58 +401,11 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
     }
 
     private void btnEnviarCodigoActionPerformed(java.awt.event.ActionEvent evt) {
-        String correo = tfCorreo.getText();
-        Random rand = new Random();
-        codigo = String.valueOf(rand.nextInt(100_000, 999_999));
-
-        String listaCodigo[] = codigo.split(""), text = "";
-
-        for (int i = 0; i < listaCodigo.length; i++) {
-            if (i != listaCodigo.length - 1) {
-                text += listaCodigo[i] + "-";
-            } else {
-                text += listaCodigo[i];
-            }
-        }
-
-        String asunto = "Restablecer tu contraseña en TutosUMB.";
-        String mensaje = "&#x1F44B; Hola, " + tomarNombre() + ".<br><br>" +
-                "Has recibido este correo electrónico porque has solicitado restablecer tu contraseña en TutosUMB. Para continuar, utiliza el siguiente código de verificación:<br><br>"
-                +
-                "&#128273; <strong style=\"font-size: 24px;\">" + text + "</strong><br><br>" +
-                "Por favor, ingresa este código en la página de restablecimiento de contraseña y sigue las instrucciones para crear una nueva contraseña segura.<br><br>"
-                +
-                "Si no has solicitado el restablecimiento de tu contraseña, por favor ignora este correo electrónico y asegúrate de proteger tu cuenta.<br><br>"
-                +
-                "Si tienes alguna pregunta o necesitas ayuda, no dudes en contactar a nuestro equipo de soporte. &#128516;<br><br>"
-                +
-                "¡Que tengas un excelente día! &#128077;<br><br>" +
-                "Atentamente,<br>" +
-                "El equipo de TutosUMB. &#128170;";
-
-        new EnviarCorreo(correo, asunto, mensaje);
+        enviarCodigoCorreo();
     }
 
     private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {
-        if (usuarioRegistrado()) {
-            if (tfCodigo.getText().equals(codigo) && intentos > 0) {
-                JOptionPane.showMessageDialog(null, "EL CÓDIGO ES CORRECTO.");
-                tfContraseña.setEnabled(true);
-                tfConfirmarContraseña.setEnabled(true);
-                intentos = 3;
-            } else if (intentos == 0) {
-                JOptionPane.showMessageDialog(rootPane, "NO TIENE MÁS INTENTOS.");
-                tfCodigo.setEnabled(false);
-                tfCorreo.setEnabled(false);
-                btnEnviarCodigo.setEnabled(false);
-                btnVerificar.setEnabled(false);
-            } else {
-                intentos--;
-                JOptionPane.showMessageDialog(null, "EL CÓDIGO NO ES CORRECTO.\nTIENE " + intentos + " INTENTOS.");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "NO EXISTE UNA CUENTA CON ESE CORREO.");
-        }
+        verificarCodigo();
     }
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {

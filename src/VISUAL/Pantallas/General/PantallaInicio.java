@@ -10,6 +10,7 @@ import VISUAL.Pantallas.Profesor.PantallaBienvenidaProfesor;
 
 import java.awt.Toolkit;
 import java.sql.*;
+import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 
@@ -21,17 +22,12 @@ import CODE.Clases.Conexion;
  */
 
 /*
- * ESTUDIANTE: @academia.umb.edu.co
- * ADMINISTRADOR: @administrativo.umb.edu.co
- * PROFESOR: @tutor.umb.edu.co
+ * ESTUDIANTE: @academia.umb.edu.co 1
+ * ADMINISTRADOR: @administrativo.umb.edu.co 0
+ * PROFESOR: @tutor.umb.edu.co 2
  */
 
-// TODO: PONER EN LA BASE DE DATOS UNA NUEVA COLUMNA QUE DIGA TIPO DE USUARIO,
-// PARA QUE TODOS TENGAN EL MISMO DOMINIO DE CORREO PERO DIFERENTE INTERFAZ Y DE
-// ESTA MANERA SE PUEDEN CREAR PROFES AUTO
-// TODO: MEJORAR EL GETTEXT() DE LOS PASSWORDS EL GETPASSWORD DA UNA LISTA, Y
-// TOCA PONER UN STRING PASS = NEW STRING(PASS)
-// TODO: CREAR LABEL CON COPYRIGHT Y AÑO
+// TODO: VALIDAR ENTRADA CON LA NUEVA CONDICION DE BD
 public class PantallaInicio extends javax.swing.JFrame {
 
     /**
@@ -47,43 +43,53 @@ public class PantallaInicio extends javax.swing.JFrame {
         tfContraseña.setText(PantallaRegistro.contraseñaPoner);
         btnIngresar.setEnabled(habilitarBotonIngresar());
 
+        tfCorreo.requestFocus();
+
         btnRecuperarContraseña.setToolTipText("¿Olvidaste tu contraseña o quieres cambiarla? Click aquí");
         btnErroresComunes.setToolTipText("¿Necesitas ayuda? Click aquí");
 
         setIconImage(Toolkit.getDefaultToolkit()
                 .getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
+
+        Calendar calendario = Calendar.getInstance();
+        int añoActual = calendario.get(Calendar.YEAR);
+        txtMostrarCopy.setText("© " + añoActual + " TutosUMB. Todos los derechos reservados.");
     }
 
     public boolean habilitarBotonIngresar() {
+        char[] contraseñaEncriptada = tfContraseña.getPassword();
+        String contraseña = new String(contraseñaEncriptada);
         return (tfCorreo.getText().contains("@academia.umb.edu.co")
                 || tfCorreo.getText().contains("@administrativo.umb.edu.co")
-                || tfCorreo.getText().contains("@tutor.umb.edu.co")) && tfContraseña.getText().length() >= 8;
+                || tfCorreo.getText().contains("@tutor.umb.edu.co")) && contraseña.length() >= 8;
     }
 
     public void usuarioIngresar() {
         String correo = tfCorreo.getText();
-        String contraseña = tfContraseña.getText();
+        char[] contraseñaEncriptada = tfContraseña.getPassword();
+        String contraseña = new String(contraseñaEncriptada);
 
         PantallaRegistro.correoPoner = correo;
         PantallaRegistro.contraseñaPoner = contraseña;
 
         try (Connection con = Conexion.getConection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "select correo, contraseña from usuarios where correo = ? and contraseña = ?");
+                    "SELECT correo, contraseña FROM usuarios WHERE correo = ? AND contraseña = ?");
             ps.setString(1, correo);
             ps.setString(2, contraseña);
             ResultSet rs = ps.executeQuery();
-            if (rs.next() && tfCorreo.getText().contains("@academia.umb.edu.co")) {
+
+            if (rs.next() && tfCorreo.getText().contains("@academia.umb.edu.co") || tomarTipoUsuario() == 1) {
 
                 PantallaBienvenidaEstudiante pBie = new PantallaBienvenidaEstudiante();
                 pBie.setVisible(true);
                 this.setVisible(false);
-            } else if (tfCorreo.getText().contains("@administrativo.umb.edu.co")) {
+            } else if (tfCorreo.getText().contains("@administrativo.umb.edu.co") || tomarTipoUsuario() == 0) {
                 PantallaPanelDeControlAdministrativo PanPanelAdmin = new PantallaPanelDeControlAdministrativo();
                 PanPanelAdmin.setVisible(true);
                 this.setVisible(false);
 
-            } else if (tfCorreo.getText().contains("@tutor.umb.edu.co")) {
+            } else if (tfCorreo.getText().contains("@tutor.umb.edu.co") || tomarTipoUsuario() == 2) {
                 PantallaBienvenidaProfesor pBieProf = new PantallaBienvenidaProfesor();
                 pBieProf.setVisible(true);
                 this.setVisible(false);
@@ -93,6 +99,7 @@ public class PantallaInicio extends javax.swing.JFrame {
                         javax.swing.JOptionPane.INFORMATION_MESSAGE);
                 tfContraseña.setText("");
                 btnIngresar.setEnabled(habilitarBotonIngresar());
+                tfContraseña.requestFocus();
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this,
@@ -101,12 +108,45 @@ public class PantallaInicio extends javax.swing.JFrame {
         }
     }
 
+    public int tomarTipoUsuario() {
+        String correoBuscar = tfCorreo.getText();
+        Conexion cx = new Conexion();
+        int tipo = 1;
+        try {
+            cx.con = Conexion.getConection();
+            cx.ps = cx.con.prepareStatement("SELECT tipo FROM usuarios WHERE correo = ?");
+            cx.ps.setString(1, correoBuscar);
+
+            cx.rs = cx.ps.executeQuery();
+            if (cx.rs.next()) {
+                tipo = (cx.rs.getInt("tipo"));
+            } else {
+                JOptionPane.showMessageDialog(null, "NO HAY CUENTA ASOCIADA A ESTE CORREO.");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                if (cx.con != null) {
+                    cx.con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return tipo;
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
      */
     @SuppressWarnings("")
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
@@ -136,6 +176,7 @@ public class PantallaInicio extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         btnErroresComunes = new javax.swing.JButton();
         btnRecuperarContraseña = new javax.swing.JButton();
+        txtMostrarCopy = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -216,6 +257,9 @@ public class PantallaInicio extends javax.swing.JFrame {
             }
         });
 
+        txtMostrarCopy.setForeground(new java.awt.Color(118, 159, 205));
+        txtMostrarCopy.setText("© TutosUMB. Todos los derechos reservados.");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -231,27 +275,38 @@ public class PantallaInicio extends javax.swing.JFrame {
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
                                         javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(330, 330, 330)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel1)
-                                                .addGap(58, 58, 58)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(330, 330, 330)
+                                                .addGroup(jPanel1Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addComponent(jLabel1)
+                                                                .addGap(58, 58, 58)
+                                                                .addComponent(jScrollPane1,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 270,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addComponent(jLabel2,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(tfContraseña,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 270,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(12, 12, 12)
+                                                                .addComponent(btnRecuperarContraseña))
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addComponent(btnRegistrar,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 110,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(168, 168, 168)
+                                                                .addComponent(btnIngresar,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 110,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(tfContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 270,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(12, 12, 12)
-                                                .addComponent(btnRecuperarContraseña))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(168, 168, 168)
-                                                .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 110,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addContainerGap()
+                                                .addComponent(txtMostrarCopy)))
                                 .addGap(0, 0, Short.MAX_VALUE)));
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,7 +342,11 @@ public class PantallaInicio extends javax.swing.JFrame {
                                         .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40,
                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))));
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48,
+                                        Short.MAX_VALUE)
+                                .addComponent(txtMostrarCopy)
+                                .addContainerGap()));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -317,33 +376,6 @@ public class PantallaInicio extends javax.swing.JFrame {
 
     private void btnErroresComunesActionPerformed(java.awt.event.ActionEvent evt) {
         String texto = "¡Hola! Aquí te dejo un apartado de ayuda con algunos errores comunes y sus\nposibles soluciones:\n\nNo puedes ingresar:\nVerifica tus credenciales de inicio de sesión.\nRestablece tu contraseña si la has olvidado.\nVerifica tu conexión a internet.\nSi el problema persiste, contacta al soporte técnico de la plataforma.\n\nNo puedes registrarte:\nVerifica que completaste todos los campos requeridos y que usaste una\ndirección de correo institucional válida.\nSi el problema persiste, intenta utilizar una dirección de correo electrónico\ndiferente o contacta al soporte técnico de la plataforma.\n\nError al actualizar biografía:\nAsegúrate de seguir los requisitos de longitud y formato para la biografía.\nSi el problema persiste, intenta actualizar tu biografía desde otro\ndispositivo o navegador o contacta al soporte técnico de la plataforma.\n\nError al agendar tutoría:\nVerifica que seleccionaste la fecha y hora correctas.\nVerifica que tienes los permisos necesarios para agendar una tutoría.\nSi el problema persiste, intenta utilizar otro dispositivo o navegador o\ncontacta al soporte técnico de la plataforma.\n\nError al actualizar lista de tareas:\nAsegúrate de seguir los requisitos de longitud y formato para cada tarea en\nla lista.\nVerifica que tienes los permisos necesarios para actualizar la lista de\ntareas en la plataforma.\n\nSi necesitas ayuda adicional, por favor envía un correo especificando tu problema a alguno\nde los siguientes correos de contacto:\n\nAdrian Camilo Tuta Cortes: adriantuta.cc@academia.umb.edu.co\nCristóbal Moncada Duarte: cristobalmoncada.d@academia.umb.edu.co";
-        // String texto = "¡Hola! 👋 Aquí te dejo un apartado de ayuda con algunos
-        // errores comunes y sus posibles soluciones: 😊\nDisculpa por la confusión.
-        // Aquí te dejo las soluciones a los errores y al final del apartado encontrarás
-        // los correos de contacto: 📧\n\nNo puedes ingresar:\nVerifica tus credenciales
-        // de inicio de sesión. 🔑\nRestablece tu contraseña si la has olvidado.
-        // 🔍\nVerifica tu conexión a internet. 🌐\nSi el problema persiste, contacta al
-        // soporte técnico de la plataforma. 🤝\n\nNo puedes registrarte:\nVerifica que
-        // completaste todos los campos requeridos y que usaste una dirección de correo
-        // electrónico válida. ✉️\nSi el problema persiste, intenta utilizar una
-        // dirección de correo electrónico diferente o contacta al soporte técnico de la
-        // plataforma. 🙏\n\nError al actualizar biografía:\nAsegúrate de seguir los
-        // requisitos de longitud y formato para la biografía. 📏\nVerifica que la
-        // imagen que intentas subir cumpla con los requisitos de la plataforma. 🖼️\nSi
-        // el problema persiste, intenta actualizar tu biografía desde otro dispositivo
-        // o navegador o contacta al soporte técnico de la plataforma. 🤔\n\nError al
-        // agendar tutoría:\nVerifica que seleccionaste la fecha y hora correctas.
-        // 📅\nVerifica que tienes los permisos necesarios para agendar una tutoría.
-        // 🔒\nSi el problema persiste, intenta utilizar otro dispositivo o navegador o
-        // contacta al soporte técnico de la plataforma. 📱\n\nError al actualizar lista
-        // de tareas:\nAsegúrate de seguir los requisitos de longitud y formato para
-        // cada tarea en la lista. 📝\nVerifica que tienes los permisos necesarios para
-        // actualizar la lista de tareas en la plataforma. 🔒\n\nSi necesitas ayuda
-        // adicional, por favor envía un correo electrónico a alguno de los siguientes
-        // correos de contacto: 📧\n\nAdrian Camilo Tuta Cortes:
-        // adriantuta.cc@academia.umb.edu.co 📩\nCristóbal Moncada Duarte:
-        // cristobalmoncada.d@academia.umb.edu.co 📩";
-
         JOptionPane.showMessageDialog(null, texto, "AYUDA", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -422,5 +454,6 @@ public class PantallaInicio extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPasswordField tfContraseña;
     private javax.swing.JTextPane tfCorreo;
+    private javax.swing.JLabel txtMostrarCopy;
     // End of variables declaration//GEN-END:variables
 }

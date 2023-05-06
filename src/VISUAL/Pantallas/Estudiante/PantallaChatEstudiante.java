@@ -20,10 +20,11 @@ import CODE.Clases.Conexion;
  *
  * @author tutaa
  */
+@SuppressWarnings("deprecation")
 public class PantallaChatEstudiante extends javax.swing.JFrame implements Observer {
 
     /**
-     * Creates new form ClienteView
+     * Creates new form PantallaChatEstudiante
      */
     private String nombre, mensaje;
     private Cliente cliente;

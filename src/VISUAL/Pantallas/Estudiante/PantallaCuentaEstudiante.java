@@ -21,7 +21,7 @@ import java.sql.*;
 public class PantallaCuentaEstudiante extends javax.swing.JFrame {
 
     /**
-     * Creates new form Cuenta
+     * Creates new form PantallaCuentaEstudiante
      */
 
     Conexion cx = new Conexion();
@@ -127,7 +127,8 @@ public class PantallaCuentaEstudiante extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -178,7 +179,8 @@ public class PantallaCuentaEstudiante extends javax.swing.JFrame {
         btnSesiones.setBackground(new java.awt.Color(185, 215, 234));
         btnSesiones.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSesiones.setForeground(new java.awt.Color(66, 120, 181));
-        btnSesiones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgSesiones.png"))); // NOI18N
+        btnSesiones
+                .setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgSesiones.png"))); // NOI18N
         btnSesiones.setText("SESIONES");
         btnSesiones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,7 +192,8 @@ public class PantallaCuentaEstudiante extends javax.swing.JFrame {
         btnCambiarCuenta.setBackground(new java.awt.Color(185, 215, 234));
         btnCambiarCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCambiarCuenta.setForeground(new java.awt.Color(66, 120, 181));
-        btnCambiarCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCambiarCuenta.png"))); // NOI18N
+        btnCambiarCuenta.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCambiarCuenta.png"))); // NOI18N
         btnCambiarCuenta.setText("CAMBIAR CUENTA");
         btnCambiarCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,7 +217,8 @@ public class PantallaCuentaEstudiante extends javax.swing.JFrame {
         btnCalendario.setBackground(new java.awt.Color(185, 215, 234));
         btnCalendario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCalendario.setForeground(new java.awt.Color(66, 120, 181));
-        btnCalendario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCalendario.png"))); // NOI18N
+        btnCalendario.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCalendario.png"))); // NOI18N
         btnCalendario.setText("CALENDARIO");
         btnCalendario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,7 +287,8 @@ public class PantallaCuentaEstudiante extends javax.swing.JFrame {
         btnPanelDeControl.setBackground(new java.awt.Color(185, 215, 234));
         btnPanelDeControl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnPanelDeControl.setForeground(new java.awt.Color(118, 159, 205));
-        btnPanelDeControl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgComputerPequeño.png"))); // NOI18N
+        btnPanelDeControl.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgComputerPequeño.png"))); // NOI18N
         btnPanelDeControl.setText("Panel de Control");
         btnPanelDeControl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
