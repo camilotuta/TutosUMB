@@ -26,7 +26,6 @@ import CODE.Clases.Conexion;
  * ESTUDIANTE: 1
  * PROFESOR: 2
  */
-
 public class PantallaInicio extends javax.swing.JFrame {
 
     /**

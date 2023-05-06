@@ -23,7 +23,6 @@ public class PantallaCuentaEstudiante extends javax.swing.JFrame {
     /**
      * Creates new form PantallaCuentaEstudiante
      */
-
     Conexion cx = new Conexion();
 
     public PantallaCuentaEstudiante() {

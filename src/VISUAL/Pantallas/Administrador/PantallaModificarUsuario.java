@@ -17,121 +17,121 @@ import CODE.Clases.Conexion;
  */
 public class PantallaModificarUsuario extends javax.swing.JFrame {
 
-        /**
-         * Creates new form PantallaModificarUsuario
-         */
-        public String correoGuardar = "";
+    /**
+     * Creates new form PantallaModificarUsuario
+     */
+    public String correoGuardar = "";
 
-        public PantallaModificarUsuario() {
-                initComponents();
-                this.setLocationRelativeTo(null);
-                this.setTitle("MODIFICAR USUARIO");
-                this.setResizable(false);
-                setIconImage(Toolkit.getDefaultToolkit()
-                                .getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
+    public PantallaModificarUsuario() {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("MODIFICAR USUARIO");
+        this.setResizable(false);
+        setIconImage(Toolkit.getDefaultToolkit()
+                .getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
 
-                mostrarDatosUsuario();
+        mostrarDatosUsuario();
 
-                correoGuardar = tfCorreo.getText();
-        }
+        correoGuardar = tfCorreo.getText();
+    }
 
-        public void mostrarDatosUsuario() {
-                Conexion cx = new Conexion();
-                String nombreBuscar = PantallaPanelDeControlAdministrativo.nombreEditar;
-                try {
-                        cx.con = Conexion.getConection();
-                        cx.ps = cx.con
-                                        .prepareStatement(
-                                                        "SELECT nombre, correo, contraseña, biografia, tipo FROM usuarios WHERE nombre = ?");
-                        cx.ps.setString(1, nombreBuscar);
+    public void mostrarDatosUsuario() {
+        Conexion cx = new Conexion();
+        String nombreBuscar = PantallaPanelDeControlAdministrativo.nombreEditar;
+        try {
+            cx.con = Conexion.getConection();
+            cx.ps = cx.con
+                    .prepareStatement(
+                            "SELECT nombre, correo, contraseña, biografia, tipo FROM usuarios WHERE nombre = ?");
+            cx.ps.setString(1, nombreBuscar);
 
-                        cx.rs = cx.ps.executeQuery();
-                        if (cx.rs.next()) {
-                                tfNombre.setText(cx.rs.getString("nombre"));
-                                tfCorreo.setText(cx.rs.getString("correo"));
-                                tfContraseña.setText(cx.rs.getString("contraseña"));
-                                tfBiografia.setText(cx.rs.getString("biografia"));
-                                cbTipoUsuario.setSelectedIndex(cx.rs.getInt("tipo"));
-                        } else {
-                                JOptionPane.showMessageDialog(null, "NO HAY RESULTADOS.");
-                        }
+            cx.rs = cx.ps.executeQuery();
+            if (cx.rs.next()) {
+                tfNombre.setText(cx.rs.getString("nombre"));
+                tfCorreo.setText(cx.rs.getString("correo"));
+                tfContraseña.setText(cx.rs.getString("contraseña"));
+                tfBiografia.setText(cx.rs.getString("biografia"));
+                cbTipoUsuario.setSelectedIndex(cx.rs.getInt("tipo"));
+            } else {
+                JOptionPane.showMessageDialog(null, "NO HAY RESULTADOS.");
+            }
 
-                } catch (SQLException e) {
-                        JOptionPane.showMessageDialog(null, e);
-                } finally {
-                        try {
-                                if (cx.con != null) {
-                                        cx.con.close();
-                                }
-                        } catch (SQLException e) {
-                                e.printStackTrace();
-                        }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                if (cx.con != null) {
+                    cx.con.close();
                 }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+    }
 
-        public void actualizarDatos() {
-                Conexion cx = new Conexion();
-                cx.con = Conexion.getConection();
+    public void actualizarDatos() {
+        Conexion cx = new Conexion();
+        cx.con = Conexion.getConection();
 
-                String nombre = tfNombre.getText();
-                String correo = tfCorreo.getText();
-                String contraseña = tfContraseña.getText();
-                String biografia = tfBiografia.getText();
-                String tipoSeleccion[] = cbTipoUsuario.getSelectedItem().toString().split(" ");
-                int tipoUsuario = Integer.parseInt(tipoSeleccion[0]);
-                try {
-                        String sql = "UPDATE usuarios SET nombre = ?, correo = ?, contraseña = ?, biografia = ?, tipo = ? WHERE correo = ?";
-                        cx.ps = cx.con.prepareStatement(sql);
-                        cx.ps.setString(1, nombre);
-                        cx.ps.setString(2, correo);
-                        cx.ps.setString(3, contraseña);
-                        cx.ps.setString(4, biografia);
-                        cx.ps.setInt(5, tipoUsuario);
-                        cx.ps.setString(6, correoGuardar);
-                        cx.ps.executeUpdate();
-                        // Asegurarse de cerrar el PreparedStatement después de su uso
-                        cx.ps.executeUpdate();
-                        cx.ps.close();
+        String nombre = tfNombre.getText();
+        String correo = tfCorreo.getText();
+        String contraseña = tfContraseña.getText();
+        String biografia = tfBiografia.getText();
+        String tipoSeleccion[] = cbTipoUsuario.getSelectedItem().toString().split(" ");
+        int tipoUsuario = Integer.parseInt(tipoSeleccion[0]);
+        try {
+            String sql = "UPDATE usuarios SET nombre = ?, correo = ?, contraseña = ?, biografia = ?, tipo = ? WHERE correo = ?";
+            cx.ps = cx.con.prepareStatement(sql);
+            cx.ps.setString(1, nombre);
+            cx.ps.setString(2, correo);
+            cx.ps.setString(3, contraseña);
+            cx.ps.setString(4, biografia);
+            cx.ps.setInt(5, tipoUsuario);
+            cx.ps.setString(6, correoGuardar);
+            cx.ps.executeUpdate();
+            // Asegurarse de cerrar el PreparedStatement después de su uso
+            cx.ps.executeUpdate();
+            cx.ps.close();
 
-                        JOptionPane.showMessageDialog(null,
-                                        "EL USUARIO " + correo.toUpperCase() + " HA SIDO ACTUALIZADO CORRECTAMENTE.");
+            JOptionPane.showMessageDialog(null,
+                    "EL USUARIO " + correo.toUpperCase() + " HA SIDO ACTUALIZADO CORRECTAMENTE.");
 
-                        PantallaPanelDeControlAdministrativo pPanCon = new PantallaPanelDeControlAdministrativo();
+            PantallaPanelDeControlAdministrativo pPanCon = new PantallaPanelDeControlAdministrativo();
 
-                        pPanCon.setVisible(true);
-                        this.setVisible(false);
-                } catch (SQLException e) {
-                        e.printStackTrace();
-                } finally {
-                        try {
-                                if (cx.con != null) {
-                                        cx.con.close();
-                                }
-                        } catch (SQLException e) {
-                                e.printStackTrace();
-                        }
+            pPanCon.setVisible(true);
+            this.setVisible(false);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cx.con != null) {
+                    cx.con.close();
                 }
-                mostrarDatosUsuario();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        mostrarDatosUsuario();
+    }
 
-        /**
-         * This method is called from within the constructor to initialize the form.
-         * WARNING: Do NOT modify this code. The content of this method is always
-         * regenerated by the Form Editor.
-         */
-        @SuppressWarnings("")
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("")
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
         // Code">//GEN-BEGIN:initComponents
         private void initComponents() {
 
@@ -426,62 +426,62 @@ public class PantallaModificarUsuario extends javax.swing.JFrame {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
-        private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
-                PantallaPanelDeControlAdministrativo pPanCon = new PantallaPanelDeControlAdministrativo();
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
+        PantallaPanelDeControlAdministrativo pPanCon = new PantallaPanelDeControlAdministrativo();
 
-                pPanCon.setVisible(true);
-                this.setVisible(false);
-        }
+        pPanCon.setVisible(true);
+        this.setVisible(false);
+    }
 
-        private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {
-                actualizarDatos();
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {
+        actualizarDatos();
 
-        }
+    }
 
-        /**
-         * @param args the command line arguments
-         */
-        public static void main(String args[]) {
-                /* Set the Nimbus look and feel */
-                // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
-                // (optional) ">
-                /*
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
+        // (optional) ">
+        /*
                  * If Nimbus (introduced in Java SE 6) is not available, stay with the default
                  * look and feel.
                  * For details see
                  * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-                 */
-                try {
-                        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-                                        .getInstalledLookAndFeels()) {
-                                if ("Nimbus".equals(info.getName())) {
-                                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                                        break;
-                                }
-                        }
-                } catch (ClassNotFoundException ex) {
-                        java.util.logging.Logger.getLogger(PantallaModificarUsuario.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                } catch (InstantiationException ex) {
-                        java.util.logging.Logger.getLogger(PantallaModificarUsuario.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                } catch (IllegalAccessException ex) {
-                        java.util.logging.Logger.getLogger(PantallaModificarUsuario.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                        java.util.logging.Logger.getLogger(PantallaModificarUsuario.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
+                    .getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
                 }
-                // </editor-fold>
-                // </editor-fold>
-
-                /* Create and display the form */
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                        public void run() {
-                                new PantallaModificarUsuario().setVisible(true);
-                        }
-                });
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(PantallaModificarUsuario.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(PantallaModificarUsuario.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(PantallaModificarUsuario.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PantallaModificarUsuario.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
         }
+        // </editor-fold>
+        // </editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PantallaModificarUsuario().setVisible(true);
+            }
+        });
+    }
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton btnCancelar;

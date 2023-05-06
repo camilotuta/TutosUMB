@@ -14,8 +14,8 @@ import java.awt.Toolkit;
 // TODO: EDITAR EL ARCHIVO DEL ESTUDIANTE, PARA ESTO SE DEBE PONER UN COMO-BOX
 // CON EL NOMBRE Y OTRO CON SUS MATERIAS
 // TODO: PERMITIR CREAR TAREAS PERSONALIZADAS PARA EL ESTUDIANTE SELECCIONADO
-
 public class PantallaToDoUMBProfesor extends javax.swing.JFrame {
+
     /**
      * Creates new form PantallaToDoUMBProfesor
      */

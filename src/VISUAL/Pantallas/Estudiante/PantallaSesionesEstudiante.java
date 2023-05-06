@@ -19,13 +19,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author tutaa
  */
-
 // TODO: CUANDO SE ACEPTE UNA SESIÓN QUE MANDE UN SONIDO ES DECIR CUANDO CAMBIE
 // "EN PROCESO" A "ACEPTADO" O "RECHAZADO"
-
 // TODO: BOTON PARA CANCELAR LA SOLICITUD DE UNA SESION "EN PROCESO" Y ENVIAR
 // CORREO NOTIFICANDO ESTO
-
 public class PantallaSesionesEstudiante extends javax.swing.JFrame {
 
     DefaultTableModel modelo = new DefaultTableModel();

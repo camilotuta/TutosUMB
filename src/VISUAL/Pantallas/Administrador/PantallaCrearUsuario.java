@@ -20,7 +20,6 @@ public class PantallaCrearUsuario extends javax.swing.JFrame {
     /**
      * Creates new form PantallaCrearUsuario
      */
-
     public PantallaCrearUsuario() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -48,9 +47,9 @@ public class PantallaCrearUsuario extends javax.swing.JFrame {
                 cx.stmt = cx.con.createStatement();
                 cx.stmt.executeUpdate(
                         "INSERT INTO usuarios(nombre, correo, contraseña, biografia, tipo) VALUES('"
-                                + nombre + "','" + correo + "','"
-                                + contraseña + "','"
-                                + biografia + "','" + tipoUsuario + "')");
+                        + nombre + "','" + correo + "','"
+                        + contraseña + "','"
+                        + biografia + "','" + tipoUsuario + "')");
             }
             JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "¡AVISO!",
                     javax.swing.JOptionPane.INFORMATION_MESSAGE);

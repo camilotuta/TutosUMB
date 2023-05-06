@@ -17,7 +17,6 @@ import CODE.Clases.EnviarCorreo;
  *
  * @author tutaa
  */
-
 // TODO: CAMBIAR EL GETTEXT POR GETPASSWORD
 public class PantallaRecuperarContraseña extends javax.swing.JFrame {
 
@@ -193,19 +192,15 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
         }
 
         String asunto = "Restablecer tu contraseña en TutosUMB.";
-        String mensaje = "&#x1F44B; Hola, " + tomarNombre() + ".<br><br>" +
-                "Has recibido este correo electrónico porque has solicitado restablecer tu contraseña en TutosUMB. Para continuar, utiliza el siguiente código de verificación:<br><br>"
-                +
-                "&#128273; <strong style=\"font-size: 24px;\">" + text + "</strong><br><br>" +
-                "Por favor, ingresa este código en la página de restablecimiento de contraseña y sigue las instrucciones para crear una nueva contraseña segura.<br><br>"
-                +
-                "Si no has solicitado el restablecimiento de tu contraseña, por favor ignora este correo electrónico y asegúrate de proteger tu cuenta.<br><br>"
-                +
-                "Si tienes alguna pregunta o necesitas ayuda, no dudes en contactar a nuestro equipo de soporte. &#128516;<br><br>"
-                +
-                "¡Que tengas un excelente día! &#128077;<br><br>" +
-                "Atentamente,<br>" +
-                "El equipo de TutosUMB. &#128170;";
+        String mensaje = "&#x1F44B; Hola, " + tomarNombre() + ".<br><br>"
+                + "Has recibido este correo electrónico porque has solicitado restablecer tu contraseña en TutosUMB. Para continuar, utiliza el siguiente código de verificación:<br><br>"
+                + "&#128273; <strong style=\"font-size: 24px;\">" + text + "</strong><br><br>"
+                + "Por favor, ingresa este código en la página de restablecimiento de contraseña y sigue las instrucciones para crear una nueva contraseña segura.<br><br>"
+                + "Si no has solicitado el restablecimiento de tu contraseña, por favor ignora este correo electrónico y asegúrate de proteger tu cuenta.<br><br>"
+                + "Si tienes alguna pregunta o necesitas ayuda, no dudes en contactar a nuestro equipo de soporte. &#128516;<br><br>"
+                + "¡Que tengas un excelente día! &#128077;<br><br>"
+                + "Atentamente,<br>"
+                + "El equipo de TutosUMB. &#128170;";
 
         new EnviarCorreo(correo, asunto, mensaje);
     }

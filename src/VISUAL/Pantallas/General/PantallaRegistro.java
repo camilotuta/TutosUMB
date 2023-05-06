@@ -19,236 +19,231 @@ import CODE.Clases.EnviarCorreo;
  *
  * @author tutaa
  */
-
 // TODO: VALIDAR LA ENTRADA CON LA NUEVA CONDICION DE BASES DE DATOS
 // TODO: HACER QUE EL TEXTO DEL CORREO SE ENCUENTRE EN MINUSCULAS
 public class PantallaRegistro extends javax.swing.JFrame {
 
-        /**
-         * Creates new form PantallaRegistro
-         */
-        private String codigo;
-        public static String correoPoner = "", contraseñaPoner = "";
-        public static int intentos = 3;
+    /**
+     * Creates new form PantallaRegistro
+     */
+    private String codigo;
+    public static String correoPoner = "", contraseñaPoner = "";
+    public static int intentos = 3;
 
-        public PantallaRegistro() {
-                initComponents();
-                this.setLocationRelativeTo(null);
-                this.setTitle("REGISTRO");
-                this.setResizable(false);
-                btnRegistrarse.setEnabled(habilitarBotonRegistrarse());
-                setIconImage(Toolkit.getDefaultToolkit()
-                                .getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
+    public PantallaRegistro() {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("REGISTRO");
+        this.setResizable(false);
+        btnRegistrarse.setEnabled(habilitarBotonRegistrarse());
+        setIconImage(Toolkit.getDefaultToolkit()
+                .getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
 
-                tfContraseña.setEnabled(false);
-                tfConfirmarContraseña.setEnabled(false);
+        tfContraseña.setEnabled(false);
+        tfConfirmarContraseña.setEnabled(false);
 
-                btnVerificar.setEnabled(habilitarBotonVerificar());
-                btnEnviarCodigo.setEnabled(habilitarBotonEnviarCodigo());
+        btnVerificar.setEnabled(habilitarBotonVerificar());
+        btnEnviarCodigo.setEnabled(habilitarBotonEnviarCodigo());
 
-                tfCorreo.requestFocus();
+        tfCorreo.requestFocus();
 
-                if (intentos == 0) {
-                        JOptionPane.showMessageDialog(rootPane, "VUELVA MÁS TARDE.");
-                        tfCodigo.setEnabled(false);
-                        tfCorreo.setEnabled(false);
-                        btnEnviarCodigo.setEnabled(false);
-                        btnVerificar.setEnabled(false);
+        if (intentos == 0) {
+            JOptionPane.showMessageDialog(rootPane, "VUELVA MÁS TARDE.");
+            tfCodigo.setEnabled(false);
+            tfCorreo.setEnabled(false);
+            btnEnviarCodigo.setEnabled(false);
+            btnVerificar.setEnabled(false);
+        }
+    }
+
+    public boolean habilitarBotonRegistrarse() {
+        char[] contraseñaEncriptada = tfContraseña.getPassword();
+        char[] confirmarContraseñaEncriptada = tfContraseña.getPassword();
+        String contraseña = new String(contraseñaEncriptada);
+        String confirmarContraseña = new String(confirmarContraseñaEncriptada);
+        return tfCorreo.getText().contains("@academia.umb.edu.co") && tfNombre.getText().length() >= 10
+                && contraseña.length() >= 8
+                && confirmarContraseña.length() >= 8;
+    }
+
+    public boolean usuarioRegistrado() {
+        Conexion cx = new Conexion();
+        String sql = "select * from usuarios";
+        boolean bool = false;
+
+        try {
+            cx.con = Conexion.getConection();
+            cx.stmt = cx.con.createStatement();
+            cx.rs = cx.stmt.executeQuery(sql);
+            while (cx.rs.next()) {
+                String nombre = cx.rs.getString("nombre");
+                String correo = cx.rs.getString("correo");
+                bool = nombre.equals(tfNombre.getText()) || correo.equals(tfCorreo.getText());
+                if (bool) {
+                    break;
                 }
-        }
-
-        public boolean habilitarBotonRegistrarse() {
-                char[] contraseñaEncriptada = tfContraseña.getPassword();
-                char[] confirmarContraseñaEncriptada = tfContraseña.getPassword();
-                String contraseña = new String(contraseñaEncriptada);
-                String confirmarContraseña = new String(confirmarContraseñaEncriptada);
-                return tfCorreo.getText().contains("@academia.umb.edu.co") && tfNombre.getText().length() >= 10
-                                && contraseña.length() >= 8
-                                && confirmarContraseña.length() >= 8;
-        }
-
-        public boolean usuarioRegistrado() {
-                Conexion cx = new Conexion();
-                String sql = "select * from usuarios";
-                boolean bool = false;
-
-                try {
-                        cx.con = Conexion.getConection();
-                        cx.stmt = cx.con.createStatement();
-                        cx.rs = cx.stmt.executeQuery(sql);
-                        while (cx.rs.next()) {
-                                String nombre = cx.rs.getString("nombre");
-                                String correo = cx.rs.getString("correo");
-                                bool = nombre.equals(tfNombre.getText()) || correo.equals(tfCorreo.getText());
-                                if (bool) {
-                                        break;
-                                }
-                        }
-                        return bool;
-                } catch (SQLException e) {
-                        JOptionPane.showMessageDialog(null, "Error al consultar la base de datos: " + e.getMessage());
-                        return bool;
-                } finally {
-                        // cerrar la conexión y liberar los recursos
-                        try {
-                                if (cx.rs != null) {
-                                        cx.rs.close();
-                                }
-                                if (cx.stmt != null) {
-                                        cx.stmt.close();
-                                }
-                                if (cx.con != null) {
-                                        cx.con.close();
-                                }
-                        } catch (SQLException ex) {
-                                JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + ex.getMessage());
-                        }
+            }
+            return bool;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al consultar la base de datos: " + e.getMessage());
+            return bool;
+        } finally {
+            // cerrar la conexión y liberar los recursos
+            try {
+                if (cx.rs != null) {
+                    cx.rs.close();
                 }
+                if (cx.stmt != null) {
+                    cx.stmt.close();
+                }
+                if (cx.con != null) {
+                    cx.con.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + ex.getMessage());
+            }
         }
+    }
 
-        public void registrarUsuario() {
-                String nombre = "", correo = "", contraseña = "", biografia = "";
-                int tipo = 1;
-                nombre = tfNombre.getText();
-                correo = tfCorreo.getText();
+    public void registrarUsuario() {
+        String nombre = "", correo = "", contraseña = "", biografia = "";
+        int tipo = 1;
+        nombre = tfNombre.getText();
+        correo = tfCorreo.getText();
 
-                char[] contraseñaEncriptada = tfContraseña.getPassword();
-                char[] confirmarContraseñaEncriptada = tfContraseña.getPassword();
-                contraseña = new String(contraseñaEncriptada);
-                String confirmarContraseña = new String(confirmarContraseñaEncriptada);
-                if (contraseña.equals(confirmarContraseña)) {
-                        Conexion cx = new Conexion();
-                        try {
-                                cx.con = Conexion.getConection();
-                                if (cx.con == null) {
-                                        JOptionPane.showMessageDialog(null,
-                                                        "No se pudo establecer una conexión a la base de datos.");
-                                } else {
-                                        cx.stmt = cx.con.createStatement();
-                                        cx.stmt.executeUpdate(
-                                                        "INSERT INTO usuarios(nombre, correo, contraseña, biografia) VALUES('"
-                                                                        + nombre + "','" + correo + "','"
-                                                                        + contraseña + "','"
-                                                                        + biografia + "','" + tipo + "')");
-                                }
-                        } catch (SQLException ex) {
-                                Logger.getLogger(PantallaRegistro.class.getName()).log(Level.SEVERE, null, ex);
-                        } finally {
-                                if (cx.con != null) {
-                                        try {
-                                                cx.con.close();
-                                                cx.stmt.close();
-                                        } catch (Exception e) {
-                                                JOptionPane.showMessageDialog(null, e.getMessage());
-                                        }
-                                }
-                        }
-
-                        JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "¡AVISO!",
-                                        javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                        correoPoner = correo;
-                        contraseñaPoner = contraseña;
-                        PantallaInicio pi = new PantallaInicio();
-                        pi.setVisible(true);
-
-                        this.setVisible(false);
+        char[] contraseñaEncriptada = tfContraseña.getPassword();
+        char[] confirmarContraseñaEncriptada = tfContraseña.getPassword();
+        contraseña = new String(contraseñaEncriptada);
+        String confirmarContraseña = new String(confirmarContraseñaEncriptada);
+        if (contraseña.equals(confirmarContraseña)) {
+            Conexion cx = new Conexion();
+            try {
+                cx.con = Conexion.getConection();
+                if (cx.con == null) {
+                    JOptionPane.showMessageDialog(null,
+                            "No se pudo establecer una conexión a la base de datos.");
                 } else {
-                        JOptionPane.showMessageDialog(this, "LAS CONTRASEÑAS DEBEN COINCIDIR", "AVISO!",
-                                        javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
+                    cx.stmt = cx.con.createStatement();
+                    cx.stmt.executeUpdate(
+                            "INSERT INTO usuarios(nombre, correo, contraseña, biografia) VALUES('"
+                            + nombre + "','" + correo + "','"
+                            + contraseña + "','"
+                            + biografia + "','" + tipo + "')");
                 }
+            } catch (SQLException ex) {
+                Logger.getLogger(PantallaRegistro.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (cx.con != null) {
+                    try {
+                        cx.con.close();
+                        cx.stmt.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                    }
+                }
+            }
+
+            JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "¡AVISO!",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            correoPoner = correo;
+            contraseñaPoner = contraseña;
+            PantallaInicio pi = new PantallaInicio();
+            pi.setVisible(true);
+
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "LAS CONTRASEÑAS DEBEN COINCIDIR", "AVISO!",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
         }
 
-        public boolean habilitarBotonVerificar() {
-                return tfCodigo.getText().length() == 6;
-        }
+    }
 
-        public boolean habilitarBotonEnviarCodigo() {
-                return tfCorreo.getText().contains("@academia.umb.edu.co") && tfCorreo.getText().length() >= 15
-                                && tfNombre.getText().length() > 10;
-        }
+    public boolean habilitarBotonVerificar() {
+        return tfCodigo.getText().length() == 6;
+    }
 
-        public void enviarCodigoCorreo() {
-                if (!usuarioRegistrado()) {
+    public boolean habilitarBotonEnviarCodigo() {
+        return tfCorreo.getText().contains("@academia.umb.edu.co") && tfCorreo.getText().length() >= 15
+                && tfNombre.getText().length() > 10;
+    }
 
-                        String nombre = tfNombre.getText();
-                        String correo = tfCorreo.getText();
-                        Random rand = new Random();
-                        codigo = String.valueOf(rand.nextInt(100_000, 999_999));
+    public void enviarCodigoCorreo() {
+        if (!usuarioRegistrado()) {
 
-                        String listaCodigo[] = codigo.split(""), text = "";
+            String nombre = tfNombre.getText();
+            String correo = tfCorreo.getText();
+            Random rand = new Random();
+            codigo = String.valueOf(rand.nextInt(100_000, 999_999));
 
-                        for (int i = 0; i < listaCodigo.length; i++) {
-                                if (i != listaCodigo.length - 1) {
-                                        text += listaCodigo[i] + "-";
-                                } else {
-                                        text += listaCodigo[i];
-                                }
-                        }
+            String listaCodigo[] = codigo.split(""), text = "";
 
-                        String asunto = "Verificación de correo electrónico en TutosUMB";
-                        String mensaje = "&#x1F44B; Hola, " + nombre + ".<br><br>" +
-                                        "¡Bienvenido/a a TutosUMB! Antes de que puedas comenzar a utilizar tu cuenta, necesitamos verificar que tu correo electrónico sea válido. "
-                                        +
-                                        "Para ello, utiliza el siguiente código de verificación:<br><br>" +
-                                        "&#128273; <strong style=\"font-size: 24px;\">" + text + "</strong><br><br>" +
-                                        "Por favor, ingresa este código en la página de verificación de correo electrónico y sigue las instrucciones para verificar tu cuenta.<br><br>"
-                                        +
-                                        "Si no has creado una cuenta en TutosUMB, por favor ignora este correo electrónico y asegúrate de proteger tu cuenta.<br><br>"
-                                        +
-                                        "Si tienes alguna pregunta o necesitas ayuda, no dudes en contactar a nuestro equipo de soporte. &#128516;<br><br>"
-                                        +
-                                        "¡Que tengas un excelente día! &#128077;<br><br>" +
-                                        "Atentamente,<br>" +
-                                        "El equipo de TutosUMB. &#128170;";
-
-                        new EnviarCorreo(correo, asunto, mensaje);
-                        // System.out.println(mensaje);
+            for (int i = 0; i < listaCodigo.length; i++) {
+                if (i != listaCodigo.length - 1) {
+                    text += listaCodigo[i] + "-";
                 } else {
-                        JOptionPane.showMessageDialog(null, "YA EXISTE UNA CUENTA CON ESTE CORREO.");
+                    text += listaCodigo[i];
                 }
+            }
 
+            String asunto = "Verificación de correo electrónico en TutosUMB";
+            String mensaje = "&#x1F44B; Hola, " + nombre + ".<br><br>"
+                    + "¡Bienvenido/a a TutosUMB! Antes de que puedas comenzar a utilizar tu cuenta, necesitamos verificar que tu correo electrónico sea válido. "
+                    + "Para ello, utiliza el siguiente código de verificación:<br><br>"
+                    + "&#128273; <strong style=\"font-size: 24px;\">" + text + "</strong><br><br>"
+                    + "Por favor, ingresa este código en la página de verificación de correo electrónico y sigue las instrucciones para verificar tu cuenta.<br><br>"
+                    + "Si no has creado una cuenta en TutosUMB, por favor ignora este correo electrónico y asegúrate de proteger tu cuenta.<br><br>"
+                    + "Si tienes alguna pregunta o necesitas ayuda, no dudes en contactar a nuestro equipo de soporte. &#128516;<br><br>"
+                    + "¡Que tengas un excelente día! &#128077;<br><br>"
+                    + "Atentamente,<br>"
+                    + "El equipo de TutosUMB. &#128170;";
+
+            new EnviarCorreo(correo, asunto, mensaje);
+            // System.out.println(mensaje);
+        } else {
+            JOptionPane.showMessageDialog(null, "YA EXISTE UNA CUENTA CON ESTE CORREO.");
         }
 
-        public void verificarCodigo() {
-                if (tfCodigo.getText().equals(codigo) && intentos > 0) {
-                        JOptionPane.showMessageDialog(null, "EL CÓDIGO ES CORRECTO.");
-                        tfContraseña.setEnabled(true);
-                        tfConfirmarContraseña.setEnabled(true);
-                        intentos = 3;
-                } else if (intentos == 0) {
-                        JOptionPane.showMessageDialog(rootPane, "NO TIENE MÁS INTENTOS.");
-                        tfCodigo.setEnabled(false);
-                        tfCorreo.setEnabled(false);
-                        btnEnviarCodigo.setEnabled(false);
-                        btnVerificar.setEnabled(false);
-                } else {
-                        intentos--;
-                        JOptionPane.showMessageDialog(null,
-                                        "EL CÓDIGO NO ES CORRECTO.\nTIENE " + intentos + " INTENTOS.");
-                }
+    }
 
+    public void verificarCodigo() {
+        if (tfCodigo.getText().equals(codigo) && intentos > 0) {
+            JOptionPane.showMessageDialog(null, "EL CÓDIGO ES CORRECTO.");
+            tfContraseña.setEnabled(true);
+            tfConfirmarContraseña.setEnabled(true);
+            intentos = 3;
+        } else if (intentos == 0) {
+            JOptionPane.showMessageDialog(rootPane, "NO TIENE MÁS INTENTOS.");
+            tfCodigo.setEnabled(false);
+            tfCorreo.setEnabled(false);
+            btnEnviarCodigo.setEnabled(false);
+            btnVerificar.setEnabled(false);
+        } else {
+            intentos--;
+            JOptionPane.showMessageDialog(null,
+                    "EL CÓDIGO NO ES CORRECTO.\nTIENE " + intentos + " INTENTOS.");
         }
 
-        /**
-         * This method is called from within the constructor to initialize the form.
-         * WARNING: Do NOT modify this code. The content of this method is always
-         * regenerated by the Form Editor.
-         */
-        @SuppressWarnings("")
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("")
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
         // Code">//GEN-BEGIN:initComponents
         private void initComponents() {
 
@@ -555,94 +550,94 @@ public class PantallaRegistro extends javax.swing.JFrame {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
-        private void btnEnviarCodigoActionPerformed(java.awt.event.ActionEvent evt) {
-                enviarCodigoCorreo();
-        }
+    private void btnEnviarCodigoActionPerformed(java.awt.event.ActionEvent evt) {
+        enviarCodigoCorreo();
+    }
 
-        private void tfCodigoKeyReleased(java.awt.event.KeyEvent evt) {
-                btnVerificar.setEnabled(habilitarBotonVerificar());
-        }
+    private void tfCodigoKeyReleased(java.awt.event.KeyEvent evt) {
+        btnVerificar.setEnabled(habilitarBotonVerificar());
+    }
 
-        private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {
-                verificarCodigo();
-        }
+    private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {
+        verificarCodigo();
+    }
 
-        private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {
-                PantallaInicio pi = new PantallaInicio();
-                pi.setVisible(true);
-                this.setVisible(false);
-        }
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {
+        PantallaInicio pi = new PantallaInicio();
+        pi.setVisible(true);
+        this.setVisible(false);
+    }
 
-        private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {
-                registrarUsuario();
-        }
+    private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {
+        registrarUsuario();
+    }
 
-        private void tfNombreKeyReleased(java.awt.event.KeyEvent evt) {
-                btnRegistrarse.setEnabled(habilitarBotonRegistrarse());
-                btnEnviarCodigo.setEnabled(habilitarBotonEnviarCodigo());
-        }
+    private void tfNombreKeyReleased(java.awt.event.KeyEvent evt) {
+        btnRegistrarse.setEnabled(habilitarBotonRegistrarse());
+        btnEnviarCodigo.setEnabled(habilitarBotonEnviarCodigo());
+    }
 
-        private void tfCorreoKeyReleased(java.awt.event.KeyEvent evt) {
-                btnRegistrarse.setEnabled(habilitarBotonRegistrarse());
-                btnEnviarCodigo.setEnabled(habilitarBotonEnviarCodigo());
-                btnVerificar.setEnabled(habilitarBotonVerificar());
-        }
+    private void tfCorreoKeyReleased(java.awt.event.KeyEvent evt) {
+        btnRegistrarse.setEnabled(habilitarBotonRegistrarse());
+        btnEnviarCodigo.setEnabled(habilitarBotonEnviarCodigo());
+        btnVerificar.setEnabled(habilitarBotonVerificar());
+    }
 
-        private void tfContraseñaKeyReleased(java.awt.event.KeyEvent evt) {
-                btnRegistrarse.setEnabled(habilitarBotonRegistrarse());
-        }
+    private void tfContraseñaKeyReleased(java.awt.event.KeyEvent evt) {
+        btnRegistrarse.setEnabled(habilitarBotonRegistrarse());
+    }
 
-        private void tfConfirmarContraseñaKeyReleased(java.awt.event.KeyEvent evt) {
-                btnRegistrarse.setEnabled(habilitarBotonRegistrarse());
-        }
+    private void tfConfirmarContraseñaKeyReleased(java.awt.event.KeyEvent evt) {
+        btnRegistrarse.setEnabled(habilitarBotonRegistrarse());
+    }
 
-        /**
-         * @param args the command line arguments
-         */
-        public static void main(String args[]) {
-                /* Set the Nimbus look and feel */
-                // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
-                // (optional) ">
-                /*
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
+        // (optional) ">
+        /*
                  * If Nimbus (introduced in Java SE 6) is not available, stay with the default
                  * look and feel.
                  * For details see
                  * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-                 */
-                try {
-                        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-                                        .getInstalledLookAndFeels()) {
-                                if ("Nimbus".equals(info.getName())) {
-                                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                                        break;
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
+                    .getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
 
-                                }
-                        }
-                } catch (ClassNotFoundException ex) {
-                        java.util.logging.Logger.getLogger(PantallaInicio.class
-                                        .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-                } catch (InstantiationException ex) {
-                        java.util.logging.Logger.getLogger(PantallaInicio.class
-                                        .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-                } catch (IllegalAccessException ex) {
-                        java.util.logging.Logger.getLogger(PantallaInicio.class
-                                        .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-                } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                        java.util.logging.Logger.getLogger(PantallaInicio.class
-                                        .getName()).log(java.util.logging.Level.SEVERE, null, ex);
                 }
-                // </editor-fold>
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(PantallaInicio.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-                /* Create and display the form */
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                        public void run() {
-                                new PantallaInicio().setVisible(true);
-                        }
-                });
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(PantallaInicio.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(PantallaInicio.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PantallaInicio.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        // </editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PantallaInicio().setVisible(true);
+            }
+        });
+    }
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton btnEnviarCodigo;

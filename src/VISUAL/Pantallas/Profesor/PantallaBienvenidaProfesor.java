@@ -11,7 +11,6 @@ import java.awt.Toolkit;
  *
  * @author tutaa
  */
-
 public class PantallaBienvenidaProfesor extends javax.swing.JFrame {
 
     /**
