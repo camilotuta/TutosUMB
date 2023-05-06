@@ -59,7 +59,8 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
     }
 
     public boolean habilitarBotonEnviarCodigo() {
-        return tfCorreo.getText().contains("@academia.umb.edu.co") && tfCorreo.getText().length() >= 15;
+        return tfCorreo.getText().toLowerCase().contains("@academia.umb.edu.co")
+                && tfCorreo.getText().toLowerCase().length() >= 15;
     }
 
     public boolean habilitarBotonVerificar() {
@@ -79,10 +80,10 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
                 String sql = "UPDATE usuarios SET contraseña = ? WHERE correo = ?";
                 cx.ps = cx.con.prepareStatement(sql);
                 cx.ps.setString(1, contraseña);
-                cx.ps.setString(2, tfCorreo.getText());
+                cx.ps.setString(2, tfCorreo.getText().toLowerCase());
 
                 cx.ps.executeUpdate();
-                PantallaRegistro.correoPoner = tfCorreo.getText();
+                PantallaRegistro.correoPoner = tfCorreo.getText().toLowerCase();
                 PantallaRegistro.contraseñaPoner = contraseña;
                 JOptionPane.showMessageDialog(null, "SU CONTRASEÑA HA SIDO ACTUALIZADA.");
 
@@ -108,7 +109,7 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
     }
 
     public String tomarNombre() {
-        String correoBuscar = tfCorreo.getText();
+        String correoBuscar = tfCorreo.getText().toLowerCase();
         Conexion cx = new Conexion();
         String nombre = "";
         try {
@@ -149,7 +150,7 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
             cx.rs = cx.stmt.executeQuery(sql);
             while (cx.rs.next()) {
                 String correo = cx.rs.getString("correo");
-                bool = correo.equals(tfCorreo.getText());
+                bool = correo.equals(tfCorreo.getText().toLowerCase());
                 if (bool) {
                     break;
                 }
@@ -177,7 +178,7 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
     }
 
     public void enviarCodigoCorreo() {
-        String correo = tfCorreo.getText();
+        String correo = tfCorreo.getText().toLowerCase();
         Random rand = new Random();
         codigo = String.valueOf(rand.nextInt(100_000, 999_999));
 

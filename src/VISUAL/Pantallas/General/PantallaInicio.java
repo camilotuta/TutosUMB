@@ -57,13 +57,11 @@ public class PantallaInicio extends javax.swing.JFrame {
     public boolean habilitarBotonIngresar() {
         char[] contraseñaEncriptada = tfContraseña.getPassword();
         String contraseña = new String(contraseñaEncriptada);
-        return (tfCorreo.getText().contains("@academia.umb.edu.co")
-                || tfCorreo.getText().contains("@administrativo.umb.edu.co")
-                || tfCorreo.getText().contains("@tutor.umb.edu.co")) && contraseña.length() >= 8;
+        return tfCorreo.getText().toLowerCase().contains("@academia.umb.edu.co") && contraseña.length() >= 8;
     }
 
     public void usuarioIngresar() {
-        String correo = tfCorreo.getText();
+        String correo = tfCorreo.getText().toLowerCase();
         char[] contraseñaEncriptada = tfContraseña.getPassword();
         String contraseña = new String(contraseñaEncriptada);
 
@@ -106,7 +104,7 @@ public class PantallaInicio extends javax.swing.JFrame {
     }
 
     public int tomarTipoUsuario() {
-        String correoBuscar = tfCorreo.getText();
+        String correoBuscar = tfCorreo.getText().toLowerCase();
         Conexion cx = new Conexion();
         int tipo = 1;
         try {
