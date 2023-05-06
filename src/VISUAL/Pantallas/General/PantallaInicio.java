@@ -22,12 +22,11 @@ import CODE.Clases.Conexion;
  */
 
 /*
- * ESTUDIANTE: @academia.umb.edu.co 1
- * ADMINISTRADOR: @administrativo.umb.edu.co 0
- * PROFESOR: @tutor.umb.edu.co 2
+ * ADMINISTRADOR: 0
+ * ESTUDIANTE: 1
+ * PROFESOR: 2
  */
 
-// TODO: VALIDAR ENTRADA CON LA NUEVA CONDICION DE BD
 public class PantallaInicio extends javax.swing.JFrame {
 
     /**
@@ -79,17 +78,16 @@ public class PantallaInicio extends javax.swing.JFrame {
             ps.setString(2, contraseña);
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next() && tfCorreo.getText().contains("@academia.umb.edu.co") || tomarTipoUsuario() == 1) {
-
-                PantallaBienvenidaEstudiante pBie = new PantallaBienvenidaEstudiante();
-                pBie.setVisible(true);
-                this.setVisible(false);
-            } else if (tfCorreo.getText().contains("@administrativo.umb.edu.co") || tomarTipoUsuario() == 0) {
+            if (rs.next() && tomarTipoUsuario() == 0) {
                 PantallaPanelDeControlAdministrativo PanPanelAdmin = new PantallaPanelDeControlAdministrativo();
                 PanPanelAdmin.setVisible(true);
                 this.setVisible(false);
+            } else if (tomarTipoUsuario() == 1) {
+                PantallaBienvenidaEstudiante pBie = new PantallaBienvenidaEstudiante();
+                pBie.setVisible(true);
+                this.setVisible(false);
 
-            } else if (tfCorreo.getText().contains("@tutor.umb.edu.co") || tomarTipoUsuario() == 2) {
+            } else if (tomarTipoUsuario() == 2) {
                 PantallaBienvenidaProfesor pBieProf = new PantallaBienvenidaProfesor();
                 pBieProf.setVisible(true);
                 this.setVisible(false);

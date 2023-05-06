@@ -20,6 +20,7 @@ public class PantallaModificarUsuario extends javax.swing.JFrame {
         /**
          * Creates new form PantallaModificarUsuario
          */
+        public String correoGuardar = "";
 
         public PantallaModificarUsuario() {
                 initComponents();
@@ -30,6 +31,8 @@ public class PantallaModificarUsuario extends javax.swing.JFrame {
                                 .getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
 
                 mostrarDatosUsuario();
+
+                correoGuardar = tfCorreo.getText();
         }
 
         public void mostrarDatosUsuario() {
@@ -84,7 +87,7 @@ public class PantallaModificarUsuario extends javax.swing.JFrame {
                         cx.ps.setString(3, contraseña);
                         cx.ps.setString(4, biografia);
                         cx.ps.setInt(5, tipoUsuario);
-                        cx.ps.setString(6, correo);
+                        cx.ps.setString(6, correoGuardar);
                         cx.ps.executeUpdate();
                         // Asegurarse de cerrar el PreparedStatement después de su uso
                         cx.ps.executeUpdate();
