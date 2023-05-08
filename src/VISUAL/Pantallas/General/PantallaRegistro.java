@@ -19,7 +19,6 @@ import CODE.Clases.EnviarCorreo;
  *
  * @author tutaa
  */
-// TODO: HACER QUE EL TEXTO DEL CORREO SE ENCUENTRE EN MINUSCULAS
 public class PantallaRegistro extends javax.swing.JFrame {
 
     /**

@@ -17,7 +17,6 @@ import CODE.Clases.EnviarCorreo;
  *
  * @author tutaa
  */
-// TODO: CAMBIAR EL GETTEXT POR GETPASSWORD
 public class PantallaRecuperarContraseña extends javax.swing.JFrame {
 
     /**

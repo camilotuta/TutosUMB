@@ -15,19 +15,34 @@ public class Archivo {
 
     // TODO: SUBIR ESTE ARCHIVO A DRIVE O ONEDRIVE
     public void crearArchivo(String tipoArchivo) {
+        String nombreArchivo = PantallaRegistro.correoPoner + tipoArchivo + ".txt";
+        String rutaCompleta = System.getProperty("user.home") + "/Documents/" + nombreArchivo;
+        archivo = new File(rutaCompleta);
+    }
+
+    public void escribirEnArchivoSesiones(Sesion sesion) {
         try {
-            String nombreArchivo = PantallaRegistro.correoPoner + tipoArchivo + ".txt";
-            String rutaCompleta = System.getProperty("user.home") + "/Documents/" + nombreArchivo;
-            archivo = new File(rutaCompleta);
-            if (archivo.createNewFile()) {
-                JOptionPane.showMessageDialog(null, "GRACIAS POR CONFIAR EN NOSOTROS...");
-            }
+            FileWriter escritura = new FileWriter(archivo, true);
+            escritura.write(sesion.getMateria() + "%" + sesion.getLink() + "%" + sesion.getFecha() + "%"
+                    + sesion.getEstado() + "\r\n");
+            escritura.close();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
 
-    public void escribirEnArchivo(Sesion sesion) {
+    public void escribirEnArchivoMaterias(Materia materia) {
+        try {
+            FileWriter escritura = new FileWriter(archivo, true);
+            escritura.write(materia.getNombre() + "%" + materia.getNota() + "%" + materia.getProfesor() + "%"
+                    + materia.getDescripcion() + "\r\n");
+            escritura.close();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
+    public void escribirEnArchivoTareas(Sesion sesion) {
         try {
             FileWriter escritura = new FileWriter(archivo, true);
             escritura.write(sesion.getMateria() + "%" + sesion.getLink() + "%" + sesion.getFecha() + "%"

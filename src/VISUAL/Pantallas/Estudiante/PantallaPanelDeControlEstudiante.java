@@ -113,6 +113,7 @@ public class PantallaPanelDeControlEstudiante extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -133,10 +134,13 @@ public class PantallaPanelDeControlEstudiante extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        btnTusMaterias = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(247, 251, 252));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnCuenta.setBackground(new java.awt.Color(185, 215, 234));
         btnCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -148,6 +152,7 @@ public class PantallaPanelDeControlEstudiante extends javax.swing.JFrame {
                 btnCuentaActionPerformed(evt);
             }
         });
+        jPanel1.add(btnCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 15, 210, 97));
 
         btnSesiones.setBackground(new java.awt.Color(185, 215, 234));
         btnSesiones.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -160,6 +165,7 @@ public class PantallaPanelDeControlEstudiante extends javax.swing.JFrame {
                 btnSesionesActionPerformed(evt);
             }
         });
+        jPanel1.add(btnSesiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 221, 210, 97));
 
         btnCambiarCuenta.setBackground(new java.awt.Color(185, 215, 234));
         btnCambiarCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -172,6 +178,7 @@ public class PantallaPanelDeControlEstudiante extends javax.swing.JFrame {
                 btnCambiarCuentaActionPerformed(evt);
             }
         });
+        jPanel1.add(btnCambiarCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 324, 210, 97));
 
         btnCerrar.setBackground(new java.awt.Color(185, 215, 234));
         btnCerrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -183,6 +190,7 @@ public class PantallaPanelDeControlEstudiante extends javax.swing.JFrame {
                 btnCerrarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 427, 210, 97));
 
         btnCalendario.setBackground(new java.awt.Color(185, 215, 234));
         btnCalendario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -195,6 +203,7 @@ public class PantallaPanelDeControlEstudiante extends javax.swing.JFrame {
                 btnCalendarioActionPerformed(evt);
             }
         });
+        jPanel1.add(btnCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 118, 210, 97));
 
         btnTusTareas.setBackground(new java.awt.Color(185, 215, 234));
         btnTusTareas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -207,6 +216,7 @@ public class PantallaPanelDeControlEstudiante extends javax.swing.JFrame {
                 btnTusTareasActionPerformed(evt);
             }
         });
+        jPanel1.add(btnTusTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 370, 240, 100));
 
         btnNuevoChat.setBackground(new java.awt.Color(185, 215, 234));
         btnNuevoChat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -218,6 +228,7 @@ public class PantallaPanelDeControlEstudiante extends javax.swing.JFrame {
                 btnNuevoChatActionPerformed(evt);
             }
         });
+        jPanel1.add(btnNuevoChat, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, -1, 100));
 
         tbListaEstudiantes.setBackground(new java.awt.Color(247, 251, 252));
         tbListaEstudiantes.setForeground(new java.awt.Color(118, 159, 205));
@@ -233,9 +244,12 @@ public class PantallaPanelDeControlEstudiante extends javax.swing.JFrame {
             tbListaEstudiantes.getColumnModel().getColumn(0).setResizable(false);
         }
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 170, 220, 330));
+
         jLabel9.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(118, 159, 205));
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Logos/imgUMBPequeño.png"))); // NOI18N
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(904, 0, 100, -1));
 
         btnJugarTriki.setBackground(new java.awt.Color(185, 215, 234));
         btnJugarTriki.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -248,148 +262,50 @@ public class PantallaPanelDeControlEstudiante extends javax.swing.JFrame {
                 btnJugarTrikiActionPerformed(evt);
             }
         });
+        jPanel1.add(btnJugarTriki, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 250, 100));
 
         jLabel11.setFont(new java.awt.Font("Crabs", 1, 50)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(118, 159, 205));
         jLabel11.setText("ToDoUMB");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Crabs", 1, 75)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(118, 159, 205));
         jLabel12.setText("Panel de Control");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Crabs", 1, 46)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(118, 159, 205));
         jLabel13.setText("Lista");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 120, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Crabs", 1, 50)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(118, 159, 205));
         jLabel14.setText("Juegos");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Crabs", 1, 50)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(118, 159, 205));
         jLabel15.setText("Chat");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 210,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 210,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 210,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnCambiarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 210,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 210,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(10, 10, 10)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addGroup(jPanel1Layout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(btnNuevoChat)
-                                                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                .addGap(70, 70, 70)
-                                                                                .addComponent(jLabel15)))
-                                                                .addGap(13, 13, 13)
-                                                                .addGroup(jPanel1Layout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                .addGap(40, 40, 40)
-                                                                                .addComponent(jLabel14))
-                                                                        .addComponent(btnJugarTriki)))
-                                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addGap(140, 140, 140)
-                                                                .addGroup(jPanel1Layout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                .addGap(20, 20, 20)
-                                                                                .addComponent(jLabel11))
-                                                                        .addComponent(btnTusTareas,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                240,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                .addGap(55, 55, 55)
-                                                .addGroup(jPanel1Layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addGap(60, 60, 60)
-                                                                .addComponent(jLabel13))
-                                                        .addComponent(jScrollPane1,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 220,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(0, 24, Short.MAX_VALUE))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(100, 100, 100)
-                                                .addComponent(jLabel12)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap()));
-        jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 97,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(btnCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 97,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(btnSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 97,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(btnCambiarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 97,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 97,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(30, 30, 30)
-                                                .addComponent(jLabel12))
-                                        .addComponent(jLabel9))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(20, 20, 20)
-                                                .addGroup(jPanel1Layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel15)
-                                                        .addComponent(jLabel14)
-                                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addGap(50, 50, 50)
-                                                                .addGroup(jPanel1Layout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(btnNuevoChat,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                100,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(btnJugarTriki,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                100,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                .addGap(60, 60, 60)
-                                                .addGroup(jPanel1Layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel11)
-                                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addGap(50, 50, 50)
-                                                                .addComponent(btnTusTareas,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 100,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addComponent(jLabel13)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(50, 50, 50)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))));
+        btnTusMaterias.setBackground(new java.awt.Color(185, 215, 234));
+        btnTusMaterias.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnTusMaterias.setForeground(new java.awt.Color(66, 120, 181));
+        btnTusMaterias
+                .setIcon(new javax.swing.ImageIcon(getClass().getResource("/VISUAL/Imagenes/Botones/imgCheck.png"))); // NOI18N
+        btnTusMaterias.setText("TUS MATERIAS");
+        btnTusMaterias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTusMateriasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnTusMaterias, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, -1, 100));
+
+        jLabel16.setFont(new java.awt.Font("Crabs", 1, 45)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(118, 159, 205));
+        jLabel16.setText("Materias");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -410,11 +326,16 @@ public class PantallaPanelDeControlEstudiante extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnTusMateriasActionPerformed(java.awt.event.ActionEvent evt) {
+        PantallaMateriasEstudiante panMatEst = new PantallaMateriasEstudiante();
+        panMatEst.setVisible(true);
+        this.setVisible(false);
+    }
+
     private void btnCuentaActionPerformed(java.awt.event.ActionEvent evt) {
         PantallaCuentaEstudiante pp = new PantallaCuentaEstudiante();
         pp.setVisible(true);
         this.setVisible(false);
-
     }
 
     private void btnCalendarioActionPerformed(java.awt.event.ActionEvent evt) {
@@ -525,12 +446,14 @@ public class PantallaPanelDeControlEstudiante extends javax.swing.JFrame {
     private javax.swing.JButton btnJugarTriki;
     private javax.swing.JButton btnNuevoChat;
     private javax.swing.JButton btnSesiones;
+    private javax.swing.JButton btnTusMaterias;
     private javax.swing.JButton btnTusTareas;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
