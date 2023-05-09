@@ -127,9 +127,9 @@ public class PantallaRegistro extends javax.swing.JFrame {
                     cx.stmt = cx.con.createStatement();
                     cx.stmt.executeUpdate(
                             "INSERT INTO usuarios(nombre, correo, contraseña, biografia) VALUES('"
-                                    + nombre + "','" + correo + "','"
-                                    + contraseña + "','"
-                                    + biografia + "','" + tipo + "')");
+                            + nombre + "','" + correo + "','"
+                            + contraseña + "','"
+                            + biografia + "','" + tipo + "')");
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(PantallaRegistro.class.getName()).log(Level.SEVERE, null, ex);
@@ -205,7 +205,6 @@ public class PantallaRegistro extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "YA EXISTE UNA CUENTA CON ESTE CORREO.");
         }
-
     }
 
     public void verificarCodigo() {

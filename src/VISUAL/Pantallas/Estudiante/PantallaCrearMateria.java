@@ -17,93 +17,93 @@ import CODE.Clases.Materia;
  */
 public class PantallaCrearMateria extends javax.swing.JFrame {
 
-        /**
-         * Creates new form PantallaCrearUsuario
-         */
-        public PantallaCrearMateria() {
-                initComponents();
-                this.setLocationRelativeTo(null);
-                this.setTitle("CREAR MATERIA");
-                this.setResizable(false);
-                setIconImage(Toolkit.getDefaultToolkit()
-                                .getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
+    /**
+     * Creates new form PantallaCrearUsuario
+     */
+    public PantallaCrearMateria() {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("CREAR MATERIA");
+        this.setResizable(false);
+        setIconImage(Toolkit.getDefaultToolkit()
+                .getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
 
-                btnCrear.setEnabled(habilitarBotonCrear());
+        btnCrear.setEnabled(habilitarBotonCrear());
+    }
+
+    private void limpiar() {
+        tfNombre.setText("");
+        tfNota.setText("");
+        tfDescripcion.setText("");
+        tfNombreProfesor.setText("");
+    }
+
+    public boolean habilitarBotonCrear() {
+        return tfNombre.getText().length() > 5 && tfNota.getText().length() >= 1
+                && tfDescripcion.getText().length() > 7 && tfNombreProfesor.getText().length() > 10;
+
+    }
+
+    public void crearMateria() {
+
+        try {
+            Archivo archivoMaterias = new Archivo();
+            archivoMaterias.crearArchivo("Materias");
+
+            String nombreMateria = tfNombre.getText();
+            double notaMateria = Double.parseDouble(tfNota.getText());
+            String descripcionMateria = tfDescripcion.getText();
+            String nombreProfesor = tfNombreProfesor.getText();
+
+            Materia nuevaMateria = new Materia(nombreMateria, notaMateria, descripcionMateria,
+                    nombreProfesor);
+
+            archivoMaterias.escribirEnArchivoMaterias(nuevaMateria);
+            JOptionPane.showMessageDialog(null,
+                    "LA MATERIA " + nombreMateria.toUpperCase() + " SE CREO CORRECTAMENTE.");
+
+            int continuar = JOptionPane.showConfirmDialog(null,
+                    "¿Desea continuar en esta pantalla?",
+                    "Confirmar acción", JOptionPane.YES_NO_OPTION);
+
+            if (!(continuar == JOptionPane.YES_OPTION)) {
+                PantallaMateriasEstudiante panMatEst = new PantallaMateriasEstudiante();
+                panMatEst.setVisible(true);
+                this.setVisible(false);
+            } else {
+                limpiar();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
+    }
 
-        private void limpiar() {
-                tfNombre.setText("");
-                tfNota.setText("");
-                tfDescripcion.setText("");
-                tfNombreProfesor.setText("");
-        }
-
-        public boolean habilitarBotonCrear() {
-                return tfNombre.getText().length() > 5 && tfNota.getText().length() >= 1
-                                && tfDescripcion.getText().length() > 7 && tfNombreProfesor.getText().length() > 10;
-
-        }
-
-        public void crearMateria() {
-
-                try {
-                        Archivo archivoMaterias = new Archivo();
-                        archivoMaterias.crearArchivo("Materias");
-
-                        String nombreMateria = tfNombre.getText();
-                        double notaMateria = Double.parseDouble(tfNota.getText());
-                        String descripcionMateria = tfDescripcion.getText();
-                        String nombreProfesor = tfNombreProfesor.getText();
-
-                        Materia nuevaMateria = new Materia(nombreMateria, notaMateria, descripcionMateria,
-                                        nombreProfesor);
-
-                        archivoMaterias.escribirEnArchivoMaterias(nuevaMateria);
-                        JOptionPane.showMessageDialog(null,
-                                        "LA MATERIA " + nombreMateria.toUpperCase() + " SE CREO CORRECTAMENTE.");
-
-                        int continuar = JOptionPane.showConfirmDialog(null,
-                                        "¿Desea continuar en esta pantalla?",
-                                        "Confirmar acción", JOptionPane.YES_NO_OPTION);
-
-                        if (!(continuar == JOptionPane.YES_OPTION)) {
-                                PantallaMateriasEstudiante panMatEst = new PantallaMateriasEstudiante();
-                                panMatEst.setVisible(true);
-                                this.setVisible(false);
-                        } else {
-                                limpiar();
-                        }
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, e);
-                }
-        }
-
-        /**
-         * This method is called from within the constructor to initialize the form.
-         * WARNING: Do NOT modify this code. The content of this method is always
-         * regenerated by the Form Editor.
-         *
-         */
-        @SuppressWarnings("")
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     *
+     */
+    @SuppressWarnings("")
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
         // Code">//GEN-BEGIN:initComponents
         private void initComponents() {
 
@@ -378,94 +378,94 @@ public class PantallaCrearMateria extends javax.swing.JFrame {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
-        private void tfNombreKeyReleased(java.awt.event.KeyEvent evt) {
-                btnCrear.setEnabled(habilitarBotonCrear());
+    private void tfNombreKeyReleased(java.awt.event.KeyEvent evt) {
+        btnCrear.setEnabled(habilitarBotonCrear());
 
-        }
+    }
 
-        private void tfNotaKeyReleased(java.awt.event.KeyEvent evt) {
-                btnCrear.setEnabled(habilitarBotonCrear());
+    private void tfNotaKeyReleased(java.awt.event.KeyEvent evt) {
+        btnCrear.setEnabled(habilitarBotonCrear());
 
-        }
+    }
 
-        private void tfNombreProfesorKeyReleased(java.awt.event.KeyEvent evt) {
-                btnCrear.setEnabled(habilitarBotonCrear());
+    private void tfNombreProfesorKeyReleased(java.awt.event.KeyEvent evt) {
+        btnCrear.setEnabled(habilitarBotonCrear());
 
-        }
+    }
 
-        private void tfDescripcionKeyReleased(java.awt.event.KeyEvent evt) {
-                btnCrear.setEnabled(habilitarBotonCrear());
+    private void tfDescripcionKeyReleased(java.awt.event.KeyEvent evt) {
+        btnCrear.setEnabled(habilitarBotonCrear());
 
-        }
+    }
 
-        private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
-                PantallaMateriasEstudiante panMatEst = new PantallaMateriasEstudiante();
-                panMatEst.setVisible(true);
-                this.setVisible(false);
-        }
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
+        PantallaMateriasEstudiante panMatEst = new PantallaMateriasEstudiante();
+        panMatEst.setVisible(true);
+        this.setVisible(false);
+    }
 
-        private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {
-                crearMateria();
-        }
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {
+        crearMateria();
+    }
 
-        /**
-         * @param args the command line arguments
-         */
-        public static void main(String args[]) {
-                /* Set the Nimbus look and feel */
-                // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
-                // (optional) ">
-                /*
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
+        // (optional) ">
+        /*
                  * If Nimbus (introduced in Java SE 6) is not available, stay with the default
                  * look and feel.
                  * For details see
                  * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-                 */
-                try {
-                        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-                                        .getInstalledLookAndFeels()) {
-                                if ("Nimbus".equals(info.getName())) {
-                                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                                        break;
-                                }
-                        }
-                } catch (ClassNotFoundException ex) {
-                        java.util.logging.Logger.getLogger(PantallaCrearMateria.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                } catch (InstantiationException ex) {
-                        java.util.logging.Logger.getLogger(PantallaCrearMateria.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                } catch (IllegalAccessException ex) {
-                        java.util.logging.Logger.getLogger(PantallaCrearMateria.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                        java.util.logging.Logger.getLogger(PantallaCrearMateria.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
+                    .getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
                 }
-                // </editor-fold>
-                // </editor-fold>
-                // </editor-fold>
-                // </editor-fold>
-                // </editor-fold>
-                // </editor-fold>
-                // </editor-fold>
-                // </editor-fold>
-                // </editor-fold>
-                // </editor-fold>
-                // </editor-fold>
-                // </editor-fold>
-                // </editor-fold>
-                // </editor-fold>
-                // </editor-fold>
-                // </editor-fold>
-
-                /* Create and display the form */
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                        public void run() {
-                                new PantallaCrearMateria().setVisible(true);
-                        }
-                });
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(PantallaCrearMateria.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(PantallaCrearMateria.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(PantallaCrearMateria.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PantallaCrearMateria.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
         }
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PantallaCrearMateria().setVisible(true);
+            }
+        });
+    }
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton btnCancelar;

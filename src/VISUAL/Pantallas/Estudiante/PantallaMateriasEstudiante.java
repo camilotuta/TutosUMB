@@ -51,8 +51,11 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
     private void cargarArchivo() throws IOException {
         String fila[];
         try {
-            String rutaCompleta = System.getProperty("user.home") + "/Documents/" + PantallaRegistro.correoPoner
-                    + "Materias" + ".txt";
+            String rutaCompleta = System.getProperty("user.home")
+                    + "/Documents/"
+                    + PantallaRegistro.correoPoner
+                    + "Materias"
+                    + ".txt";
             FileReader archivo = new FileReader(rutaCompleta);
             try (BufferedReader lectura = new BufferedReader(archivo)) {
                 String linea = lectura.readLine();
@@ -68,6 +71,7 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
         }
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
@@ -118,14 +122,14 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                 new String[] {
                         "MATERIA", "MENSAJE", "FECHA"
                 }) {
-            Class[] types = new Class[] {
+            Class<?>[] types = new Class<?>[] {
                     java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean[] {
                     false, false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
+            public Class<?> getColumnClass(int columnIndex) {
                 return types[columnIndex];
             }
 
@@ -291,7 +295,6 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                                                                                 Short.MAX_VALUE)
                                                                         .addComponent(jLabel6)
                                                                         .addGap(8, 8, 8)))
-                                                .addGap(18, 18, 18)
                                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327,
                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
@@ -346,7 +349,6 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
     }
 
     public static void main(String args[]) {
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
