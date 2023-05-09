@@ -19,6 +19,9 @@ import CODE.Clases.EnviarCorreo;
  *
  * @author tutaa
  */
+// TODO: QUE TODOS LOS ARCHIVOS SE CREEN AL REGISTRAR EL USUARIO, MATERIAS,
+// SESIONES Y TAREAS PARA SUBIRLOS AL DRIVE Y CUALQUIER CAMBIO SE ACTUALIZA Y NO
+// SE VUELVE A SUBIR
 public class PantallaRegistro extends javax.swing.JFrame {
 
     /**
