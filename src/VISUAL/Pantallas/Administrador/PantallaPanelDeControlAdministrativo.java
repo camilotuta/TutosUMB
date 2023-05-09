@@ -21,7 +21,6 @@ import VISUAL.Pantallas.General.PantallaInicio;
  *
  * @author tutaa
  */
-// TODO: CREAR FUNCIÓN PARA CREAR NUEVAS COLUMNAS EN LA BASE DE DATOS
 public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
 
     /**

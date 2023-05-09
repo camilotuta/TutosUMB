@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
+import CODE.Clases.Archivo;
 import CODE.Clases.Conexion;
 import CODE.Clases.EnviarCorreo;
 
@@ -19,9 +20,6 @@ import CODE.Clases.EnviarCorreo;
  *
  * @author tutaa
  */
-// TODO: QUE TODOS LOS ARCHIVOS SE CREEN AL REGISTRAR EL USUARIO, MATERIAS,
-// SESIONES Y TAREAS PARA SUBIRLOS AL DRIVE Y CUALQUIER CAMBIO SE ACTUALIZA Y NO
-// SE VUELVE A SUBIR
 public class PantallaRegistro extends javax.swing.JFrame {
 
     /**
@@ -30,6 +28,9 @@ public class PantallaRegistro extends javax.swing.JFrame {
     private String codigo;
     public static String correoPoner = "", contraseñaPoner = "";
     public static int intentos = 3;
+
+    public static Archivo archivoSesiones = new Archivo(), archivoMaterias = new Archivo(),
+            archivoTareas = new Archivo();
 
     public PantallaRegistro() {
         initComponents();
@@ -126,10 +127,27 @@ public class PantallaRegistro extends javax.swing.JFrame {
                 } else {
                     cx.stmt = cx.con.createStatement();
                     cx.stmt.executeUpdate(
-                            "INSERT INTO usuarios(nombre, correo, contraseña, biografia) VALUES('"
-                            + nombre + "','" + correo + "','"
-                            + contraseña + "','"
-                            + biografia + "','" + tipo + "')");
+                            "INSERT INTO usuarios(nombre, correo, contraseña, biografia, tipo) VALUES('"
+                                    + nombre + "','" + correo + "','"
+                                    + contraseña + "','"
+                                    + biografia + "','" + tipo + "')");
+
+                    correoPoner = correo;
+                    contraseñaPoner = contraseña;
+
+                    archivoSesiones.crearArchivo("Sesiones");
+
+                    archivoMaterias.crearArchivo("Materias");
+
+                    archivoTareas.crearArchivo("Tareas");
+
+                    JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "¡AVISO!",
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                    PantallaInicio pi = new PantallaInicio();
+                    pi.setVisible(true);
+
+                    this.setVisible(false);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(PantallaRegistro.class.getName()).log(Level.SEVERE, null, ex);
@@ -143,19 +161,9 @@ public class PantallaRegistro extends javax.swing.JFrame {
                     }
                 }
             }
-
-            JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "¡AVISO!",
-                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            correoPoner = correo;
-            contraseñaPoner = contraseña;
-            PantallaInicio pi = new PantallaInicio();
-            pi.setVisible(true);
-
-            this.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(this, "LAS CONTRASEÑAS DEBEN COINCIDIR", "AVISO!",
                     javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
         }
 
     }

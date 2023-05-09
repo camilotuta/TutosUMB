@@ -31,7 +31,7 @@ public class PantallaPanelDeControlProfesor extends javax.swing.JFrame {
     public PantallaPanelDeControlProfesor() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("PANEL DE CONTROL ESTUDIANTIL");
+        this.setTitle("PANEL DE CONTROL DEL TUTOR");
         this.setResizable(false);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
 

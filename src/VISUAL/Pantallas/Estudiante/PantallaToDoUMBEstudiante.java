@@ -11,7 +11,6 @@ import java.awt.Toolkit;
  *
  * @author tutaa
  */
-// TODO: CREAR UN ARCHIVO CON EL PARAMETRO Archivo.crearArchivo("Tareas")
 public class PantallaToDoUMBEstudiante extends javax.swing.JFrame {
 
     /**
@@ -20,7 +19,7 @@ public class PantallaToDoUMBEstudiante extends javax.swing.JFrame {
     public PantallaToDoUMBEstudiante() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("TO DO UMB");
+        this.setTitle("TODO UMB");
         this.setResizable(false);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
 

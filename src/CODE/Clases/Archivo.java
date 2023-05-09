@@ -18,6 +18,12 @@ public class Archivo {
         String nombreArchivo = PantallaRegistro.correoPoner + tipoArchivo + ".txt";
         String rutaCompleta = System.getProperty("user.home") + "/Documents/" + nombreArchivo;
         archivo = new File(rutaCompleta);
+        try {
+            FileWriter escritura = new FileWriter(archivo, true);
+            escritura.write("");
+            escritura.close();
+        } catch (IOException e) {
+        }
     }
 
     public void escribirEnArchivoSesiones(Sesion sesion) {

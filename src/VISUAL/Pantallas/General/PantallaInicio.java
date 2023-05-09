@@ -21,11 +21,6 @@ import CODE.Clases.Conexion;
  * @author tutaa
  */
 
-/*
- * ADMINISTRADOR: 0
- * ESTUDIANTE: 1
- * PROFESOR: 2
- */
 public class PantallaInicio extends javax.swing.JFrame {
 
     /**
@@ -34,7 +29,7 @@ public class PantallaInicio extends javax.swing.JFrame {
     public PantallaInicio() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("INGRESAR");
+        this.setTitle("INICIO");
         this.setResizable(false);
 
         tfCorreo.setText(PantallaRegistro.correoPoner);
@@ -65,9 +60,6 @@ public class PantallaInicio extends javax.swing.JFrame {
         char[] contraseñaEncriptada = tfContraseña.getPassword();
         String contraseña = new String(contraseñaEncriptada);
 
-        PantallaRegistro.correoPoner = correo;
-        PantallaRegistro.contraseñaPoner = contraseña;
-
         try (Connection con = Conexion.getConection()) {
             PreparedStatement ps = con.prepareStatement(
                     "SELECT correo, contraseña FROM usuarios WHERE correo = ? AND contraseña = ?");
@@ -75,19 +67,27 @@ public class PantallaInicio extends javax.swing.JFrame {
             ps.setString(2, contraseña);
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next() && tomarTipoUsuario() == 0) {
-                PantallaPanelDeControlAdministrativo PanPanelAdmin = new PantallaPanelDeControlAdministrativo();
-                PanPanelAdmin.setVisible(true);
-                this.setVisible(false);
-            } else if (tomarTipoUsuario() == 1) {
-                PantallaBienvenidaEstudiante pBie = new PantallaBienvenidaEstudiante();
-                pBie.setVisible(true);
-                this.setVisible(false);
+            if (rs.next()) {
+                PantallaRegistro.correoPoner = correo;
+                PantallaRegistro.contraseñaPoner = contraseña;
 
-            } else if (tomarTipoUsuario() == 2) {
-                PantallaBienvenidaProfesor pBieProf = new PantallaBienvenidaProfesor();
-                pBieProf.setVisible(true);
-                this.setVisible(false);
+                if (tomarTipoUsuario() == 0) {
+                    PantallaPanelDeControlAdministrativo PanPanelAdmin = new PantallaPanelDeControlAdministrativo();
+                    PanPanelAdmin.setVisible(true);
+                    this.setVisible(false);
+                } else if (tomarTipoUsuario() == 1) {
+                    PantallaRegistro.archivoSesiones.crearArchivo("Sesiones");
+                    PantallaRegistro.archivoMaterias.crearArchivo("Materias");
+                    PantallaRegistro.archivoTareas.crearArchivo("Tareas");
+
+                    PantallaBienvenidaEstudiante pBie = new PantallaBienvenidaEstudiante();
+                    pBie.setVisible(true);
+                    this.setVisible(false);
+                } else if (tomarTipoUsuario() == 2) {
+                    PantallaBienvenidaProfesor pBieProf = new PantallaBienvenidaProfesor();
+                    pBieProf.setVisible(true);
+                    this.setVisible(false);
+                }
 
             } else {
                 JOptionPane.showMessageDialog(this, "CORREO O CONTRASEÑA NO VALIDOS \n", "AVISO!",
@@ -131,7 +131,6 @@ public class PantallaInicio extends javax.swing.JFrame {
             }
         }
         return tipo;
-
     }
 
     /**
