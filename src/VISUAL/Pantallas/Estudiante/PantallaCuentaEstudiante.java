@@ -18,6 +18,10 @@ import java.sql.*;
  *
  * @author tutaa
  */
+
+// TODO: PEDIR IMAGEN PARA EL USUARIO Y REEMPLAZARLA POR LA DE POR DEFECTO
+// y hacerla redonda
+// https://www.youtube.com/watch?v=oKDPhacXlB8&ab_channel=L-Code
 public class PantallaCuentaEstudiante extends javax.swing.JFrame {
 
     /**

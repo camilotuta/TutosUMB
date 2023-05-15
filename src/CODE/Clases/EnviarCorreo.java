@@ -7,6 +7,7 @@ import javax.mail.*;
 import javax.mail.internet.*;
 import javax.swing.JOptionPane;
 
+//TODO: CAMBIAR CORREO
 public class EnviarCorreo {
 
     private static String emailFrom = "cauntertut2004@gmail.com";

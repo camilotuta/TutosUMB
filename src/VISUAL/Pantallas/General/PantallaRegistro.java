@@ -20,6 +20,7 @@ import CODE.Clases.EnviarCorreo;
  *
  * @author tutaa
  */
+// TODO: CREAR UNA IMGANEN POR DEFECTO
 public class PantallaRegistro extends javax.swing.JFrame {
 
     /**
