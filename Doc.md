@@ -57,88 +57,88 @@ En esta sección, se presentan las diferentes pantallas de la plataforma TutosUM
 
 **<span style="color: #769fcd;">Inicio de Sesión</span>**: En esta pantalla, los usuarios ingresan sus credenciales para acceder a la plataforma.
 
-![picture 2](../../../images/521ddc0b21b3cecde745c24176667a52c3aa7099decb3b18a560d4c0103cf17c.png)
+![picture 2](C:\Users\tutaa\Workspace\Notes\images/521ddc0b21b3cecde745c24176667a52c3aa7099decb3b18a560d4c0103cf17c.png)
 
-![picture 8](../../../images/4aa90a75855f1222596bbdd24910d1e5d9b11e928e9db4a81b122a4559976b89.png)
+![picture 8](C:\Users\tutaa\Workspace\Notes\images/4aa90a75855f1222596bbdd24910d1e5d9b11e928e9db4a81b122a4559976b89.png)
 
 **<span style="color: #769fcd;">Registro</span>**: En esta pantalla, los usuarios pueden crear una cuenta en la plataforma, ingresando sus datos personales y credenciales.
 
-![picture 3](../../../images/3736e5cd94c90466b85c38e42273302c3cc9c3a36d493e129a7a550b32554d92.png)
+![picture 3](C:\Users\tutaa\Workspace\Notes\images/3736e5cd94c90466b85c38e42273302c3cc9c3a36d493e129a7a550b32554d92.png)
 
 **<span style="color: #769fcd;">Recuperar Contraseña</span>**: Aquí los usuarios pueden solicitar la recuperación de su contraseña en caso de olvidarla, proporcionando la información necesaria para verificar su identidad.
 
-![picture 4](../../../images/8ce07b3338fb79c953e378027878ae9552cae05e0fedd65a023d466dd434816d.png)
+![picture 4](C:\Users\tutaa\Workspace\Notes\images/8ce07b3338fb79c953e378027878ae9552cae05e0fedd65a023d466dd434816d.png)
 
 <h3 style="color: #008080;">7.2 Pantallas de Estudiantes</h3>
 
 **<span style="color: #769fcd;">Bienvenida</span>**: En esta pantalla, se muestra un mensaje de bienvenida al estudiante al iniciar sesión en la plataforma.
 
-![picture 10](../../../images/3ec088ed4bdea195a63b23d9c477fbf77bbe849c03d4a1f2189027c1004c8c8e.png)
+![picture 10](C:\Users\tutaa\Workspace\Notes\images/3ec088ed4bdea195a63b23d9c477fbf77bbe849c03d4a1f2189027c1004c8c8e.png)
 
 **<span style="color: #769fcd;">Perfil</span>**: En esta pantalla, los estudiantes pueden ver y actualizar su información personal, así como un botón para acceder a su panel de control.
 
-![picture 9](../../../images/19d34fb4ce9f653955316f49ba691f345eca44531e71a498fd42a7c6675a560a.png)
+![picture 9](C:\Users\tutaa\Workspace\Notes\images/19d34fb4ce9f653955316f49ba691f345eca44531e71a498fd42a7c6675a560a.png)
 
 **<span style="color: #769fcd;">Panel de Control</span>**: Es la pantalla principal donde los estudiantes pueden acceder a todas las funcionalidades de la plataforma, como ver sus materias, ingresar a un chat privado, jugar a triki y acceder a sus tareas.
 
-![picture 11](../../../images/6c9fbb077b579c54c4f167d331094702c365c6823e4f3bdcda3abe0e0ead94b4.png)
+![picture 11](C:\Users\tutaa\Workspace\Notes\images/6c9fbb077b579c54c4f167d331094702c365c6823e4f3bdcda3abe0e0ead94b4.png)
 
 **<span style="color: #769fcd;">Materias</span>**: Aquí se muestra una lista de las materias disponibles en la plataforma, permitiendo a los estudiantes explorar y seleccionar las materias de su interés.
 
-![picture 12](../../../images/fc06f77db077f9fe1adca76503f8f6aa8761a3b6cbec8ef595f4dfc6d9afbe16.png)
+![picture 12](C:\Users\tutaa\Workspace\Notes\images/fc06f77db077f9fe1adca76503f8f6aa8761a3b6cbec8ef595f4dfc6d9afbe16.png)
 
 **<span style="color: #769fcd;">Crear Materia</span>**: Los estudiantes pueden agregar nuevas materias a su perfil, especificando el nombre y la descripción de la materia.
 
-![picture 13](../../../images/ef37dd2f1abdd4a6a783205111996f277ec845a4c6b280580dc4522b7cbc9a2d.png)
+![picture 13](C:\Users\tutaa\Workspace\Notes\images/ef37dd2f1abdd4a6a783205111996f277ec845a4c6b280580dc4522b7cbc9a2d.png)
 
 **<span style="color: #769fcd;">Chat</span>**: Aquí los estudiantes pueden comunicarse mutuamente a través de un chat integrado en la plataforma.
 
-![picture 14](../../../images/9b54194055084c00a8a232d276fab26f106076471ea58eeaebb30d661c941fe3.png)
+![picture 14](C:\Users\tutaa\Workspace\Notes\images/9b54194055084c00a8a232d276fab26f106076471ea58eeaebb30d661c941fe3.png)
 
 **<span style="color: #769fcd;">Triki (Juego)</span>**: Esta pantalla permite a los estudiantes jugar al triki (tres en raya) en la plataforma.
 
-![picture 15](../../../images/10816f95bef309a413de1e5d0c7b4edac2e7ec9909354d48c8c30e86c672aea3.png)
+![picture 15](C:\Users\tutaa\Workspace\Notes\images/10816f95bef309a413de1e5d0c7b4edac2e7ec9909354d48c8c30e86c672aea3.png)
 
 **<span style="color: #769fcd;">ToDoUMB (Tareas)</span>**: Aquí los estudiantes pueden ver y administrar sus tareas pendientes, estableciendo fechas límite y marcando las tareas como completadas.<span style="color: #ff5555;">(PRÓXIMAMENTE)</span>
 
-![picture 16](../../../images/21679bec880ddd735e61f0cafa74de7864d44755541e51f2a21605144c0919f2.png)
+![picture 16](C:\Users\tutaa\Workspace\Notes\images/21679bec880ddd735e61f0cafa74de7864d44755541e51f2a21605144c0919f2.png)
 
 **<span style="color: #769fcd;">Calendario o Agendar Tutoría</span>**: Los estudiantes pueden ver su calendario con las tutorías programadas y agendar nuevas tutorías según su disponibilidad.
 
-![picture 17](../../../images/d9fa4085157a6ca478620ba31bef6ae1fa6937077f385845bdf37b2b4a44a3f4.png)
+![picture 17](C:\Users\tutaa\Workspace\Notes\images/d9fa4085157a6ca478620ba31bef6ae1fa6937077f385845bdf37b2b4a44a3f4.png)
 
 **<span style="color: #769fcd;">Sesiones Agendadas</span>**: Esta pantalla muestra una lista de las tutorías programadas por el estudiante, incluyendo la fecha, el link y la materia.
 
-![picture 18](../../../images/142a36c67db03715a888fe4f31ab6faec5d1d24388420edf89df1e17ae9548b1.png)
+![picture 18](C:\Users\tutaa\Workspace\Notes\images/142a36c67db03715a888fe4f31ab6faec5d1d24388420edf89df1e17ae9548b1.png)
 
 <h3 style="color: #008080;">7.3 Pantallas de Profesores</h3>
 
 **<span style="color: #654321;">Bienvenida</span>**: En esta pantalla, se muestra un mensaje de bienvenida al profesor al iniciar sesión en la plataforma.
 
-![picture 19](../../../images/ec644b478632fbcdc1de57b61a721d493c69db27c09612ee6f7ab535ada3116a.png)
+![picture 19](C:\Users\tutaa\Workspace\Notes\images/ec644b478632fbcdc1de57b61a721d493c69db27c09612ee6f7ab535ada3116a.png)
 
 **<span style="color: #654321;">Perfil</span>**: Aquí se muestra la información del profesor, incluyendo su especialidad, experiencia y calificaciones recibidas de los estudiantes.
 
-![picture 20](../../../images/b08520734f809533f4617b3df1e02e93e52a4228da36d888c9c9f3e9041003ea.png)
+![picture 20](C:\Users\tutaa\Workspace\Notes\images/b08520734f809533f4617b3df1e02e93e52a4228da36d888c9c9f3e9041003ea.png)
 
 **<span style="color: #654321;">Sesiones Agendadas</span>**: Esta pantalla muestra una lista de las tutorías programadas con el profesor, incluyendo la fecha, el estudiante y la materia.
 
-![picture 21](../../../images/10e124175471c70bdb84d13c5c6ffdcbe2cee24654a13e4d51224ea5f4f3050e.png)
+![picture 21](C:\Users\tutaa\Workspace\Notes\images/10e124175471c70bdb84d13c5c6ffdcbe2cee24654a13e4d51224ea5f4f3050e.png)
 
 **<span style="color: #654321;">ToDoUMB (Tareas)</span>**: En esta pantalla, los profesores pueden ver y administrar las tareas asignadas a ellos, así como marcar las tareas como completadas.
 
-![picture 23](../../../images/e397e5a075df3045551ba7d585514044e76c854119d9297a4b49ce518c1f9022.png)
+![picture 23](C:\Users\tutaa\Workspace\Notes\images/e397e5a075df3045551ba7d585514044e76c854119d9297a4b49ce518c1f9022.png)
 
 <h3 style="color: #008080;">7.4 Pantallas de Administradores</h3>
 
 **<span style="color: #333333;">Panel de Control</span>**: Los administradores tienen acceso a esta pantalla principal desde donde pueden administrar y supervisar todas las funcionalidades y usuarios de la plataforma.
 
-![picture 5](../../../images/bbc04a18986bfb23e7b9976b4d053647c76b5ce823564275dc3b9c5ed630d990.png)
+![picture 5](C:\Users\tutaa\Workspace\Notes\images/bbc04a18986bfb23e7b9976b4d053647c76b5ce823564275dc3b9c5ed630d990.png)
 
 **<span style="color: #333333;">Crear Usuario</span>**: Los administradores pueden utilizar esta pantalla para crear nuevos usuarios en la plataforma, ingresando sus datos personales y asignando roles correspondientes.
 
-![picture 6](../../../images/cad766f6175ba55458200d90c60e39f2e91c2d49fe0c20f1b8f70ccba2fc58fd.png)
+![picture 6](C:\Users\tutaa\Workspace\Notes\images/cad766f6175ba55458200d90c60e39f2e91c2d49fe0c20f1b8f70ccba2fc58fd.png)
 
 **<span style="color: #333333;">Modificar Usuario</span>**: En esta pantalla, los administradores pueden modificar la información de un usuario existente en la plataforma, como su nombre, correo electrónico o contraseña.
 
-![picture 7](../../../images/65335ef4e4ece40f6c497e85ea7d21c47d6c89a946ae89e804343690bb9398a1.png)
+![picture 7](C:\Users\tutaa\Workspace\Notes\images/65335ef4e4ece40f6c497e85ea7d21c47d6c89a946ae89e804343690bb9398a1.png)
