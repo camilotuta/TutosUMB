@@ -21,6 +21,7 @@ import CODE.Clases.Conexion;
  * @author tutaa
  */
 
+// TODO: QUITAR CORREO
 public class PantallaInicio extends javax.swing.JFrame {
 
     /**
@@ -34,7 +35,6 @@ public class PantallaInicio extends javax.swing.JFrame {
 
         tfCorreo.setText(PantallaRegistro.correoPoner);
         tfContraseña.setText(PantallaRegistro.contraseñaPoner);
-        btnIngresar.setEnabled(habilitarBotonIngresar());
 
         tfCorreo.requestFocus();
 
@@ -43,10 +43,14 @@ public class PantallaInicio extends javax.swing.JFrame {
 
         setIconImage(Toolkit.getDefaultToolkit()
                 .getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
-
         Calendar calendario = Calendar.getInstance();
         int añoActual = calendario.get(Calendar.YEAR);
         txtMostrarCopy.setText("© " + añoActual + " TutosUMB. Todos los derechos reservados.");
+
+        tfCorreo.setText("adriantuta.cc@academia.umb.edu.co");
+
+        tfContraseña.setText("1234567890");
+        btnIngresar.setEnabled(habilitarBotonIngresar());
     }
 
     public boolean habilitarBotonIngresar() {
