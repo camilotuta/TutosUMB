@@ -6,9 +6,7 @@ package VISUAL.Pantallas.Administrador;
 
 import java.awt.Toolkit;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -42,7 +40,7 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
     }
 
     public boolean habilitarBotones() {
-        return !cbNombreEstudiantes.getSelectedItem().toString().equals("Ninguno");
+        return !tfNombreEstudiante.getText().equals("Ninguno");
     }
 
     public void mostrarTablaEstudiantes() {
@@ -76,50 +74,11 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        tomarNombres();
-    }
-
-    public void tomarNombres() {
-        String sql = "SELECT nombre FROM usuarios";
-        Conexion cx = new Conexion();
-        try {
-            cx.con = Conexion.getConection();
-            cx.stmt = cx.con.createStatement();
-            cx.rs = cx.stmt.executeQuery(sql);
-            ArrayList<String> nombresEstudiantes = new ArrayList<String>();
-            nombresEstudiantes.add("Ninguno");
-            while (cx.rs.next()) {
-                nombresEstudiantes.add(cx.rs.getString("nombre"));
-            }
-            if (nombresEstudiantes.size() > 0) {
-                DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(
-                        nombresEstudiantes.toArray(new String[0]));
-                cbNombreEstudiantes.setModel(model);
-            } else {
-                cbNombreEstudiantes.setModel(new DefaultComboBoxModel<String>());
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al consultar la base de datos: " + e.getMessage());
-        } finally {
-            try {
-                if (cx.rs != null) {
-                    cx.rs.close();
-                }
-                if (cx.stmt != null) {
-                    cx.stmt.close();
-                }
-                if (cx.con != null) {
-                    cx.con.close();
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + ex.getMessage());
-            }
-        }
     }
 
     public void eliminarUsuario() {
         Conexion cx = new Conexion();
-        String nombre = cbNombreEstudiantes.getSelectedItem().toString();
+        String nombre = tfNombreEstudiante.getText();
         try {
             cx.con = Conexion.getConection();
             cx.ps = cx.con.prepareStatement("DELETE FROM usuarios WHERE nombre = ?");
@@ -145,6 +104,8 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Error al cerrar conexión: " + e.toString());
             }
         }
+        tfNombreEstudiante.setText("Ninguno");
+
     }
 
     /**
@@ -172,6 +133,10 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -179,13 +144,13 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbUsuarios = new javax.swing.JTable();
-        cbNombreEstudiantes = new javax.swing.JComboBox<>();
         btnEliminar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         btnRegresar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         btnCrear = new javax.swing.JButton();
+        tfNombreEstudiante = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(247, 251, 252));
@@ -206,18 +171,12 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
                 new String[] {
                         "Title 1", "Title 2", "Title 3", "Title 4"
                 }));
-        jScrollPane1.setViewportView(tbUsuarios);
-
-        cbNombreEstudiantes.setBackground(new java.awt.Color(220, 220, 220));
-        cbNombreEstudiantes.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        cbNombreEstudiantes.setForeground(new java.awt.Color(51, 51, 51));
-        cbNombreEstudiantes.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbNombreEstudiantes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbNombreEstudiantesActionPerformed(evt);
+        tbUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbUsuariosMouseClicked(evt);
             }
         });
+        jScrollPane1.setViewportView(tbUsuarios);
 
         btnEliminar.setBackground(new java.awt.Color(220, 220, 220));
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -269,6 +228,10 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
             }
         });
 
+        tfNombreEstudiante.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        tfNombreEstudiante.setForeground(new java.awt.Color(51, 51, 51));
+        tfNombreEstudiante.setText("Ninguno");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -286,10 +249,11 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
                                         .addContainerGap()
                                         .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 114,
                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cbNombreEstudiantes, 0, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE)
-                                        .addGap(18, 18, 18)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(tfNombreEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 354,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 114,
                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -312,17 +276,12 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
                                 .addGap(6, 6, 6)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 534,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(cbNombreEstudiantes, javax.swing.GroupLayout.Alignment.TRAILING,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel2Layout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(btnEditar)
-                                                .addComponent(btnEliminar)
-                                                .addComponent(btnCrear)))
+                                .addGap(19, 19, 19)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnEditar)
+                                        .addComponent(btnEliminar)
+                                        .addComponent(btnCrear)
+                                        .addComponent(tfNombreEstudiante))
                                 .addGap(4, 4, 4)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -352,6 +311,16 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tbUsuariosMouseClicked(java.awt.event.MouseEvent evt) {
+        int selectedRow = tbUsuarios.getSelectedRow();
+        nombreEditar = tbUsuarios.getValueAt(selectedRow, 0).toString();
+        tfNombreEstudiante.setText(nombreEditar);
+
+        btnEditar.setEnabled(habilitarBotones());
+        btnEliminar.setEnabled(habilitarBotones());
+
+    }
+
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {
         PantallaInicio panIn = new PantallaInicio();
         panIn.setVisible(true);
@@ -364,14 +333,8 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
         this.setVisible(false);
     }
 
-    private void cbNombreEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {
-        btnEditar.setEnabled(habilitarBotones());
-        btnEliminar.setEnabled(habilitarBotones());
-
-    }
-
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {
-        nombreEditar = cbNombreEstudiantes.getSelectedItem().toString();
+        nombreEditar = tfNombreEstudiante.getText();
 
         PantallaModificarUsuario pModUser = new PantallaModificarUsuario();
         pModUser.setVisible(true);
@@ -437,12 +400,12 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JComboBox<String> cbNombreEstudiantes;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbUsuarios;
+    private javax.swing.JLabel tfNombreEstudiante;
     // End of variables declaration//GEN-END:variables
 }

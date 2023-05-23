@@ -7,11 +7,10 @@ import javax.mail.*;
 import javax.mail.internet.*;
 import javax.swing.JOptionPane;
 
-//TODO: CAMBIAR CORREO
 public class EnviarCorreo {
 
-    private static String emailFrom = "cauntertut2004@gmail.com";
-    private static String passwordFrom = "mwuofdnbzaatuprq";
+    private static String emailFrom = "codigodeverificaciontutosumb@gmail.com";
+    private static String passwordFrom = "optyxhhzjrbgnikz";
     private String emailTo;
     private String subject;
     private String content;

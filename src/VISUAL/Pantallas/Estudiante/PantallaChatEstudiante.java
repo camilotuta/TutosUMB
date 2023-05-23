@@ -6,6 +6,8 @@
 package VISUAL.Pantallas.Estudiante;
 
 import VISUAL.Pantallas.General.PantallaRegistro;
+
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.Observable;
@@ -26,6 +28,8 @@ public class PantallaChatEstudiante extends javax.swing.JFrame implements Observ
     /**
      * Creates new form PantallaChatEstudiante
      */
+
+    public static int pantallasAbiertas = 0;
     private String nombre, mensaje;
     private Cliente cliente;
 
@@ -33,12 +37,25 @@ public class PantallaChatEstudiante extends javax.swing.JFrame implements Observ
         initComponents();
         setDefaultCloseOperation(0);
         tfConversacion.setEnabled(false);
-        this.setLocationRelativeTo(null);
+        posicionarPantalla();
         this.setTitle("CHAT");
         this.setResizable(false);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
 
         iniciandoChat();
+    }
+
+    public void posicionarPantalla() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+
+        int frameWidth = getWidth();
+        int frameHeight = getHeight();
+        int frameX = (screenWidth - frameWidth) / 2 + 715;
+        int frameY = (screenHeight - frameHeight) / 2;
+
+        setLocation(frameX, frameY);
     }
 
     public void iniciandoChat() {
@@ -152,6 +169,7 @@ public class PantallaChatEstudiante extends javax.swing.JFrame implements Observ
     }
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {
+        pantallasAbiertas--;
         this.dispose();
     }
 

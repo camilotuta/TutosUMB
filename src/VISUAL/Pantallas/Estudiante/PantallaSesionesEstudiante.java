@@ -25,63 +25,63 @@ import javax.swing.table.DefaultTableModel;
 // CORREO NOTIFICANDO ESTO
 public class PantallaSesionesEstudiante extends javax.swing.JFrame {
 
-    DefaultTableModel modelo = new DefaultTableModel();
+        DefaultTableModel modelo = new DefaultTableModel();
 
-    /**
-     * Creates new form PantallaSesionesEstudiante
-     */
-    public PantallaSesionesEstudiante() {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        this.setTitle("SESIONES PROGRAMADAS");
-        this.setResizable(false);
-        cargarModelo();
-        setIconImage(Toolkit.getDefaultToolkit()
-                .getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
-    }
-
-    private void cargarModelo() {
-        try {
-            modelo.addColumn("MATERIA");
-            modelo.addColumn("LINK");
-            modelo.addColumn("FECHA");
-            modelo.addColumn("ESTADO");
-            tbSesionesProgramadas.setModel(modelo);
-            cargarArchivo();
-        } catch (IOException e) {
+        /**
+         * Creates new form PantallaSesionesEstudiante
+         */
+        public PantallaSesionesEstudiante() {
+                initComponents();
+                this.setLocationRelativeTo(null);
+                this.setTitle("SESIONES PROGRAMADAS");
+                this.setResizable(false);
+                cargarModelo();
+                setIconImage(Toolkit.getDefaultToolkit()
+                                .getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
         }
-    }
 
-    private void cargarArchivo() throws IOException {
-        String fila[];
-        try {
-            String rutaCompleta = System.getProperty("user.home") + "/Documents/"
-                    + PantallaRegistro.correoPoner
-                    + "Sesiones" + ".txt";
-            FileReader archivo = new FileReader(rutaCompleta);
-            try (BufferedReader lectura = new BufferedReader(archivo)) {
-                String linea = lectura.readLine();
-
-                while (linea != null) {
-                    fila = linea.split("%");
-                    modelo.addRow(fila);
-                    linea = lectura.readLine();
+        private void cargarModelo() {
+                try {
+                        modelo.addColumn("MATERIA");
+                        modelo.addColumn("LINK");
+                        modelo.addColumn("FECHA");
+                        modelo.addColumn("ESTADO");
+                        tbSesionesProgramadas.setModel(modelo);
+                        cargarArchivo();
+                } catch (IOException e) {
                 }
-            }
-        } catch (FileNotFoundException e) {
         }
-    }
 
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
+        private void cargarArchivo() throws IOException {
+                String fila[];
+                try {
+                        String rutaCompleta = System.getProperty("user.home") + "/Documents/"
+                                        + PantallaRegistro.correoPoner
+                                        + "Sesiones" + ".txt";
+                        FileReader archivo = new FileReader(rutaCompleta);
+                        try (BufferedReader lectura = new BufferedReader(archivo)) {
+                                String linea = lectura.readLine();
+
+                                while (linea != null) {
+                                        fila = linea.split("%");
+                                        modelo.addRow(fila);
+                                        linea = lectura.readLine();
+                                }
+                        }
+                } catch (FileNotFoundException e) {
+                }
+        }
+
+        // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
         // Code">//GEN-BEGIN:initComponents
         private void initComponents() {
 
@@ -330,41 +330,41 @@ public class PantallaSesionesEstudiante extends javax.swing.JFrame {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCuentaActionPerformed(java.awt.event.ActionEvent evt) {
-        PantallaCuentaEstudiante cuenta = new PantallaCuentaEstudiante();
-        cuenta.setVisible(true);
-        this.setVisible(false);
-    }
+        private void btnCuentaActionPerformed(java.awt.event.ActionEvent evt) {
+                PantallaCuentaEstudiante cuenta = new PantallaCuentaEstudiante();
+                cuenta.setVisible(true);
+                this.setVisible(false);
+        }
 
-    private void btnCalendarioActionPerformed(java.awt.event.ActionEvent evt) {
-        PantallaCalendarioEstudiante cal = new PantallaCalendarioEstudiante();
-        cal.setVisible(true);
-        this.setVisible(false);
-    }
+        private void btnCalendarioActionPerformed(java.awt.event.ActionEvent evt) {
+                PantallaCalendarioEstudiante cal = new PantallaCalendarioEstudiante();
+                cal.setVisible(true);
+                this.setVisible(false);
+        }
 
-    private void btnSesionesActionPerformed(java.awt.event.ActionEvent evt) {
-        JOptionPane.showMessageDialog(null, "YA SE ENCUENTRA EN ESTA PESTAÑA");
-    }
+        private void btnSesionesActionPerformed(java.awt.event.ActionEvent evt) {
+                JOptionPane.showMessageDialog(null, "YA SE ENCUENTRA EN ESTA PESTAÑA");
+        }
 
-    private void btnCambiarCuentaActionPerformed(java.awt.event.ActionEvent evt) {
-        PantallaInicio pantalla = new PantallaInicio();
-        pantalla.setVisible(true);
-        this.setVisible(false);
-    }
+        private void btnCambiarCuentaActionPerformed(java.awt.event.ActionEvent evt) {
+                PantallaInicio pantalla = new PantallaInicio();
+                pantalla.setVisible(true);
+                this.setVisible(false);
+        }
 
-    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {
-        System.exit(0);
-    }
+        private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {
+                System.exit(0);
+        }
 
-    public static void main(String args[]) {
+        public static void main(String args[]) {
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PantallaSesionesEstudiante().setVisible(true);
-            }
-        });
-    }
+                /* Create and display the form */
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                        public void run() {
+                                new PantallaSesionesEstudiante().setVisible(true);
+                        }
+                });
+        }
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton btnCalendario;
