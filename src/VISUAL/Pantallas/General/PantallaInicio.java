@@ -44,7 +44,7 @@ public class PantallaInicio extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit()
                 .getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
         Calendar calendario = Calendar.getInstance();
-        var añoActual = calendario.get(Calendar.YEAR);
+        int añoActual = calendario.get(Calendar.YEAR);
         txtMostrarCopy.setText("© " + añoActual + " TutosUMB. Todos los derechos reservados.");
 
         tfCorreo.setText("adriantuta.cc@academia.umb.edu.co");
@@ -55,14 +55,14 @@ public class PantallaInicio extends javax.swing.JFrame {
 
     public boolean habilitarBotonIngresar() {
         char[] contraseñaEncriptada = tfContraseña.getPassword();
-        var contraseña = new String(contraseñaEncriptada);
+        String contraseña = new String(contraseñaEncriptada);
         return tfCorreo.getText().toLowerCase().contains("@academia.umb.edu.co") && contraseña.length() >= 8;
     }
 
     public void usuarioIngresar() {
-        var correo = tfCorreo.getText().toLowerCase();
+        String correo = tfCorreo.getText().toLowerCase();
         char[] contraseñaEncriptada = tfContraseña.getPassword();
-        var contraseña = new String(contraseñaEncriptada);
+        String contraseña = new String(contraseñaEncriptada);
 
         try (Connection con = Conexion.getConection()) {
             PreparedStatement ps = con.prepareStatement(
@@ -108,9 +108,9 @@ public class PantallaInicio extends javax.swing.JFrame {
     }
 
     public int tomarTipoUsuario() {
-        var correoBuscar = tfCorreo.getText().toLowerCase();
+        String correoBuscar = tfCorreo.getText().toLowerCase();
         Conexion cx = new Conexion();
-        var tipo = 1;
+        int tipo = 1;
         try {
             cx.con = Conexion.getConection();
             cx.ps = cx.con.prepareStatement("SELECT tipo FROM usuarios WHERE correo = ?");

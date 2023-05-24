@@ -47,20 +47,20 @@ public class PantallaChatEstudiante extends javax.swing.JFrame implements Observ
 
     public void posicionarPantalla() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        var screenWidth = screenSize.width;
-        var screenHeight = screenSize.height;
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
 
-        var frameWidth = getWidth();
-        var frameHeight = getHeight();
-        var frameX = (screenWidth - frameWidth) / 2 + 715;
-        var frameY = (screenHeight - frameHeight) / 2;
+        int frameWidth = getWidth();
+        int frameHeight = getHeight();
+        int frameX = (screenWidth - frameWidth) / 2 + 715;
+        int frameY = (screenHeight - frameHeight) / 2;
 
         setLocation(frameX, frameY);
     }
 
     public void iniciandoChat() {
         Conexion cx = new Conexion();
-        var correoBuscar = PantallaRegistro.correoPoner;
+        String correoBuscar = PantallaRegistro.correoPoner;
         try {
             cx.con = Conexion.getConection();
             cx.ps = cx.con.prepareCall("SELECT nombre FROM usuarios WHERE correo = ?");
@@ -68,8 +68,8 @@ public class PantallaChatEstudiante extends javax.swing.JFrame implements Observ
             cx.rs = cx.ps.executeQuery();
 
             if (cx.rs.next()) {
-                var nombreCompleto = cx.rs.getString("nombre");
-                var primerNombre = nombreCompleto.split(" ")[0];
+                String nombreCompleto = cx.rs.getString("nombre");
+                String primerNombre = nombreCompleto.split(" ")[0];
                 nombre = primerNombre;
                 cliente = new Cliente(6000);
             } else {

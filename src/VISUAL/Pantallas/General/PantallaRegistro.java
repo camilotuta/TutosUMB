@@ -62,8 +62,8 @@ public class PantallaRegistro extends javax.swing.JFrame {
     public boolean habilitarBotonRegistrarse() {
         char[] contraseñaEncriptada = tfContraseña.getPassword();
         char[] confirmarContraseñaEncriptada = tfContraseña.getPassword();
-        var contraseña = new String(contraseñaEncriptada);
-        var confirmarContraseña = new String(confirmarContraseñaEncriptada);
+        String contraseña = new String(contraseñaEncriptada);
+        String confirmarContraseña = new String(confirmarContraseñaEncriptada);
         return tfCorreo.getText().toLowerCase().contains("@academia.umb.edu.co") && tfNombre.getText().length() >= 10
                 && contraseña.length() >= 8
                 && confirmarContraseña.length() >= 8;
@@ -71,16 +71,16 @@ public class PantallaRegistro extends javax.swing.JFrame {
 
     public boolean usuarioRegistrado() {
         Conexion cx = new Conexion();
-        var sql = "select * from usuarios";
-        var bool = false;
+        String sql = "select * from usuarios";
+        boolean bool = false;
 
         try {
             cx.con = Conexion.getConection();
             cx.stmt = cx.con.createStatement();
             cx.rs = cx.stmt.executeQuery(sql);
             while (cx.rs.next()) {
-                var nombre = cx.rs.getString("nombre");
-                var correo = cx.rs.getString("correo");
+                String nombre = cx.rs.getString("nombre");
+                String correo = cx.rs.getString("correo");
                 bool = nombre.equals(tfNombre.getText()) || correo.equals(tfCorreo.getText().toLowerCase());
                 if (bool) {
                     break;
@@ -116,7 +116,7 @@ public class PantallaRegistro extends javax.swing.JFrame {
         char[] contraseñaEncriptada = tfContraseña.getPassword();
         char[] confirmarContraseñaEncriptada = tfContraseña.getPassword();
         contraseña = new String(contraseñaEncriptada);
-        var confirmarContraseña = new String(confirmarContraseñaEncriptada);
+        String confirmarContraseña = new String(confirmarContraseñaEncriptada);
         if (contraseña.equals(confirmarContraseña)) {
             Conexion cx = new Conexion();
             try {
@@ -181,8 +181,8 @@ public class PantallaRegistro extends javax.swing.JFrame {
     public void enviarCodigoCorreo() {
         if (!usuarioRegistrado()) {
 
-            var nombre = tfNombre.getText();
-            var correo = tfCorreo.getText().toLowerCase();
+            String nombre = tfNombre.getText();
+            String correo = tfCorreo.getText().toLowerCase();
             Random rand = new Random();
             codigo = String.valueOf(rand.nextInt(100_000, 999_999));
 
@@ -196,8 +196,8 @@ public class PantallaRegistro extends javax.swing.JFrame {
                 }
             }
 
-            var asunto = "Verificación de correo electrónico en TutosUMB";
-            var mensaje = "&#x1F44B; Hola, " + nombre + ".<br><br>"
+            String asunto = "Verificación de correo electrónico en TutosUMB";
+            String mensaje = "&#x1F44B; Hola, " + nombre + ".<br><br>"
                     + "¡Bienvenido/a a TutosUMB! Antes de que puedas comenzar a utilizar tu cuenta, necesitamos verificar que tu correo electrónico sea válido. "
                     + "Para ello, utiliza el siguiente código de verificación:<br><br>"
                     + "&#128273; <strong style=\"font-size: 24px;\">" + text + "</strong><br><br>"

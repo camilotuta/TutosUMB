@@ -46,7 +46,7 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
     public void mostrarTablaEstudiantes() {
         try {
             Conexion cx = new Conexion();
-            var sql = "SELECT * FROM usuarios";
+            String sql = "SELECT * FROM usuarios";
 
             cx.con = Conexion.getConection();
             cx.stmt = cx.con.createStatement();
@@ -57,7 +57,7 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
 
             // Agregar las columnas al modelo
             ResultSetMetaData metaData = (ResultSetMetaData) cx.rs.getMetaData();
-            var columnCount = metaData.getColumnCount();
+            int columnCount = metaData.getColumnCount();
             for (int i = 1; i <= columnCount; i++) {
                 tableModel.addColumn(metaData.getColumnName(i));
             }
@@ -78,12 +78,12 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
 
     public void eliminarUsuario() {
         Conexion cx = new Conexion();
-        var nombre = tfNombreEstudiante.getText();
+        String nombre = tfNombreEstudiante.getText();
         try {
             cx.con = Conexion.getConection();
             cx.ps = cx.con.prepareStatement("DELETE FROM usuarios WHERE nombre = ?");
             cx.ps.setString(1, nombre);
-            var resultado = cx.ps.executeUpdate();
+            int resultado = cx.ps.executeUpdate();
 
             if (resultado > 0) {
                 JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente.");

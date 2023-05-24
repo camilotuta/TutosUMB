@@ -82,14 +82,14 @@ public class PantallaCalendarioEstudiante extends javax.swing.JFrame {
 
     public void ponerMateriasComboBox() {
         try {
-            var rutaCompleta = System.getProperty("user.home") + "/Documents/"
+            String rutaCompleta = System.getProperty("user.home") + "/Documents/"
                     + PantallaRegistro.correoPoner
                     + "Materias" + ".txt";
             FileReader archivo = new FileReader(rutaCompleta);
             try (BufferedReader lectura = new BufferedReader(archivo)) {
                 String linea = lectura.readLine();
 
-                var texto = "";
+                String texto = "";
 
                 while (linea != null) {
                     texto += linea + "%";

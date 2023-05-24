@@ -7,8 +7,8 @@ public class Materia {
     public Materia(String nombre, double nota, String descripcion, String profesor) {
         this.nombre = nombre;
         this.nota = nota;
-        this.profesor = profesor;
         this.descripcion = descripcion;
+        this.profesor = profesor;
     }
 
     public String getDescripcion() {

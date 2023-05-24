@@ -41,7 +41,7 @@ public class PantallaBuscarPerfil extends javax.swing.JFrame {
     }
 
     public void mostrarDatosUsuario() {
-        var nombreBuscar = PantallaPanelDeControlEstudiante.estudianteMostrar;
+        String nombreBuscar = PantallaPanelDeControlEstudiante.estudianteMostrar;
         try {
             cx.con = Conexion.getConection();
             cx.ps = cx.con.prepareStatement("SELECT nombre, correo, biografia FROM usuarios WHERE nombre = ?");
@@ -71,13 +71,13 @@ public class PantallaBuscarPerfil extends javax.swing.JFrame {
 
     public void posicionarPantalla() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        var screenWidth = screenSize.width;
-        var screenHeight = screenSize.height;
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
 
-        var frameWidth = getWidth();
-        var frameHeight = getHeight();
-        var frameX = (screenWidth - frameWidth) / 2 + 715;
-        var frameY = (screenHeight - frameHeight) / 2;
+        int frameWidth = getWidth();
+        int frameHeight = getHeight();
+        int frameX = (screenWidth - frameWidth) / 2 + 715;
+        int frameY = (screenHeight - frameHeight) / 2;
 
         setLocation(frameX, frameY);
     }

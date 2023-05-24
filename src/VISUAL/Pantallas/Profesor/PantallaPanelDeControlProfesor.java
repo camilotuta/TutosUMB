@@ -47,7 +47,7 @@ public class PantallaPanelDeControlProfesor extends javax.swing.JFrame {
 
     void consultar() {
         Conexion cx = new Conexion();
-        var sql = "select * from usuarios";
+        String sql = "select * from usuarios";
         try {
             cx.con = Conexion.getConection();
             cx.stmt = cx.con.createStatement();

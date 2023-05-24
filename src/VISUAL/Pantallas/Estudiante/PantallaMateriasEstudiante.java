@@ -19,15 +19,20 @@ import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import CODE.Clases.Materia;
+
 /**
  *
  * @author tutaa
  */
 
+// TODO: BOTON ELIMINAR
 // TODO: MODIFICAR LA MATERIA
+// TODO: HACER CALCULADORA DE NOTAS
 public class PantallaMateriasEstudiante extends javax.swing.JFrame {
 
         DefaultTableModel modelo = new DefaultTableModel();
+        public static Materia materiaEditar;
 
         /**
          * Creates new form PantallaMateriasEstudiante
@@ -37,10 +42,14 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                 this.setLocationRelativeTo(null);
                 this.setTitle("TUS MATERIAS");
                 this.setResizable(false);
+
+                materiaEditar = null;
+
                 cargarModelo();
                 setIconImage(Toolkit.getDefaultToolkit()
                                 .getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
                 cargarAnaliticas();
+                btnModificarMateria.setEnabled(deshabilitarBotonModificarMateria());
         }
 
         private void cargarModelo() {
@@ -58,14 +67,14 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
         private void cargarArchivo() throws IOException {
                 String fila[];
                 try {
-                        var rutaCompleta = System.getProperty("user.home")
+                        String rutaCompleta = System.getProperty("user.home")
                                         + "/Documents/"
                                         + PantallaRegistro.correoPoner
                                         + "Materias"
                                         + ".txt";
                         FileReader archivo = new FileReader(rutaCompleta);
                         try (BufferedReader lectura = new BufferedReader(archivo)) {
-                                var linea = lectura.readLine();
+                                String linea = lectura.readLine();
 
                                 while (linea != null) {
                                         fila = linea.split("%");
@@ -82,18 +91,18 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                 DefaultTableModel model = (DefaultTableModel) tbInfoMaterias.getModel();
                 ArrayList<Double> notas = new ArrayList<Double>();
 
-                var rowCount = model.getRowCount();
-                var columnCount = model.getColumnCount();
-                var suma = 0.0;
-                var promedio = 0.0;
-                var promedioRound = 0.0;
+                int rowCount = model.getRowCount();
+                int columnCount = model.getColumnCount();
+                double suma = 0.0;
+                double promedio = 0.0;
+                double promedioRound = 0.0;
 
-                var desviacionEst = 0.0;
-                var desviacionRound = 0.0;
+                double desviacionEst = 0.0;
+                double desviacionRound = 0.0;
 
                 if (columnCount >= 2 && rowCount > 0) {
                         for (int i = 0; i < rowCount; i++) {
-                                var nota = Double.parseDouble(model.getValueAt(i, 1).toString());
+                                double nota = Double.parseDouble(model.getValueAt(i, 1).toString());
                                 notas.add(nota);
                                 suma += nota;
                         }
@@ -103,26 +112,26 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                         // & DESVIACIÓN ESTÁNDAR
                         ArrayList<Double> diferenciaAbsolutaNotas = new ArrayList<Double>();
                         for (double i : notas) {
-                                var diferencia = i - promedio;
+                                double diferencia = i - promedio;
                                 diferenciaAbsolutaNotas.add(diferencia);
                         }
-                        var sumaDiferencia = 0.0;
+                        double sumaDiferencia = 0.0;
 
                         for (double i : diferenciaAbsolutaNotas) {
                                 sumaDiferencia += Math.pow(i, 2);
                         }
 
                         desviacionEst = sumaDiferencia / diferenciaAbsolutaNotas.size();
-                        var raizDesviacion = Math.sqrt(desviacionEst);
+                        double raizDesviacion = Math.sqrt(desviacionEst);
                         desviacionRound = ((double) Math.round(raizDesviacion * 100.0) / 100.0);
 
                 }
 
                 // & PERIODO
                 Calendar calendario = Calendar.getInstance();
-                var añoActual = calendario.get(Calendar.YEAR);
-                var mesActual = calendario.get(Calendar.MONTH);
-                var periodo = "";
+                int añoActual = calendario.get(Calendar.YEAR);
+                int mesActual = calendario.get(Calendar.MONTH);
+                String periodo = "";
 
                 if (mesActual <= 5) {
                         periodo = "1";
@@ -132,13 +141,20 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                         periodo = "0";
                 }
 
-                var textPeriodo = añoActual + "-" + periodo;
+                String textPeriodo = añoActual + "-" + periodo;
 
                 lbPromedio.setText(String.valueOf(promedioRound));
                 lbDesviacionEstandar.setText(String.valueOf(desviacionRound));
                 lbPeriodo.setText(textPeriodo);
         }
 
+        public boolean deshabilitarBotonModificarMateria() {
+                return materiaEditar != null;
+        }
+
+        // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
@@ -180,6 +196,7 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                 lbDesviacionEstandar = new javax.swing.JLabel();
                 jLabel5 = new javax.swing.JLabel();
                 lbPeriodo = new javax.swing.JLabel();
+                btnModificarMateria = new javax.swing.JButton();
 
                 popupMenu1.setLabel("popupMenu1");
 
@@ -202,12 +219,14 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                                 new String[] {
                                                 "MATERIA", "MENSAJE", "FECHA"
                                 }) {
-                        Class<?>[] types = new Class<?>[] {
+                        Class[] types = new Class[] {
                                         java.lang.String.class, java.lang.String.class, java.lang.String.class
                         };
-                        boolean[] canEdit = new boolean[] { false, false, false };
+                        boolean[] canEdit = new boolean[] {
+                                        false, false, false
+                        };
 
-                        public Class<?> getColumnClass(int columnIndex) {
+                        public Class getColumnClass(int columnIndex) {
                                 return types[columnIndex];
                         }
 
@@ -217,6 +236,11 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                 });
                 tbInfoMaterias.setColumnSelectionAllowed(true);
                 tbInfoMaterias.getTableHeader().setReorderingAllowed(false);
+                tbInfoMaterias.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                tbInfoMateriasMouseClicked(evt);
+                        }
+                });
                 jScrollPane1.setViewportView(tbInfoMaterias);
                 tbInfoMaterias.getColumnModel().getSelectionModel()
                                 .setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -241,9 +265,8 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                 btnCalendario.setBackground(new java.awt.Color(185, 215, 234));
                 btnCalendario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
                 btnCalendario.setForeground(new java.awt.Color(66, 120, 181));
-                btnCalendario.setIcon(
-                                new javax.swing.ImageIcon(
-                                                getClass().getResource("/VISUAL/Imagenes/Botones/imgCalendario.png"))); // NOI18N
+                btnCalendario.setIcon(new javax.swing.ImageIcon(
+                                getClass().getResource("/VISUAL/Imagenes/Botones/imgCalendario.png"))); // NOI18N
                 btnCalendario.setText("CALENDARIO");
                 btnCalendario.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,9 +277,8 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                 btnSesiones.setBackground(new java.awt.Color(185, 215, 234));
                 btnSesiones.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
                 btnSesiones.setForeground(new java.awt.Color(66, 120, 181));
-                btnSesiones
-                                .setIcon(new javax.swing.ImageIcon(
-                                                getClass().getResource("/VISUAL/Imagenes/Botones/imgSesiones.png"))); // NOI18N
+                btnSesiones.setIcon(new javax.swing.ImageIcon(
+                                getClass().getResource("/VISUAL/Imagenes/Botones/imgSesiones.png"))); // NOI18N
                 btnSesiones.setText("SESIONES");
                 btnSesiones.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,9 +289,8 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                 btnCambiarCuenta.setBackground(new java.awt.Color(185, 215, 234));
                 btnCambiarCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
                 btnCambiarCuenta.setForeground(new java.awt.Color(66, 120, 181));
-                btnCambiarCuenta.setIcon(
-                                new javax.swing.ImageIcon(getClass()
-                                                .getResource("/VISUAL/Imagenes/Botones/imgCambiarCuenta.png"))); // NOI18N
+                btnCambiarCuenta.setIcon(new javax.swing.ImageIcon(
+                                getClass().getResource("/VISUAL/Imagenes/Botones/imgCambiarCuenta.png"))); // NOI18N
                 btnCambiarCuenta.setText("CAMBIAR CUENTA");
                 btnCambiarCuenta.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -326,6 +347,16 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
 
                 lbPeriodo.setText("-");
 
+                btnModificarMateria.setBackground(new java.awt.Color(185, 215, 234));
+                btnModificarMateria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+                btnModificarMateria.setForeground(new java.awt.Color(118, 159, 205));
+                btnModificarMateria.setText("Modificar materia");
+                btnModificarMateria.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                btnModificarMateriaActionPerformed(evt);
+                        }
+                });
+
                 javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
                 jPanel1.setLayout(jPanel1Layout);
                 jPanel1Layout.setHorizontalGroup(
@@ -353,91 +384,17 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                 210,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addGap(60, 60, 60)
                                                                 .addGroup(jPanel1Layout.createParallelGroup(
                                                                                 javax.swing.GroupLayout.Alignment.LEADING)
                                                                                 .addGroup(jPanel1Layout
                                                                                                 .createSequentialGroup()
-                                                                                                .addGap(302, 302, 302)
-                                                                                                .addComponent(btnCrearMateria)
-                                                                                                .addGap(0, 0, Short.MAX_VALUE))
-                                                                                .addGroup(jPanel1Layout
-                                                                                                .createSequentialGroup()
-                                                                                                .addGap(60, 60, 60)
-                                                                                                .addGroup(jPanel1Layout
-                                                                                                                .createParallelGroup(
-                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                .addGroup(jPanel1Layout
-                                                                                                                                .createSequentialGroup()
-                                                                                                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                                                                                                .addComponent(jLabel6)
-                                                                                                                                .addGap(105, 105,
-                                                                                                                                                105)
-                                                                                                                                .addComponent(jLabel8,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                100,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                                .addGroup(jPanel1Layout
-                                                                                                                                .createSequentialGroup()
-                                                                                                                                .addGroup(jPanel1Layout
-                                                                                                                                                .createParallelGroup(
-                                                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                                                                                                false)
-                                                                                                                                                .addGroup(jPanel1Layout
-                                                                                                                                                                .createSequentialGroup()
-                                                                                                                                                                .addComponent(jLabel1)
-                                                                                                                                                                .addGap(18, 18, 18)
-                                                                                                                                                                .addComponent(lbPromedio)
-                                                                                                                                                                .addPreferredGap(
-                                                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                Short.MAX_VALUE)
-                                                                                                                                                                .addComponent(jLabel3)
-                                                                                                                                                                .addGap(18, 18, 18)
-                                                                                                                                                                .addComponent(lbDesviacionEstandar)
-                                                                                                                                                                .addGap(117, 117,
-                                                                                                                                                                                117)
-                                                                                                                                                                .addComponent(jLabel5)
-                                                                                                                                                                .addGap(18, 18, 18)
-                                                                                                                                                                .addComponent(lbPeriodo))
-                                                                                                                                                .addComponent(jScrollPane1,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                577,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                                                .addGap(0, 83, Short.MAX_VALUE)))))
-                                                                .addContainerGap()));
-                jPanel1Layout.setVerticalGroup(
-                                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addGroup(jPanel1Layout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                                false)
-                                                                                .addGroup(jPanel1Layout
-                                                                                                .createSequentialGroup()
-                                                                                                .addGap(15, 15, 15)
-                                                                                                .addComponent(btnCuenta,
+                                                                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                                                                .addComponent(jLabel6)
+                                                                                                .addGap(105, 105, 105)
+                                                                                                .addComponent(jLabel8,
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                97,
-                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                .addGap(6, 6, 6)
-                                                                                                .addComponent(btnCalendario,
-                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                97,
-                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                .addGap(6, 6, 6)
-                                                                                                .addComponent(btnSesiones,
-                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                97,
-                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                .addGap(6, 6, 6)
-                                                                                                .addComponent(btnCambiarCuenta,
-                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                97,
-                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                .addGap(6, 6, 6)
-                                                                                                .addComponent(btnCerrar,
-                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                97,
+                                                                                                                100,
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                                 .addGroup(jPanel1Layout
                                                                                                 .createSequentialGroup()
@@ -445,43 +402,112 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                                                                                                                 .createParallelGroup(
                                                                                                                                 javax.swing.GroupLayout.Alignment.LEADING,
                                                                                                                                 false)
-                                                                                                                .addComponent(jLabel8)
-                                                                                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                                                                jPanel1Layout.createSequentialGroup()
-                                                                                                                                                .addContainerGap(
-                                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                Short.MAX_VALUE)
-                                                                                                                                                .addComponent(jLabel6)
-                                                                                                                                                .addGap(8, 8, 8)))
-                                                                                                .addComponent(jScrollPane1,
-                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                327,
-                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                .addGap(18, 18, 18)
-                                                                                                .addGroup(jPanel1Layout
-                                                                                                                .createParallelGroup(
-                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
                                                                                                                 .addGroup(jPanel1Layout
-                                                                                                                                .createParallelGroup(
-                                                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                                                                .addComponent(jLabel3)
-                                                                                                                                .addComponent(lbDesviacionEstandar))
-                                                                                                                .addGroup(jPanel1Layout
-                                                                                                                                .createParallelGroup(
-                                                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                                                                .addComponent(jLabel5)
-                                                                                                                                .addComponent(lbPeriodo))
-                                                                                                                .addGroup(jPanel1Layout
-                                                                                                                                .createParallelGroup(
-                                                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                                                                .createSequentialGroup()
                                                                                                                                 .addComponent(jLabel1)
-                                                                                                                                .addComponent(lbPromedio)))
+                                                                                                                                .addGap(18, 18, 18)
+                                                                                                                                .addComponent(lbPromedio)
+                                                                                                                                .addPreferredGap(
+                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                                                                Short.MAX_VALUE)
+                                                                                                                                .addComponent(jLabel3)
+                                                                                                                                .addGap(18, 18, 18)
+                                                                                                                                .addComponent(lbDesviacionEstandar)
+                                                                                                                                .addGap(117, 117,
+                                                                                                                                                117)
+                                                                                                                                .addComponent(jLabel5)
+                                                                                                                                .addGap(18, 18, 18)
+                                                                                                                                .addComponent(lbPeriodo))
+                                                                                                                .addComponent(jScrollPane1,
+                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                                577,
+                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                                .addGap(0, 0, Short.MAX_VALUE))
+                                                                                .addGroup(jPanel1Layout
+                                                                                                .createSequentialGroup()
+                                                                                                .addGap(99, 99, 99)
+                                                                                                .addComponent(btnCrearMateria)
                                                                                                 .addPreferredGap(
                                                                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                                137,
                                                                                                                 Short.MAX_VALUE)
-                                                                                                .addComponent(btnCrearMateria)))
-                                                                .addGap(26, 26, 26)));
+                                                                                                .addComponent(btnModificarMateria)
+                                                                                                .addPreferredGap(
+                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                                                                                156,
+                                                                                                                Short.MAX_VALUE)))
+                                                                .addContainerGap()));
+                jPanel1Layout.setVerticalGroup(
+                                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addGap(15, 15, 15)
+                                                                .addComponent(btnCuenta,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                97,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(6, 6, 6)
+                                                                .addComponent(btnCalendario,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                97,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(6, 6, 6)
+                                                                .addComponent(btnSesiones,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                97,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(6, 6, 6)
+                                                                .addComponent(btnCambiarCuenta,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                97,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(6, 6, 6)
+                                                                .addComponent(btnCerrar,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                97,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                Short.MAX_VALUE))
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addGroup(jPanel1Layout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                false)
+                                                                                .addComponent(jLabel8)
+                                                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                                                                jPanel1Layout.createSequentialGroup()
+                                                                                                                .addContainerGap(
+                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                                                Short.MAX_VALUE)
+                                                                                                                .addComponent(jLabel6)
+                                                                                                                .addGap(8, 8, 8)))
+                                                                .addComponent(jScrollPane1,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                327,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(18, 18, 18)
+                                                                .addGroup(jPanel1Layout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                .addGroup(jPanel1Layout
+                                                                                                .createParallelGroup(
+                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                                .addComponent(jLabel3)
+                                                                                                .addComponent(lbDesviacionEstandar))
+                                                                                .addGroup(jPanel1Layout
+                                                                                                .createParallelGroup(
+                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                                .addComponent(jLabel5)
+                                                                                                .addComponent(lbPeriodo))
+                                                                                .addGroup(jPanel1Layout
+                                                                                                .createParallelGroup(
+                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                                .addComponent(jLabel1)
+                                                                                                .addComponent(lbPromedio)))
+                                                                .addGap(18, 18, 18)
+                                                                .addGroup(jPanel1Layout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                .addComponent(btnCrearMateria)
+                                                                                .addComponent(btnModificarMateria))
+                                                                .addGap(0, 0, Short.MAX_VALUE)));
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
@@ -496,6 +522,24 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
 
                 pack();
         }// </editor-fold>//GEN-END:initComponents
+
+        private void tbInfoMateriasMouseClicked(java.awt.event.MouseEvent evt) {
+                int selectedRow = tbInfoMaterias.getSelectedRow();
+                String nombreMateria = tbInfoMaterias.getValueAt(selectedRow, 0).toString();
+                double notaMateria = Double.parseDouble(tbInfoMaterias.getValueAt(selectedRow, 1).toString());
+                String descripcionMateria = tbInfoMaterias.getValueAt(selectedRow, 2).toString();
+                String profesorMateria = tbInfoMaterias.getValueAt(selectedRow, 3).toString();
+
+                materiaEditar = new Materia(nombreMateria, notaMateria, profesorMateria, descripcionMateria);
+
+                btnModificarMateria.setEnabled(deshabilitarBotonModificarMateria());
+        }
+
+        private void btnModificarMateriaActionPerformed(java.awt.event.ActionEvent evt) {
+                PantallaModificarMateria panModMat = new PantallaModificarMateria();
+                panModMat.setVisible(true);
+                this.setVisible(false);
+        }
 
         private void btnCrearMateriaActionPerformed(java.awt.event.ActionEvent evt) {
                 PantallaCrearMateria panCreMat = new PantallaCrearMateria();
@@ -544,6 +588,7 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
         private javax.swing.JButton btnCerrar;
         private javax.swing.JButton btnCrearMateria;
         private javax.swing.JButton btnCuenta;
+        private javax.swing.JButton btnModificarMateria;
         private javax.swing.JButton btnSesiones;
         private javax.swing.JLabel jLabel1;
         private javax.swing.JLabel jLabel3;

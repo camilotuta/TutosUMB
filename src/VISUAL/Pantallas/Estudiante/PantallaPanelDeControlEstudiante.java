@@ -48,7 +48,7 @@ public class PantallaPanelDeControlEstudiante extends javax.swing.JFrame {
 
     void consultar() {
         Conexion cx = new Conexion();
-        var sql = "select * from usuarios where tipo != 0";
+        String sql = "select * from usuarios where tipo != 0";
         try {
             cx.con = Conexion.getConection();
             cx.stmt = cx.con.createStatement();

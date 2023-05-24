@@ -30,12 +30,12 @@ public class PantallaCrearUsuario extends javax.swing.JFrame {
     }
 
     public void crearUsuario() {
-        var nombre = tfNombre.getText();
-        var correo = tfCorreo.getText();
-        var contraseña = tfContraseña.getText();
-        var biografia = tfBiografia.getText();
+        String nombre = tfNombre.getText();
+        String correo = tfCorreo.getText();
+        String contraseña = tfContraseña.getText();
+        String biografia = tfBiografia.getText();
         String tipoSeleccion[] = cbTipoUsuario.getSelectedItem().toString().split(" ");
-        var tipoUsuario = Integer.parseInt(tipoSeleccion[0]);
+        int tipoUsuario = Integer.parseInt(tipoSeleccion[0]);
 
         Conexion cx = new Conexion();
         try {

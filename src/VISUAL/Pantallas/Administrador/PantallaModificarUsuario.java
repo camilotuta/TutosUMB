@@ -73,12 +73,12 @@ public class PantallaModificarUsuario extends javax.swing.JFrame {
         Conexion cx = new Conexion();
         cx.con = Conexion.getConection();
 
-        var nombre = tfNombre.getText();
-        var correo = tfCorreo.getText();
-        var contraseña = tfContraseña.getText();
-        var biografia = tfBiografia.getText();
+        String nombre = tfNombre.getText();
+        String correo = tfCorreo.getText();
+        String contraseña = tfContraseña.getText();
+        String biografia = tfBiografia.getText();
         String tipoSeleccion[] = cbTipoUsuario.getSelectedItem().toString().split(" ");
-        var tipoUsuario = Integer.parseInt(tipoSeleccion[0]);
+        int tipoUsuario = Integer.parseInt(tipoSeleccion[0]);
         try {
             String sql = "UPDATE usuarios SET nombre = ?, correo = ?, contraseña = ?, biografia = ?, tipo = ? WHERE correo = ?";
             cx.ps = cx.con.prepareStatement(sql);
