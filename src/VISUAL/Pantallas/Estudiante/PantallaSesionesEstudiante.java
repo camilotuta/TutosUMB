@@ -55,12 +55,12 @@ public class PantallaSesionesEstudiante extends javax.swing.JFrame {
         private void cargarArchivo() throws IOException {
                 String fila[];
                 try {
-                        String rutaCompleta = System.getProperty("user.home") + "/Documents/"
+                        var rutaCompleta = System.getProperty("user.home") + "/Documents/"
                                         + PantallaRegistro.correoPoner
                                         + "Sesiones" + ".txt";
                         FileReader archivo = new FileReader(rutaCompleta);
                         try (BufferedReader lectura = new BufferedReader(archivo)) {
-                                String linea = lectura.readLine();
+                                var linea = lectura.readLine();
 
                                 while (linea != null) {
                                         fila = linea.split("%");

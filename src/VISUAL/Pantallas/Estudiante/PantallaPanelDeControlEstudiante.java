@@ -48,7 +48,7 @@ public class PantallaPanelDeControlEstudiante extends javax.swing.JFrame {
 
     void consultar() {
         Conexion cx = new Conexion();
-        String sql = "select * from usuarios where tipo != 0";
+        var sql = "select * from usuarios where tipo != 0";
         try {
             cx.con = Conexion.getConection();
             cx.stmt = cx.con.createStatement();
@@ -84,12 +84,9 @@ public class PantallaPanelDeControlEstudiante extends javax.swing.JFrame {
     public void pararServer() {
         if (server != null && t != null) {
             try {
-                // Cierra el socket del servidor
                 Servidor.server.close();
-                // Detiene el hilo del servidor
                 t.interrupt();
             } catch (IOException e) {
-                // Manejar excepción en caso de error al cerrar el socket
                 e.printStackTrace();
             }
         }

@@ -58,7 +58,7 @@ public class PantallaCuentaProfesor extends javax.swing.JFrame {
     }
 
     public void mostrarDatosUsuario() {
-        String correoBuscar = PantallaRegistro.correoPoner;
+        var correoBuscar = PantallaRegistro.correoPoner;
         try {
             cx.con = Conexion.getConection();
             cx.ps = cx.con.prepareStatement("SELECT nombre, correo, biografia FROM usuarios WHERE correo = ?");
@@ -89,7 +89,7 @@ public class PantallaCuentaProfesor extends javax.swing.JFrame {
     public void actualizarBiografia() {
         cx.con = Conexion.getConection();
         try {
-            String sql = "UPDATE usuarios SET biografia = ? WHERE correo = ?";
+            var sql = "UPDATE usuarios SET biografia = ? WHERE correo = ?";
             cx.ps = cx.con.prepareStatement(sql);
             cx.ps.setString(1, tfBiografia.getText());
             cx.ps.setString(2, txtMostrarCorreo.getText());

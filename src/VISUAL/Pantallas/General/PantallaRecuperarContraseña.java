@@ -52,8 +52,8 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
     public boolean habilitarBotonConfirmar() {
         char[] contraseñaEncriptada = tfContraseña.getPassword();
         char[] confirmarContraseñaEncriptada = tfContraseña.getPassword();
-        String contraseña = new String(contraseñaEncriptada);
-        String confirmarContraseña = new String(confirmarContraseñaEncriptada);
+        var contraseña = new String(contraseñaEncriptada);
+        var confirmarContraseña = new String(confirmarContraseñaEncriptada);
         return contraseña.length() >= 8 && confirmarContraseña.length() >= 8;
     }
 
@@ -69,14 +69,14 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
     public void actualizarContraseña() {
         char[] contraseñaEncriptada = tfContraseña.getPassword();
         char[] confirmarContraseñaEncriptada = tfContraseña.getPassword();
-        String contraseña = new String(contraseñaEncriptada);
-        String confirmarContraseña = new String(confirmarContraseñaEncriptada);
+        var contraseña = new String(contraseñaEncriptada);
+        var confirmarContraseña = new String(confirmarContraseñaEncriptada);
 
         if (contraseña.equals(confirmarContraseña)) {
             Conexion cx = new Conexion();
             cx.con = Conexion.getConection();
             try {
-                String sql = "UPDATE usuarios SET contraseña = ? WHERE correo = ?";
+                var sql = "UPDATE usuarios SET contraseña = ? WHERE correo = ?";
                 cx.ps = cx.con.prepareStatement(sql);
                 cx.ps.setString(1, contraseña);
                 cx.ps.setString(2, tfCorreo.getText().toLowerCase());
@@ -108,9 +108,9 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
     }
 
     public String tomarNombre() {
-        String correoBuscar = tfCorreo.getText().toLowerCase();
+        var correoBuscar = tfCorreo.getText().toLowerCase();
         Conexion cx = new Conexion();
-        String nombre = "";
+        var nombre = "";
         try {
             cx.con = Conexion.getConection();
             cx.ps = cx.con.prepareStatement("SELECT nombre FROM usuarios WHERE correo = ?");
@@ -140,7 +140,7 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
 
     public boolean usuarioRegistrado() {
         Conexion cx = new Conexion();
-        String sql = "select * from usuarios";
+        var sql = "select * from usuarios";
         boolean bool = false;
 
         try {
@@ -148,7 +148,7 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
             cx.stmt = cx.con.createStatement();
             cx.rs = cx.stmt.executeQuery(sql);
             while (cx.rs.next()) {
-                String correo = cx.rs.getString("correo");
+                var correo = cx.rs.getString("correo");
                 bool = correo.equals(tfCorreo.getText().toLowerCase());
                 if (bool) {
                     break;
@@ -177,7 +177,7 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
     }
 
     public void enviarCodigoCorreo() {
-        String correo = tfCorreo.getText().toLowerCase();
+        var correo = tfCorreo.getText().toLowerCase();
         Random rand = new Random();
         codigo = String.valueOf(rand.nextInt(100_000, 999_999));
 
@@ -191,8 +191,8 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
             }
         }
 
-        String asunto = "Restablecer tu contraseña en TutosUMB.";
-        String mensaje = "&#x1F44B; Hola, " + tomarNombre() + ".<br><br>"
+        var asunto = "Restablecer tu contraseña en TutosUMB.";
+        var mensaje = "&#x1F44B; Hola, " + tomarNombre() + ".<br><br>"
                 + "Has recibido este correo electrónico porque has solicitado restablecer tu contraseña en TutosUMB. Para continuar, utiliza el siguiente código de verificación:<br><br>"
                 + "&#128273; <strong style=\"font-size: 24px;\">" + text + "</strong><br><br>"
                 + "Por favor, ingresa este código en la página de restablecimiento de contraseña y sigue las instrucciones para crear una nueva contraseña segura.<br><br>"
