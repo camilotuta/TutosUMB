@@ -28,6 +28,8 @@ public class PantallaModificarMateria extends javax.swing.JFrame {
      * Creates new form PantallaCrearUsuario
      */
     Color color;
+    Conexion cx;
+    String correo = PantallaRegistro.correoPoner;
 
     private Materia materiaModificar = PantallaMateriasEstudiante.materiaSeleccionada;
 
@@ -60,7 +62,7 @@ public class PantallaModificarMateria extends javax.swing.JFrame {
 
     public void modificarMateria() {
         String correo = PantallaRegistro.correoPoner;
-        Conexion cx = new Conexion();
+        cx = new Conexion();
         cx.con = Conexion.getConection();
 
         String nombreMateriaAntigua = materiaModificar.getNombre();
@@ -127,7 +129,7 @@ public class PantallaModificarMateria extends javax.swing.JFrame {
 
     public void tomarNombres() {
         String sql = "SELECT nombre FROM usuarios WHERE tipo = 2";
-        Conexion cx = new Conexion();
+        cx = new Conexion();
         try {
             cx.con = Conexion.getConection();
             cx.stmt = cx.con.createStatement();
@@ -188,6 +190,45 @@ public class PantallaModificarMateria extends javax.swing.JFrame {
             lbDescripcion.setForeground(color);
         }
         btnConfirmar.setEnabled(habilitarBotonConfirmar());
+    }
+
+    public boolean materiaRegistrada() {
+        String nombreMateriaNueva = tfNombre.getText().toLowerCase();
+
+        if (nombreMateriaNueva.equals(materiaModificar.getNombre().toLowerCase())) {
+            return false;
+        } else {
+            cx = new Conexion();
+            String sql = "Select dato1 from gestorestudio where tipo = 0 and correo = '" + correo + "'";
+            try {
+                cx.con = Conexion.getConection();
+                cx.stmt = cx.con.createStatement();
+                cx.rs = cx.stmt.executeQuery(sql);
+                while (cx.rs.next()) {
+                    String nombreMateriaBD = cx.rs.getString("dato1").toLowerCase();
+                    if (nombreMateriaNueva.equals(nombreMateriaBD)) {
+                        return true;
+                    }
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al consultar la base de datos: " + e.getMessage());
+            } finally {
+                try {
+                    if (cx.rs != null) {
+                        cx.rs.close();
+                    }
+                    if (cx.stmt != null) {
+                        cx.stmt.close();
+                    }
+                    if (cx.con != null) {
+                        cx.con.close();
+                    }
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + ex.getMessage());
+                }
+            }
+            return false;
+        }
     }
 
     /**
@@ -509,7 +550,11 @@ public class PantallaModificarMateria extends javax.swing.JFrame {
     }
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {
-        modificarMateria();
+        if (!materiaRegistrada()) {
+            modificarMateria();
+        } else {
+            JOptionPane.showMessageDialog(null, "LA MATERIA YA SE ENCUENTRA REGISTRADA.");
+        }
     }
 
     /**

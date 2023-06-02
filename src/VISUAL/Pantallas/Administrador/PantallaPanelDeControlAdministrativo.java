@@ -27,6 +27,7 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
      * Creates new form PantallaPanelDeControlAdministrativo
      */
     public static String nombreEditar = "";
+    Conexion cx;
 
     public PantallaPanelDeControlAdministrativo() {
         initComponents();
@@ -47,7 +48,7 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
 
     public void mostrarTablaEstudiantes() {
         try {
-            Conexion cx = new Conexion();
+            cx = new Conexion();
             String sql = "SELECT * FROM usuarios";
 
             cx.con = Conexion.getConection();
@@ -79,7 +80,7 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
     }
 
     public void eliminarUsuario() {
-        Conexion cx = new Conexion();
+        cx = new Conexion();
         String nombre = tfNombreEstudiante.getText();
         try {
             cx.con = Conexion.getConection();

@@ -25,6 +25,7 @@ public class PantallaPanelDeControlEstudiante extends javax.swing.JFrame {
     DefaultTableModel modelo;
     Servidor server;
     Thread t;
+    Conexion cx;
 
     /**
      * Creates new form PantallaPanelDeControlEstudiante
@@ -47,7 +48,7 @@ public class PantallaPanelDeControlEstudiante extends javax.swing.JFrame {
     }
 
     void consultar() {
-        Conexion cx = new Conexion();
+        cx = new Conexion();
         String sql = "select * from usuarios where tipo != 0";
         try {
             cx.con = Conexion.getConection();

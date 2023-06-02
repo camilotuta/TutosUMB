@@ -24,7 +24,7 @@ public class PantallaBuscarPerfil extends javax.swing.JFrame {
      * Creates new form PantallaCuentaEstudiante
      */
     public static int pantallasAbiertas = 0;
-    Conexion cx = new Conexion();
+    Conexion cx;
 
     public PantallaBuscarPerfil() {
         initComponents();
@@ -43,6 +43,7 @@ public class PantallaBuscarPerfil extends javax.swing.JFrame {
     public void mostrarDatosUsuario() {
         String nombreBuscar = PantallaPanelDeControlEstudiante.estudianteMostrar;
         try {
+            cx = new Conexion();
             cx.con = Conexion.getConection();
             cx.ps = cx.con.prepareStatement("SELECT nombre, correo, biografia FROM usuarios WHERE nombre = ?");
             cx.ps.setString(1, nombreBuscar);

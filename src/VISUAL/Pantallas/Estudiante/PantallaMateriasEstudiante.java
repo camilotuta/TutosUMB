@@ -27,10 +27,10 @@ import CODE.Clases.Materia;
  */
 
 // TODO: HACER CALCULADORA DE NOTAS
-// TODO: QUE NO HAYAN NOMBRES DE MATERIAS REPETIDOS
 public class PantallaMateriasEstudiante extends javax.swing.JFrame {
 
         public static Materia materiaSeleccionada;
+        Conexion cx;
 
         /**
          * Creates new form PantallaMateriasEstudiante
@@ -54,7 +54,7 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
         public void mostrarTablaMaterias() {
                 String correo = PantallaRegistro.correoPoner;
                 try {
-                        Conexion cx = new Conexion();
+                        cx = new Conexion();
                         String sql = "SELECT * FROM gestorestudio WHERE tipo = 0 AND correo = '" + correo + "'";
 
                         cx.con = Conexion.getConection();
@@ -157,7 +157,7 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
         }
 
         public void eliminarMateria() {
-                Conexion cx = new Conexion();
+                cx = new Conexion();
                 String correo = PantallaRegistro.correoPoner;
                 String nombreMateriaBorrar = materiaSeleccionada.getNombre();
                 try {

@@ -27,7 +27,7 @@ import CODE.Clases.Conexion;
 // CORREO NOTIFICANDO ESTO
 public class PantallaSesionesEstudiante extends javax.swing.JFrame {
 
-        DefaultTableModel modelo = new DefaultTableModel();
+        Conexion cx;
 
         /**
          * Creates new form PantallaSesionesEstudiante
@@ -45,7 +45,7 @@ public class PantallaSesionesEstudiante extends javax.swing.JFrame {
         public void mostrarTablaMaterias() {
                 String correo = PantallaRegistro.correoPoner;
                 try {
-                        Conexion cx = new Conexion();
+                        cx = new Conexion();
                         String sql = "SELECT * FROM gestorestudio WHERE tipo = 1 AND correo = '" + correo + "'";
 
                         cx.con = Conexion.getConection();

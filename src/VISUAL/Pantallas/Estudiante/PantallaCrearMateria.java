@@ -28,6 +28,7 @@ public class PantallaCrearMateria extends javax.swing.JFrame {
      */
     Color color;
     Conexion cx;
+    String correo = PantallaRegistro.correoPoner;
 
     public PantallaCrearMateria() {
         initComponents();
@@ -39,7 +40,7 @@ public class PantallaCrearMateria extends javax.swing.JFrame {
 
         btnCrear.setEnabled(habilitarBotonCrear());
 
-        tomarNombres();
+        tomarNombresProfesor();
     }
 
     private void limpiar() {
@@ -52,7 +53,6 @@ public class PantallaCrearMateria extends javax.swing.JFrame {
         return tfNombre.getText().length() > 7 && textFieldContieneNumero()
                 && tfDescripcion.getText().length() > 7
                 && !cbNombreProfesor.getSelectedItem().toString().equals("Ninguno");
-
     }
 
     public void crearMateria() {
@@ -82,16 +82,6 @@ public class PantallaCrearMateria extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,
                         "LA MATERIA " + nombreMateria.toUpperCase() + " SE CREO CORRECTAMENTE.");
 
-                int continuar = JOptionPane.showConfirmDialog(null, "¿Desea continuar en esta pantalla?",
-                        "Confirmar acción", JOptionPane.YES_NO_OPTION);
-
-                if (continuar != JOptionPane.YES_OPTION) {
-                    PantallaMateriasEstudiante panMatEst = new PantallaMateriasEstudiante();
-                    panMatEst.setVisible(true);
-                    this.setVisible(false);
-                } else {
-                    limpiar();
-                }
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta SQL: " + e.getMessage());
@@ -123,14 +113,46 @@ public class PantallaCrearMateria extends javax.swing.JFrame {
         } catch (Exception e) {
             // ! pass
         }
-
         return matcher.matches() && numero <= 5;
     }
 
-    public void tomarNombres() {
+    public boolean materiaRegistrada() {
+        cx = new Conexion();
+        String sql = "Select dato1 from gestorestudio where tipo = 0 and correo = '" + correo + "'";
+        String nombreMateriaNueva = tfNombre.getText().toLowerCase();
+        try {
+            cx.con = Conexion.getConection();
+            cx.stmt = cx.con.createStatement();
+            cx.rs = cx.stmt.executeQuery(sql);
+            while (cx.rs.next()) {
+                String nombreMateriaBD = cx.rs.getString("dato1").toLowerCase();
+                if (nombreMateriaNueva.equals(nombreMateriaBD)) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al consultar la base de datos: " + e.getMessage());
+        } finally {
+            try {
+                if (cx.rs != null) {
+                    cx.rs.close();
+                }
+                if (cx.stmt != null) {
+                    cx.stmt.close();
+                }
+                if (cx.con != null) {
+                    cx.con.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + ex.getMessage());
+            }
+        }
+        return false;
+    }
+
+    public void tomarNombresProfesor() {
         cx = new Conexion();
         String sql = "SELECT nombre FROM usuarios WHERE tipo = 2";
-        cx = new Conexion();
         try {
             cx.con = Conexion.getConection();
             cx.stmt = cx.con.createStatement();
@@ -547,7 +569,22 @@ public class PantallaCrearMateria extends javax.swing.JFrame {
     }
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {
-        crearMateria();
+        if (!materiaRegistrada()) {
+            crearMateria();
+
+            int continuar = JOptionPane.showConfirmDialog(null, "¿Desea continuar en esta pantalla?",
+                    "Confirmar acción", JOptionPane.YES_NO_OPTION);
+
+            if (continuar != JOptionPane.YES_OPTION) {
+                PantallaMateriasEstudiante panMatEst = new PantallaMateriasEstudiante();
+                panMatEst.setVisible(true);
+                this.setVisible(false);
+            } else {
+                limpiar();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "LA MATERIA YA SE ENCUENTRA REGISTRADA.");
+        }
     }
 
     /**

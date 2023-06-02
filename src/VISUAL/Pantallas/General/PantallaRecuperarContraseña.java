@@ -24,6 +24,7 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
      */
     String codigo;
     public static int intentos = 3;
+    Conexion cx;
 
     public PantallaRecuperarContraseña() {
         initComponents();
@@ -73,7 +74,7 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
         String confirmarContraseña = new String(confirmarContraseñaEncriptada);
 
         if (contraseña.equals(confirmarContraseña)) {
-            Conexion cx = new Conexion();
+            cx = new Conexion();
             cx.con = Conexion.getConection();
             try {
                 String sql = "UPDATE usuarios SET contraseña = ? WHERE correo = ?";
@@ -109,7 +110,7 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
 
     public String tomarNombre() {
         String correoBuscar = tfCorreo.getText().toLowerCase();
-        Conexion cx = new Conexion();
+        cx = new Conexion();
         String nombre = "";
         try {
             cx.con = Conexion.getConection();
@@ -139,7 +140,7 @@ public class PantallaRecuperarContraseña extends javax.swing.JFrame {
     }
 
     public boolean usuarioRegistrado() {
-        Conexion cx = new Conexion();
+        cx = new Conexion();
         String sql = "select * from usuarios";
         boolean bool = false;
 

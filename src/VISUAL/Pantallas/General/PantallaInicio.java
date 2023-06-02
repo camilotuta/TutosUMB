@@ -27,6 +27,8 @@ public class PantallaInicio extends javax.swing.JFrame {
     /**
      * Creates new form PantallaInicio
      */
+    Conexion cx;
+
     public PantallaInicio() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -105,7 +107,7 @@ public class PantallaInicio extends javax.swing.JFrame {
 
     public int tomarTipoUsuario() {
         String correoBuscar = tfCorreo.getText().toLowerCase();
-        Conexion cx = new Conexion();
+        cx = new Conexion();
         int tipo = 1;
         try {
             cx.con = Conexion.getConection();

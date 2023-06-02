@@ -28,7 +28,7 @@ public class PantallaRegistro extends javax.swing.JFrame {
     private String codigo;
     public static String correoPoner = "", contraseñaPoner = "";
     public static int intentos = 3;
-
+    Conexion cx;
 
     public PantallaRegistro() {
         initComponents();
@@ -67,7 +67,7 @@ public class PantallaRegistro extends javax.swing.JFrame {
     }
 
     public boolean usuarioRegistrado() {
-        Conexion cx = new Conexion();
+        cx = new Conexion();
         String sql = "select * from usuarios";
         boolean bool = false;
 
@@ -115,7 +115,7 @@ public class PantallaRegistro extends javax.swing.JFrame {
         contraseña = new String(contraseñaEncriptada);
         String confirmarContraseña = new String(confirmarContraseñaEncriptada);
         if (contraseña.equals(confirmarContraseña)) {
-            Conexion cx = new Conexion();
+            cx = new Conexion();
             try {
                 cx.con = Conexion.getConection();
                 if (cx.con == null) {

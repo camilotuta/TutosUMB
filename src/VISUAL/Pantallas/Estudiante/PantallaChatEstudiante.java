@@ -32,6 +32,7 @@ public class PantallaChatEstudiante extends javax.swing.JFrame implements Observ
     public static int pantallasAbiertas = 0;
     private String nombre, mensaje;
     private Cliente cliente;
+    Conexion cx;
 
     public PantallaChatEstudiante() {
         initComponents();
@@ -59,7 +60,7 @@ public class PantallaChatEstudiante extends javax.swing.JFrame implements Observ
     }
 
     public void iniciandoChat() {
-        Conexion cx = new Conexion();
+        cx = new Conexion();
         String correoBuscar = PantallaRegistro.correoPoner;
         try {
             cx.con = Conexion.getConection();
