@@ -15,7 +15,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 import CODE.Clases.Conexion;
-import CODE.Clases.Materia;
 import VISUAL.Pantallas.General.PantallaRegistro;
 
 /**
@@ -28,6 +27,7 @@ public class PantallaCrearMateria extends javax.swing.JFrame {
      * Creates new form PantallaCrearUsuario
      */
     Color color;
+    Conexion cx;
 
     public PantallaCrearMateria() {
         initComponents();
@@ -56,32 +56,56 @@ public class PantallaCrearMateria extends javax.swing.JFrame {
     }
 
     public void crearMateria() {
+        cx = new Conexion();
         try {
+            String correo = PantallaRegistro.correoPoner;
+            int tipo = 0;
             String nombreMateria = tfNombre.getText();
             double notaMateria = Double.parseDouble(tfNota.getText());
             String descripcionMateria = tfDescripcion.getText();
             String nombreProfesor = cbNombreProfesor.getSelectedItem().toString();
 
-            Materia nuevaMateria = new Materia(nombreMateria, notaMateria, descripcionMateria,
-                    nombreProfesor);
-
-            PantallaRegistro.archivoMaterias.escribirEnArchivoMaterias(nuevaMateria);
-            JOptionPane.showMessageDialog(null,
-                    "LA MATERIA " + nombreMateria.toUpperCase() + " SE CREO CORRECTAMENTE.");
-
-            int continuar = JOptionPane.showConfirmDialog(null,
-                    "¿Desea continuar en esta pantalla?",
-                    "Confirmar acción", JOptionPane.YES_NO_OPTION);
-
-            if (!(continuar == JOptionPane.YES_OPTION)) {
-                PantallaMateriasEstudiante panMatEst = new PantallaMateriasEstudiante();
-                panMatEst.setVisible(true);
-                this.setVisible(false);
+            cx.con = Conexion.getConection();
+            if (cx.con == null) {
+                JOptionPane.showMessageDialog(null, "No se pudo establecer una conexión a la base de datos.");
             } else {
-                limpiar();
+                cx.stmt = cx.con.createStatement();
+                String sql = "INSERT INTO gestorestudio(correo, tipo, dato1, dato2, dato3, dato4) VALUES ('" +
+                        correo + "', " + tipo + ", '" +
+                        nombreMateria + "', '" +
+                        notaMateria + "', '" +
+                        nombreProfesor + "', '" +
+                        descripcionMateria + "')";
+
+                cx.stmt.executeUpdate(sql);
+
+                JOptionPane.showMessageDialog(null,
+                        "LA MATERIA " + nombreMateria.toUpperCase() + " SE CREO CORRECTAMENTE.");
+
+                int continuar = JOptionPane.showConfirmDialog(null, "¿Desea continuar en esta pantalla?",
+                        "Confirmar acción", JOptionPane.YES_NO_OPTION);
+
+                if (continuar != JOptionPane.YES_OPTION) {
+                    PantallaMateriasEstudiante panMatEst = new PantallaMateriasEstudiante();
+                    panMatEst.setVisible(true);
+                    this.setVisible(false);
+                } else {
+                    limpiar();
+                }
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta SQL: " + e.getMessage());
+        } finally {
+            try {
+                if (cx.stmt != null) {
+                    cx.stmt.close();
+                }
+                if (cx.con != null) {
+                    cx.con.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + ex.getMessage());
+            }
         }
     }
 
@@ -104,8 +128,9 @@ public class PantallaCrearMateria extends javax.swing.JFrame {
     }
 
     public void tomarNombres() {
+        cx = new Conexion();
         String sql = "SELECT nombre FROM usuarios WHERE tipo = 2";
-        Conexion cx = new Conexion();
+        cx = new Conexion();
         try {
             cx.con = Conexion.getConection();
             cx.stmt = cx.con.createStatement();

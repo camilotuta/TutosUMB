@@ -9,16 +9,16 @@ import VISUAL.Pantallas.General.PantallaInicio;
 import VISUAL.Pantallas.General.PantallaRegistro;
 
 import java.awt.Toolkit;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
+
+import CODE.Clases.Conexion;
 import CODE.Clases.Materia;
 
 /**
@@ -26,13 +26,11 @@ import CODE.Clases.Materia;
  * @author tutaa
  */
 
-// TODO: BOTON ELIMINAR
-// TODO: MODIFICAR LA MATERIA
 // TODO: HACER CALCULADORA DE NOTAS
+// TODO: QUE NO HAYAN NOMBRES DE MATERIAS REPETIDOS
 public class PantallaMateriasEstudiante extends javax.swing.JFrame {
 
-        DefaultTableModel modelo = new DefaultTableModel();
-        public static Materia materiaEditar;
+        public static Materia materiaSeleccionada;
 
         /**
          * Creates new form PantallaMateriasEstudiante
@@ -43,46 +41,52 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                 this.setTitle("TUS MATERIAS");
                 this.setResizable(false);
 
-                materiaEditar = null;
+                materiaSeleccionada = null;
 
-                cargarModelo();
+                mostrarTablaMaterias();
                 setIconImage(Toolkit.getDefaultToolkit()
                                 .getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
                 cargarAnaliticas();
-                btnModificarMateria.setEnabled(deshabilitarBotonModificarMateria());
+                btnModificarMateria.setEnabled(activarBotones());
+                btnEliminarMateria.setEnabled(activarBotones());
         }
 
-        private void cargarModelo() {
+        public void mostrarTablaMaterias() {
+                String correo = PantallaRegistro.correoPoner;
                 try {
-                        modelo.addColumn("NOMBRE");
-                        modelo.addColumn("NOTA");
-                        modelo.addColumn("PROFESOR");
-                        modelo.addColumn("DESCRIPCIÓN");
-                        tbInfoMaterias.setModel(modelo);
-                        cargarArchivo();
-                } catch (IOException e) {
-                }
-        }
+                        Conexion cx = new Conexion();
+                        String sql = "SELECT * FROM gestorestudio WHERE tipo = 0 AND correo = '" + correo + "'";
 
-        private void cargarArchivo() throws IOException {
-                String fila[];
-                try {
-                        String rutaCompleta = System.getProperty("user.home")
-                                        + "/Documents/"
-                                        + PantallaRegistro.correoPoner
-                                        + "Materias"
-                                        + ".txt";
-                        FileReader archivo = new FileReader(rutaCompleta);
-                        try (BufferedReader lectura = new BufferedReader(archivo)) {
-                                String linea = lectura.readLine();
+                        cx.con = Conexion.getConection();
+                        cx.stmt = cx.con.createStatement();
+                        cx.rs = cx.stmt.executeQuery(sql);
 
-                                while (linea != null) {
-                                        fila = linea.split("%");
-                                        modelo.addRow(fila);
-                                        linea = lectura.readLine();
+                        // Crear un modelo de tabla
+                        DefaultTableModel tableModel = new DefaultTableModel();
+
+                        // Agregar las columnas al modelo
+                        ResultSetMetaData metaData = (ResultSetMetaData) cx.rs.getMetaData();
+                        int columnCount = metaData.getColumnCount();
+
+                        tableModel.addColumn("NOMBRE");
+                        tableModel.addColumn("NOTA");
+                        tableModel.addColumn("PROFESOR");
+                        tableModel.addColumn("DESCRIPCIÓN");
+                        tbInfoMaterias.setModel(tableModel);
+
+                        while (cx.rs.next()) {
+                                Object[] row = new Object[columnCount - 2]; // Ignorar las primeras 2 columnas
+                                for (int i = 3; i <= columnCount; i++) {
+                                        row[i - 3] = cx.rs.getObject(i); // Restar 3 para ajustar el índice del arreglo
+                                                                         // row
                                 }
+                                tableModel.addRow(row);
                         }
-                } catch (FileNotFoundException e) {
+
+                        tbInfoMaterias.setModel(tableModel);
+
+                } catch (SQLException e) {
+                        e.printStackTrace();
                 }
         }
 
@@ -148,10 +152,50 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                 lbPeriodo.setText(textPeriodo);
         }
 
-        public boolean deshabilitarBotonModificarMateria() {
-                return materiaEditar != null;
+        public boolean activarBotones() {
+                return materiaSeleccionada != null;
         }
 
+        public void eliminarMateria() {
+                Conexion cx = new Conexion();
+                String correo = PantallaRegistro.correoPoner;
+                String nombreMateriaBorrar = materiaSeleccionada.getNombre();
+                try {
+                        cx.con = Conexion.getConection();
+                        cx.ps = cx.con.prepareStatement("DELETE FROM gestorestudio WHERE correo = ? and dato1 = ?");
+                        cx.ps.setString(1, correo);
+                        cx.ps.setString(2, nombreMateriaBorrar);
+                        int resultado = cx.ps.executeUpdate();
+
+                        if (resultado > 0) {
+                                JOptionPane.showMessageDialog(null, "Materia eliminada correctamente.");
+                        } else {
+                                JOptionPane.showMessageDialog(null, "No se encontró la materia con ese nombre.");
+                        }
+                } catch (SQLException e) {
+                        JOptionPane.showMessageDialog(null, "Error al eliminar usuario: " + e.toString());
+                } finally {
+                        try {
+                                if (cx.ps != null) {
+                                        cx.ps.close();
+                                }
+                                if (cx.con != null) {
+                                        cx.con.close();
+                                }
+                        } catch (SQLException e) {
+                                JOptionPane.showMessageDialog(null, "Error al cerrar conexión: " + e.toString());
+                        }
+                }
+                materiaSeleccionada = null;
+
+                btnModificarMateria.setEnabled(activarBotones());
+                btnEliminarMateria.setEnabled(activarBotones());
+
+                mostrarTablaMaterias();
+        }
+
+        // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
@@ -197,6 +241,8 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                 jLabel5 = new javax.swing.JLabel();
                 lbPeriodo = new javax.swing.JLabel();
                 btnModificarMateria = new javax.swing.JButton();
+                btnEliminarMateria = new javax.swing.JButton();
+                btnCalculadoraNotas = new javax.swing.JButton();
 
                 popupMenu1.setLabel("popupMenu1");
 
@@ -322,7 +368,7 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                 btnCrearMateria.setBackground(new java.awt.Color(185, 215, 234));
                 btnCrearMateria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
                 btnCrearMateria.setForeground(new java.awt.Color(118, 159, 205));
-                btnCrearMateria.setText("Crear materia");
+                btnCrearMateria.setText("Crear");
                 btnCrearMateria.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 btnCrearMateriaActionPerformed(evt);
@@ -350,10 +396,30 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                 btnModificarMateria.setBackground(new java.awt.Color(185, 215, 234));
                 btnModificarMateria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
                 btnModificarMateria.setForeground(new java.awt.Color(118, 159, 205));
-                btnModificarMateria.setText("Modificar materia");
+                btnModificarMateria.setText("Modificar");
                 btnModificarMateria.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 btnModificarMateriaActionPerformed(evt);
+                        }
+                });
+
+                btnEliminarMateria.setBackground(new java.awt.Color(185, 215, 234));
+                btnEliminarMateria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+                btnEliminarMateria.setForeground(new java.awt.Color(118, 159, 205));
+                btnEliminarMateria.setText("Eliminar");
+                btnEliminarMateria.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                btnEliminarMateriaActionPerformed(evt);
+                        }
+                });
+
+                btnCalculadoraNotas.setBackground(new java.awt.Color(185, 215, 234));
+                btnCalculadoraNotas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+                btnCalculadoraNotas.setForeground(new java.awt.Color(118, 159, 205));
+                btnCalculadoraNotas.setText("Calculadora de notas");
+                btnCalculadoraNotas.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                btnCalculadoraNotasActionPerformed(evt);
                         }
                 });
 
@@ -389,55 +455,40 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                                                                                 javax.swing.GroupLayout.Alignment.LEADING)
                                                                                 .addGroup(jPanel1Layout
                                                                                                 .createSequentialGroup()
-                                                                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                                                                .addGap(109, 109, 109)
                                                                                                 .addComponent(jLabel6)
                                                                                                 .addGap(105, 105, 105)
                                                                                                 .addComponent(jLabel8,
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                                 100,
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                .addComponent(jScrollPane1,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                577,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addGroup(jPanel1Layout
                                                                                                 .createSequentialGroup()
-                                                                                                .addGroup(jPanel1Layout
-                                                                                                                .createParallelGroup(
-                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                                                                false)
-                                                                                                                .addGroup(jPanel1Layout
-                                                                                                                                .createSequentialGroup()
-                                                                                                                                .addComponent(jLabel1)
-                                                                                                                                .addGap(18, 18, 18)
-                                                                                                                                .addComponent(lbPromedio)
-                                                                                                                                .addPreferredGap(
-                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                Short.MAX_VALUE)
-                                                                                                                                .addComponent(jLabel3)
-                                                                                                                                .addGap(18, 18, 18)
-                                                                                                                                .addComponent(lbDesviacionEstandar)
-                                                                                                                                .addGap(117, 117,
-                                                                                                                                                117)
-                                                                                                                                .addComponent(jLabel5)
-                                                                                                                                .addGap(18, 18, 18)
-                                                                                                                                .addComponent(lbPeriodo))
-                                                                                                                .addComponent(jScrollPane1,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                577,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                .addGap(0, 0, Short.MAX_VALUE))
+                                                                                                .addComponent(jLabel1)
+                                                                                                .addGap(18, 18, 18)
+                                                                                                .addComponent(lbPromedio)
+                                                                                                .addGap(78, 78, 78)
+                                                                                                .addComponent(jLabel3)
+                                                                                                .addGap(18, 18, 18)
+                                                                                                .addComponent(lbDesviacionEstandar)
+                                                                                                .addGap(108, 108, 108)
+                                                                                                .addComponent(jLabel5)
+                                                                                                .addGap(18, 18, 18)
+                                                                                                .addComponent(lbPeriodo))
                                                                                 .addGroup(jPanel1Layout
                                                                                                 .createSequentialGroup()
-                                                                                                .addGap(99, 99, 99)
+                                                                                                .addGap(10, 10, 10)
                                                                                                 .addComponent(btnCrearMateria)
-                                                                                                .addPreferredGap(
-                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                                                                137,
-                                                                                                                Short.MAX_VALUE)
+                                                                                                .addGap(39, 39, 39)
                                                                                                 .addComponent(btnModificarMateria)
-                                                                                                .addPreferredGap(
-                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                                                                156,
-                                                                                                                Short.MAX_VALUE)))
-                                                                .addContainerGap()));
+                                                                                                .addGap(51, 51, 51)
+                                                                                                .addComponent(btnEliminarMateria)
+                                                                                                .addGap(46, 46, 46)
+                                                                                                .addComponent(btnCalculadoraNotas)))));
                 jPanel1Layout.setVerticalGroup(
                                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -465,21 +516,15 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                                                                 .addComponent(btnCerrar,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                 97,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE))
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                                                 .addGroup(jPanel1Layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                false)
-                                                                                .addComponent(jLabel8)
-                                                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                                jPanel1Layout.createSequentialGroup()
-                                                                                                                .addContainerGap(
-                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                Short.MAX_VALUE)
-                                                                                                                .addComponent(jLabel6)
-                                                                                                                .addGap(8, 8, 8)))
+                                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                .addGroup(jPanel1Layout
+                                                                                                .createSequentialGroup()
+                                                                                                .addGap(40, 40, 40)
+                                                                                                .addComponent(jLabel6))
+                                                                                .addComponent(jLabel8))
                                                                 .addComponent(jScrollPane1,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                 327,
@@ -487,27 +532,19 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                                                                 .addGap(18, 18, 18)
                                                                 .addGroup(jPanel1Layout.createParallelGroup(
                                                                                 javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addGroup(jPanel1Layout
-                                                                                                .createParallelGroup(
-                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                                .addComponent(jLabel3)
-                                                                                                .addComponent(lbDesviacionEstandar))
-                                                                                .addGroup(jPanel1Layout
-                                                                                                .createParallelGroup(
-                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                                .addComponent(jLabel5)
-                                                                                                .addComponent(lbPeriodo))
-                                                                                .addGroup(jPanel1Layout
-                                                                                                .createParallelGroup(
-                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                                .addComponent(jLabel1)
-                                                                                                .addComponent(lbPromedio)))
+                                                                                .addComponent(jLabel1)
+                                                                                .addComponent(lbPromedio)
+                                                                                .addComponent(jLabel3)
+                                                                                .addComponent(lbDesviacionEstandar)
+                                                                                .addComponent(jLabel5)
+                                                                                .addComponent(lbPeriodo))
                                                                 .addGap(18, 18, 18)
                                                                 .addGroup(jPanel1Layout.createParallelGroup(
                                                                                 javax.swing.GroupLayout.Alignment.LEADING)
                                                                                 .addComponent(btnCrearMateria)
-                                                                                .addComponent(btnModificarMateria))
-                                                                .addGap(0, 0, Short.MAX_VALUE)));
+                                                                                .addComponent(btnModificarMateria)
+                                                                                .addComponent(btnEliminarMateria)
+                                                                                .addComponent(btnCalculadoraNotas))));
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
@@ -523,6 +560,28 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
+        private void btnEliminarMateriaActionPerformed(java.awt.event.ActionEvent evt) {
+                int continuar = JOptionPane.showConfirmDialog(null,
+                                "¿Está seguro de borrar " + materiaSeleccionada.getNombre() + "?",
+                                "Confirmar acción", JOptionPane.YES_NO_OPTION);
+                if (continuar == JOptionPane.YES_OPTION) {
+                        eliminarMateria();
+                } else {
+                        tbInfoMaterias.clearSelection();
+                        materiaSeleccionada = null;
+
+                        btnModificarMateria.setEnabled(activarBotones());
+                        btnEliminarMateria.setEnabled(activarBotones());
+                }
+
+        }
+
+        private void btnCalculadoraNotasActionPerformed(java.awt.event.ActionEvent evt) {
+                PantallaCalculadoraNotas panCalNot = new PantallaCalculadoraNotas();
+                panCalNot.setVisible(true);
+                this.setVisible(false);
+        }
+
         private void tbInfoMateriasMouseClicked(java.awt.event.MouseEvent evt) {
                 int selectedRow = tbInfoMaterias.getSelectedRow();
                 String nombreMateria = tbInfoMaterias.getValueAt(selectedRow, 0).toString();
@@ -530,9 +589,11 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                 String descripcionMateria = tbInfoMaterias.getValueAt(selectedRow, 2).toString();
                 String profesorMateria = tbInfoMaterias.getValueAt(selectedRow, 3).toString();
 
-                materiaEditar = new Materia(nombreMateria, notaMateria, profesorMateria, descripcionMateria);
+                materiaSeleccionada = new Materia(nombreMateria, notaMateria, profesorMateria, descripcionMateria);
 
-                btnModificarMateria.setEnabled(deshabilitarBotonModificarMateria());
+                btnModificarMateria.setEnabled(activarBotones());
+
+                btnEliminarMateria.setEnabled(activarBotones());
         }
 
         private void btnModificarMateriaActionPerformed(java.awt.event.ActionEvent evt) {
@@ -560,7 +621,9 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
         }
 
         private void btnSesionesActionPerformed(java.awt.event.ActionEvent evt) {
-                JOptionPane.showMessageDialog(null, "YA SE ENCUENTRA EN ESTA PESTAÑA");
+                PantallaSesionesEstudiante panSesEst = new PantallaSesionesEstudiante();
+                panSesEst.setVisible(true);
+                this.setVisible(false);
         }
 
         private void btnCambiarCuentaActionPerformed(java.awt.event.ActionEvent evt) {
@@ -583,11 +646,13 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
         }
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
+        private javax.swing.JButton btnCalculadoraNotas;
         private javax.swing.JButton btnCalendario;
         private javax.swing.JButton btnCambiarCuenta;
         private javax.swing.JButton btnCerrar;
         private javax.swing.JButton btnCrearMateria;
         private javax.swing.JButton btnCuenta;
+        private javax.swing.JButton btnEliminarMateria;
         private javax.swing.JButton btnModificarMateria;
         private javax.swing.JButton btnSesiones;
         private javax.swing.JLabel jLabel1;

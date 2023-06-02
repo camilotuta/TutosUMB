@@ -6,18 +6,14 @@ package VISUAL.Pantallas.Estudiante;
 
 import VISUAL.Pantallas.General.PantallaInicio;
 import VISUAL.Pantallas.General.PantallaRegistro;
-import CODE.Clases.Sesion;
+import CODE.Clases.Conexion;
 import java.awt.Toolkit;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -28,7 +24,10 @@ import javax.swing.JTextField;
 // TODO: HACER UN GENERADOR DE LINKS PARA SESIONES DE TEAMS
 public class PantallaCalendarioEstudiante extends javax.swing.JFrame {
 
-    String materia, fecha, hora, fechaHoraMateria, estado = "En proceso";
+    String materia, fecha, hora, fechaHoraMateria, estado = "En proceso", link = "Pendiente";
+    Conexion cx;
+
+    String correo = PantallaRegistro.correoPoner;
 
     /**
      * Creates new form PantallaCalendarioEstudiante
@@ -44,12 +43,13 @@ public class PantallaCalendarioEstudiante extends javax.swing.JFrame {
 
         tfFechaNuevaSesion.setEditable(false);
         tfFechaNuevaSesion.setHorizontalAlignment(JTextField.CENTER);
-        tfFechaNuevaSesion.setText("SELECCIONE EL DIA.");
         btnSolicitar.setEnabled(desactivarBotonSolicitar());
 
         jCalendar.setMinSelectableDate(new Date());
 
         ponerMateriasComboBox();
+
+        tfFechaNuevaSesion.setText("SELECCIONE EL DIA.");
     }
 
     public void cambiarTexto() {
@@ -81,62 +81,81 @@ public class PantallaCalendarioEstudiante extends javax.swing.JFrame {
     }
 
     public void ponerMateriasComboBox() {
+        cx = new Conexion();
+        String sql = "SELECT * FROM gestorestudio WHERE tipo = 0 AND correo = '" + correo + "'";
+
         try {
-            String rutaCompleta = System.getProperty("user.home") + "/Documents/"
-                    + PantallaRegistro.correoPoner
-                    + "Materias" + ".txt";
-            FileReader archivo = new FileReader(rutaCompleta);
-            try (BufferedReader lectura = new BufferedReader(archivo)) {
-                String linea = lectura.readLine();
+            cx.con = Conexion.getConection();
+            cx.stmt = cx.con.createStatement();
+            cx.rs = cx.stmt.executeQuery(sql);
 
-                String texto = "";
-
-                while (linea != null) {
-                    texto += linea + "%";
-                    // fila = linea.split("%");
-                    // modelo.addRow(fila);
-                    linea = lectura.readLine();
-                }
-
-                if (!texto.isEmpty() && !texto.startsWith("%")) {
-                    String infoMateria[] = texto.split("%");
-
-                    ArrayList<String> nombreMaterias = new ArrayList<String>();
-
-                    for (int i = 0; i < infoMateria.length; i++) {
-                        if (i % 4 == 0) {
-                            nombreMaterias.add(infoMateria[i]);
-                        }
-                    }
-                    if (nombreMaterias.size() > 0) {
-                        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(
-                                nombreMaterias.toArray(new String[0]));
-                        cbMateria.setModel(model);
-                    } else {
-                        cbMateria.setModel(new DefaultComboBoxModel<String>());
-                    }
-                } else {
-                    tfFechaNuevaSesion.setEnabled(false);
-                    cbHora.setEnabled(false);
-                    cbMateria.setEnabled(false);
-                    btnSolicitar.setEnabled(false);
-                    jCalendar.setEnabled(false);
-
-                    int continuar = JOptionPane.showConfirmDialog(null, "¿Desea agregar sus materias?",
-                            "Confirmar acción", JOptionPane.YES_NO_OPTION);
-
-                    if ((continuar == JOptionPane.YES_OPTION)) {
-                        PantallaMateriasEstudiante panMatEst = new PantallaMateriasEstudiante();
-                        panMatEst.setVisible(true);
-                        this.setVisible(false);
-                    }
-                }
-
-            } catch (Exception e) {
+            String texto = "";
+            while (cx.rs.next()) {
+                String nombreMateria = cx.rs.getString(3); // Obtener el valor de la columna 3
+                cbMateria.addItem(nombreMateria);
+                texto += nombreMateria + " ";
             }
-        } catch (FileNotFoundException e) {
-        }
 
+            if (texto.isEmpty()) {
+                tfFechaNuevaSesion.setEnabled(false);
+                cbHora.setEnabled(false);
+                cbMateria.setEnabled(false);
+                btnSolicitar.setEnabled(false);
+                jCalendar.setEnabled(false);
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            try {
+                if (cx.rs != null) {
+                    cx.rs.close();
+                }
+                if (cx.stmt != null) {
+                    cx.stmt.close();
+                }
+                if (cx.con != null) {
+                    cx.con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    public void crearSesion() {
+        int tipo = 1;
+        String fechaPoner = fecha + " " + hora;
+
+        cx = new Conexion();
+        try {
+            cx.con = Conexion.getConection();
+            if (cx.con == null) {
+                JOptionPane.showMessageDialog(null,
+                        "No se pudo establecer una conexión a la base de datos.");
+            } else {
+                cx.stmt = cx.con.createStatement();
+                cx.stmt.executeUpdate(
+                        "INSERT INTO gestorestudio(correo, tipo,dato1, dato2, dato3,dato4) VALUES('"
+                                + correo + "','" + tipo + "','"
+                                + materia + "','"
+                                + link + "','" + fechaPoner + "','" + estado + "')");
+
+                JOptionPane.showMessageDialog(null, "SE HIZO LA SOLICITUD.");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        } finally {
+            if (cx.con != null) {
+                try {
+                    cx.con.close();
+                    cx.stmt.close();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                }
+            }
+        }
     }
 
     /**
@@ -403,13 +422,8 @@ public class PantallaCalendarioEstudiante extends javax.swing.JFrame {
     }
 
     private void btnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {
-        String link = "Pendiente";
-        fecha = fecha + " " + hora;
-
-        Sesion sesion = new Sesion(materia, link, fecha, estado);
-
-        PantallaRegistro.archivoSesiones.escribirEnArchivoSesiones(sesion);
-        JOptionPane.showMessageDialog(null, "SE HIZO LA SOLICITUD.");
+        crearSesion();
+        btnSolicitar.setEnabled(false);
     }
 
     /**

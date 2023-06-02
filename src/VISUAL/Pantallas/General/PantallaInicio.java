@@ -80,10 +80,6 @@ public class PantallaInicio extends javax.swing.JFrame {
                     PanPanelAdmin.setVisible(true);
                     this.setVisible(false);
                 } else if (tomarTipoUsuario() == 1) {
-                    PantallaRegistro.archivoSesiones.crearArchivo("Sesiones");
-                    PantallaRegistro.archivoMaterias.crearArchivo("Materias");
-                    PantallaRegistro.archivoTareas.crearArchivo("Tareas");
-
                     PantallaBienvenidaEstudiante pBie = new PantallaBienvenidaEstudiante();
                     pBie.setVisible(true);
                     this.setVisible(false);

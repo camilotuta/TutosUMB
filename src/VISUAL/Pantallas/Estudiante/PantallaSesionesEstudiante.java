@@ -8,12 +8,14 @@ package VISUAL.Pantallas.Estudiante;
 import VISUAL.Pantallas.General.PantallaInicio;
 import VISUAL.Pantallas.General.PantallaRegistro;
 import java.awt.Toolkit;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
+
+import CODE.Clases.Conexion;
 
 /**
  *
@@ -35,40 +37,47 @@ public class PantallaSesionesEstudiante extends javax.swing.JFrame {
                 this.setLocationRelativeTo(null);
                 this.setTitle("SESIONES PROGRAMADAS");
                 this.setResizable(false);
-                cargarModelo();
+                mostrarTablaMaterias();
                 setIconImage(Toolkit.getDefaultToolkit()
                                 .getImage(getClass().getResource("/VISUAL/Imagenes/Logos/icon.png")));
         }
 
-        private void cargarModelo() {
+        public void mostrarTablaMaterias() {
+                String correo = PantallaRegistro.correoPoner;
                 try {
-                        modelo.addColumn("MATERIA");
-                        modelo.addColumn("LINK");
-                        modelo.addColumn("FECHA");
-                        modelo.addColumn("ESTADO");
-                        tbSesionesProgramadas.setModel(modelo);
-                        cargarArchivo();
-                } catch (IOException e) {
-                }
-        }
+                        Conexion cx = new Conexion();
+                        String sql = "SELECT * FROM gestorestudio WHERE tipo = 1 AND correo = '" + correo + "'";
 
-        private void cargarArchivo() throws IOException {
-                String fila[];
-                try {
-                        String rutaCompleta = System.getProperty("user.home") + "/Documents/"
-                                        + PantallaRegistro.correoPoner
-                                        + "Sesiones" + ".txt";
-                        FileReader archivo = new FileReader(rutaCompleta);
-                        try (BufferedReader lectura = new BufferedReader(archivo)) {
-                                String linea = lectura.readLine();
+                        cx.con = Conexion.getConection();
+                        cx.stmt = cx.con.createStatement();
+                        cx.rs = cx.stmt.executeQuery(sql);
 
-                                while (linea != null) {
-                                        fila = linea.split("%");
-                                        modelo.addRow(fila);
-                                        linea = lectura.readLine();
+                        // Crear un modelo de tabla
+                        DefaultTableModel tableModel = new DefaultTableModel();
+
+                        // Agregar las columnas al modelo
+                        ResultSetMetaData metaData = (ResultSetMetaData) cx.rs.getMetaData();
+                        int columnCount = metaData.getColumnCount();
+
+                        tableModel.addColumn("MATERIA");
+                        tableModel.addColumn("LINK");
+                        tableModel.addColumn("FECHA");
+                        tableModel.addColumn("ESTADO");
+                        tbSesionesProgramadas.setModel(tableModel);
+
+                        while (cx.rs.next()) {
+                                Object[] row = new Object[columnCount - 2]; // Ignorar las primeras 2 columnas
+                                for (int i = 3; i <= columnCount; i++) {
+                                        row[i - 3] = cx.rs.getObject(i); // Restar 3 para ajustar el índice del arreglo
+                                                                         // row
                                 }
+                                tableModel.addRow(row);
                         }
-                } catch (FileNotFoundException e) {
+
+                        tbSesionesProgramadas.setModel(tableModel);
+
+                } catch (SQLException e) {
+                        e.printStackTrace();
                 }
         }
 

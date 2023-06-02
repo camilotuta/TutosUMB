@@ -19,6 +19,8 @@ import VISUAL.Pantallas.General.PantallaInicio;
  *
  * @author tutaa
  */
+// TODO: CREAR SISTEMA QUE CUANDO UNA CUENTA DURE MAS DE 3 MESES DE USO, LA
+// BORRE
 public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
 
     /**

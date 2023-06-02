@@ -29,7 +29,7 @@ public class PantallaModificarMateria extends javax.swing.JFrame {
      */
     Color color;
 
-    private Materia materiaModificar = PantallaMateriasEstudiante.materiaEditar;
+    private Materia materiaModificar = PantallaMateriasEstudiante.materiaSeleccionada;
 
     public PantallaModificarMateria() {
         initComponents();
@@ -42,12 +42,6 @@ public class PantallaModificarMateria extends javax.swing.JFrame {
         tomarNombres();
         ponerDatosMateria();
         cambiarColores();
-    }
-
-    private void limpiar() {
-        tfNombre.setText("");
-        tfNota.setText("");
-        tfDescripcion.setText("");
     }
 
     public boolean habilitarBotonConfirmar() {
@@ -65,35 +59,51 @@ public class PantallaModificarMateria extends javax.swing.JFrame {
     }
 
     public void modificarMateria() {
+        String correo = PantallaRegistro.correoPoner;
+        Conexion cx = new Conexion();
+        cx.con = Conexion.getConection();
+
+        String nombreMateriaAntigua = materiaModificar.getNombre();
+        double notaMateriaAntigua = materiaModificar.getNota();
+        String descripcionMateriaAntigua = materiaModificar.getDescripcion();
+        String profesorMateriaAntigua = materiaModificar.getProfesor();
+
+        String nombreMateriaNueva = tfNombre.getText();
+        double notaMateriaNueva = Double.parseDouble(tfNota.getText());
+        String descripcionMateriaNueva = tfDescripcion.getText();
+        String profesorMateriaNueva = cbNombreProfesor.getSelectedItem().toString();
+
         try {
-            String textoMateriaModificar = materiaModificar.getNombre() + "%" + materiaModificar.getNota() + "%"
-                    + materiaModificar.getProfesor() + "%" + materiaModificar.getDescripcion();
+            String sql = "UPDATE gestorestudio SET dato1 = ?, dato2 = ?, dato3 = ?, dato4 = ? WHERE correo = ? AND tipo = ? AND dato1 = ? AND dato2 = ? AND dato3 = ? AND dato4 = ?";
+            cx.ps = cx.con.prepareStatement(sql);
+            cx.ps.setString(1, nombreMateriaNueva);
+            cx.ps.setDouble(2, notaMateriaNueva);
+            cx.ps.setString(3, profesorMateriaNueva);
+            cx.ps.setString(4, descripcionMateriaNueva);
+            cx.ps.setString(5, correo);
+            cx.ps.setInt(6, 0);
+            cx.ps.setString(7, nombreMateriaAntigua);
+            cx.ps.setDouble(8, notaMateriaAntigua);
+            cx.ps.setString(9, profesorMateriaAntigua);
+            cx.ps.setString(10, descripcionMateriaAntigua);
 
-            String nombreMateria = tfNombre.getText();
-            double notaMateria = Double.parseDouble(tfNota.getText());
-            String descripcionMateria = tfDescripcion.getText();
-            String nombreProfesor = cbNombreProfesor.getSelectedItem().toString();
+            cx.ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "SU MATERIA HA SIDO ACTUALIZADA.");
 
-            Materia nuevaMateria = new Materia(nombreMateria, notaMateria, descripcionMateria,
-                    nombreProfesor);
+            PantallaMateriasEstudiante panMatEst = new PantallaMateriasEstudiante();
+            panMatEst.setVisible(true);
 
-            PantallaRegistro.archivoMaterias.escribirEnArchivoMaterias(nuevaMateria);
-            JOptionPane.showMessageDialog(null,
-                    "LA MATERIA " + nombreMateria.toUpperCase() + " SE CREO CORRECTAMENTE.");
-
-            int continuar = JOptionPane.showConfirmDialog(null,
-                    "¿Desea continuar en esta pantalla?",
-                    "Confirmar acción", JOptionPane.YES_NO_OPTION);
-
-            if (!(continuar == JOptionPane.YES_OPTION)) {
-                PantallaMateriasEstudiante panMatEst = new PantallaMateriasEstudiante();
-                panMatEst.setVisible(true);
-                this.setVisible(false);
-            } else {
-                limpiar();
+            this.setVisible(false);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cx.con != null) {
+                    cx.con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
         }
     }
 

@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
-import CODE.Clases.Archivo;
 import CODE.Clases.Conexion;
 import CODE.Clases.EnviarCorreo;
 
@@ -30,8 +29,6 @@ public class PantallaRegistro extends javax.swing.JFrame {
     public static String correoPoner = "", contraseñaPoner = "";
     public static int intentos = 3;
 
-    public static Archivo archivoSesiones = new Archivo(), archivoMaterias = new Archivo(),
-            archivoTareas = new Archivo();
 
     public PantallaRegistro() {
         initComponents();
@@ -134,12 +131,6 @@ public class PantallaRegistro extends javax.swing.JFrame {
 
                     correoPoner = correo;
                     contraseñaPoner = contraseña;
-
-                    archivoSesiones.crearArchivo("Sesiones");
-
-                    archivoMaterias.crearArchivo("Materias");
-
-                    archivoTareas.crearArchivo("Tareas");
 
                     JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "¡AVISO!",
                             javax.swing.JOptionPane.INFORMATION_MESSAGE);
