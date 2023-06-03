@@ -218,11 +218,10 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
         // Code">//GEN-BEGIN:initComponents
         private void initComponents() {
 
-                popupMenu1 = new java.awt.PopupMenu();
-                popupMenu2 = new java.awt.PopupMenu();
                 jPanel1 = new javax.swing.JPanel();
                 jScrollPane1 = new javax.swing.JScrollPane();
                 tbInfoMaterias = new javax.swing.JTable();
@@ -244,10 +243,6 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                 btnEliminarMateria = new javax.swing.JButton();
                 btnCalculadoraNotas = new javax.swing.JButton();
 
-                popupMenu1.setLabel("popupMenu1");
-
-                popupMenu2.setLabel("popupMenu2");
-
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
                 jPanel1.setBackground(new java.awt.Color(247, 251, 252));
@@ -265,14 +260,14 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
                                 new String[] {
                                                 "MATERIA", "MENSAJE", "FECHA"
                                 }) {
-                        Class[] types = new Class[] {
+                        Class<?>[] types = new Class<?>[] {
                                         java.lang.String.class, java.lang.String.class, java.lang.String.class
                         };
                         boolean[] canEdit = new boolean[] {
                                         false, false, false
                         };
 
-                        public Class getColumnClass(int columnIndex) {
+                        public Class<?> getColumnClass(int columnIndex) {
                                 return types[columnIndex];
                         }
 
@@ -665,8 +660,6 @@ public class PantallaMateriasEstudiante extends javax.swing.JFrame {
         private javax.swing.JLabel lbDesviacionEstandar;
         private javax.swing.JLabel lbPeriodo;
         private javax.swing.JLabel lbPromedio;
-        private java.awt.PopupMenu popupMenu1;
-        private java.awt.PopupMenu popupMenu2;
         private javax.swing.JTable tbInfoMaterias;
         // End of variables declaration//GEN-END:variables
 }
