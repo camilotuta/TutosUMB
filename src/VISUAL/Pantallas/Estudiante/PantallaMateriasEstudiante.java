@@ -26,7 +26,6 @@ import CODE.Clases.Materia;
  * @author tutaa
  */
 
-// TODO: HACER CALCULADORA DE NOTAS
 public class PantallaMateriasEstudiante extends javax.swing.JFrame {
 
         public static Materia materiaSeleccionada;

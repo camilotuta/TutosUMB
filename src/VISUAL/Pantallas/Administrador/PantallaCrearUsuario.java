@@ -6,6 +6,7 @@ package VISUAL.Pantallas.Administrador;
 
 import java.awt.Toolkit;
 import java.sql.SQLException;
+import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 
@@ -18,6 +19,9 @@ import CODE.Clases.Conexion;
 public class PantallaCrearUsuario extends javax.swing.JFrame {
 
         Conexion cx;
+        Calendar calendario = Calendar.getInstance();
+        int mesActual = calendario.get(Calendar.MONTH);
+        String correo = "";
 
         /**
          * Creates new form PantallaCrearUsuario
@@ -33,7 +37,7 @@ public class PantallaCrearUsuario extends javax.swing.JFrame {
 
         public void crearUsuario() {
                 String nombre = tfNombre.getText();
-                String correo = tfCorreo.getText();
+                correo = tfCorreo.getText();
                 String contraseña = tfContraseña.getText();
                 String biografia = tfBiografia.getText();
                 String tipoSeleccion[] = cbTipoUsuario.getSelectedItem().toString().split(" ");
@@ -53,6 +57,7 @@ public class PantallaCrearUsuario extends javax.swing.JFrame {
                                                                 + contraseña + "','"
                                                                 + biografia + "','" + tipoUsuario + "')");
                         }
+                        crearUltimaConexion();
                         JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "¡AVISO!",
                                         javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
@@ -62,6 +67,33 @@ public class PantallaCrearUsuario extends javax.swing.JFrame {
 
                 } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
+                } finally {
+                        if (cx.con != null) {
+                                try {
+                                        cx.con.close();
+                                        cx.stmt.close();
+                                } catch (Exception e) {
+                                        JOptionPane.showMessageDialog(null, e.getMessage());
+                                }
+                        }
+                }
+        }
+
+        public void crearUltimaConexion() {
+                cx = new Conexion();
+
+                try {
+                        cx.con = Conexion.getConection();
+                        if (cx.con == null) {
+                                JOptionPane.showMessageDialog(null,
+                                                "No se pudo establecer una conexión a la base de datos.");
+                        } else {
+                                cx.stmt = cx.con.createStatement();
+                                cx.stmt.executeUpdate(
+                                                "INSERT INTO ultimaconexion(correo, conexion) VALUES('"
+                                                                + correo + "','" + mesActual + "')");
+                        }
+                } catch (SQLException ex) {
                 } finally {
                         if (cx.con != null) {
                                 try {

@@ -28,6 +28,8 @@ public class PantallaInicio extends javax.swing.JFrame {
      * Creates new form PantallaInicio
      */
     Conexion cx;
+    Calendar calendario = Calendar.getInstance();
+    int mesActual = calendario.get(Calendar.MONTH);
 
     public PantallaInicio() {
         initComponents();
@@ -77,6 +79,8 @@ public class PantallaInicio extends javax.swing.JFrame {
                 PantallaRegistro.correoPoner = correo;
                 PantallaRegistro.contraseñaPoner = contraseña;
 
+                actualizarUltimaConexion();
+
                 if (tomarTipoUsuario() == 0) {
                     PantallaPanelDeControlAdministrativo PanPanelAdmin = new PantallaPanelDeControlAdministrativo();
                     PanPanelAdmin.setVisible(true);
@@ -102,6 +106,30 @@ public class PantallaInicio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,
                     "OCURRIÓ UN ERROR\n FAVOR COMUNICARSE CON EL ADMINISTRADOR", "AVISO!",
                     javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void actualizarUltimaConexion() {
+        String correo = tfCorreo.getText().toLowerCase();
+        cx = new Conexion();
+        cx.con = Conexion.getConection();
+        try {
+            String sql = "UPDATE ultimaconexion SET conexion = ? WHERE correo = ?";
+            cx.ps = cx.con.prepareStatement(sql);
+            cx.ps.setInt(1, mesActual);
+            cx.ps.setString(2, correo);
+
+            cx.ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cx.con != null) {
+                    cx.con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 

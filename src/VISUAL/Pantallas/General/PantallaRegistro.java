@@ -6,6 +6,7 @@ package VISUAL.Pantallas.General;
 
 import java.awt.Toolkit;
 import java.sql.*;
+import java.util.Calendar;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +30,8 @@ public class PantallaRegistro extends javax.swing.JFrame {
     public static String correoPoner = "", contraseñaPoner = "";
     public static int intentos = 3;
     Conexion cx;
+    Calendar calendario = Calendar.getInstance();
+    int mesActual = calendario.get(Calendar.MONTH);
 
     public PantallaRegistro() {
         initComponents();
@@ -132,6 +135,8 @@ public class PantallaRegistro extends javax.swing.JFrame {
                     correoPoner = correo;
                     contraseñaPoner = contraseña;
 
+                    crearUltimaConexion();
+
                     JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "¡AVISO!",
                             javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
@@ -156,7 +161,34 @@ public class PantallaRegistro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "LAS CONTRASEÑAS DEBEN COINCIDIR", "AVISO!",
                     javax.swing.JOptionPane.INFORMATION_MESSAGE);
         }
+    }
 
+    public void crearUltimaConexion() {
+        cx = new Conexion();
+
+        try {
+            cx.con = Conexion.getConection();
+            if (cx.con == null) {
+                JOptionPane.showMessageDialog(null,
+                        "No se pudo establecer una conexión a la base de datos.");
+            } else {
+                cx.stmt = cx.con.createStatement();
+                cx.stmt.executeUpdate(
+                        "INSERT INTO ultimaconexion(correo, conexion) VALUES('"
+                                + correoPoner + "','" + mesActual + "')");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PantallaRegistro.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (cx.con != null) {
+                try {
+                    cx.con.close();
+                    cx.stmt.close();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                }
+            }
+        }
     }
 
     public boolean habilitarBotonVerificar() {
@@ -186,6 +218,7 @@ public class PantallaRegistro extends javax.swing.JFrame {
                     text += listaCodigo[i];
                 }
             }
+            System.out.println("The text is: " + text);
 
             String asunto = "Verificación de correo electrónico en TutosUMB";
             String mensaje = "&#x1F44B; Hola, " + nombre + ".<br><br>"
