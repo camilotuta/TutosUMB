@@ -29,7 +29,6 @@ public class PantallaInicio extends javax.swing.JFrame {
      */
     Conexion cx;
     Calendar calendario = Calendar.getInstance();
-    int mesActual = calendario.get(Calendar.MONTH);
 
     public PantallaInicio() {
         initComponents();
@@ -116,7 +115,7 @@ public class PantallaInicio extends javax.swing.JFrame {
         try {
             String sql = "UPDATE ultimaconexion SET conexion = ? WHERE correo = ?";
             cx.ps = cx.con.prepareStatement(sql);
-            cx.ps.setInt(1, mesActual);
+            cx.ps.setInt(1, PantallaRegistro.mesActual);
             cx.ps.setString(2, correo);
 
             cx.ps.executeUpdate();

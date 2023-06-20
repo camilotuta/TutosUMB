@@ -20,7 +20,7 @@ import CODE.Clases.EnviarCorreo;
  *
  * @author tutaa
  */
-// TODO: CREAR UNA IMGANEN POR DEFECTO
+// TODO: CREAR UNA IMAGEN POR DEFECTO
 public class PantallaRegistro extends javax.swing.JFrame {
 
     /**
@@ -28,10 +28,9 @@ public class PantallaRegistro extends javax.swing.JFrame {
      */
     private String codigo;
     public static String correoPoner = "", contraseñaPoner = "";
-    public static int intentos = 3;
+    static Calendar calendario = Calendar.getInstance();
+    public static int intentos = 3, mesActual = (calendario.get(Calendar.MONTH) + 1);
     Conexion cx;
-    Calendar calendario = Calendar.getInstance();
-    int mesActual = calendario.get(Calendar.MONTH);
 
     public PantallaRegistro() {
         initComponents();
@@ -218,7 +217,6 @@ public class PantallaRegistro extends javax.swing.JFrame {
                     text += listaCodigo[i];
                 }
             }
-            System.out.println("The text is: " + text);
 
             String asunto = "Verificación de correo electrónico en TutosUMB";
             String mensaje = "&#x1F44B; Hola, " + nombre + ".<br><br>"

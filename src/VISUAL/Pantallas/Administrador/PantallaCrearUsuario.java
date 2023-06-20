@@ -6,11 +6,11 @@ package VISUAL.Pantallas.Administrador;
 
 import java.awt.Toolkit;
 import java.sql.SQLException;
-import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 
 import CODE.Clases.Conexion;
+import VISUAL.Pantallas.General.PantallaRegistro;
 
 /**
  *
@@ -19,8 +19,6 @@ import CODE.Clases.Conexion;
 public class PantallaCrearUsuario extends javax.swing.JFrame {
 
         Conexion cx;
-        Calendar calendario = Calendar.getInstance();
-        int mesActual = calendario.get(Calendar.MONTH);
         String correo = "";
 
         /**
@@ -91,7 +89,7 @@ public class PantallaCrearUsuario extends javax.swing.JFrame {
                                 cx.stmt = cx.con.createStatement();
                                 cx.stmt.executeUpdate(
                                                 "INSERT INTO ultimaconexion(correo, conexion) VALUES('"
-                                                                + correo + "','" + mesActual + "')");
+                                                                + correo + "','" + PantallaRegistro.mesActual + "')");
                         }
                 } catch (SQLException ex) {
                 } finally {

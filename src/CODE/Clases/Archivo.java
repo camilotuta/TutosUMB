@@ -58,5 +58,4 @@ public class Archivo {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-
 }
