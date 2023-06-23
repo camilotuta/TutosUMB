@@ -23,6 +23,8 @@ import VISUAL.Pantallas.General.PantallaRegistro;
  *
  * @author tutaa
  */
+
+// TODO: ORDENAR MÉTODOS
 public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
 
     /**
@@ -34,8 +36,6 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
 
     public PantallaPanelDeControlAdministrativo() {
         initComponents();
-        mostrarTablaEstudiantes();
-        mostrarTablaUltimaConexion();
         this.setLocationRelativeTo(null);
         this.setTitle("PANEL DE CONTROL ADMINISTRATIVO");
         this.setResizable(false);
@@ -48,6 +48,11 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
 
     public boolean habilitarBotones() {
         return !tfNombreEstudiante.getText().equals("Ninguno");
+    }
+
+    public void mostrarTablas() {
+        mostrarTablaEstudiantes();
+        mostrarTablaUltimaConexion();
     }
 
     public void mostrarTablaEstudiantes() {
@@ -475,8 +480,7 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {
-        mostrarTablaEstudiantes();
-        mostrarTablaUltimaConexion();
+        mostrarTablas();
     }
 
     private void tbUsuariosMouseClicked(java.awt.event.MouseEvent evt) {
@@ -511,8 +515,7 @@ public class PantallaPanelDeControlAdministrativo extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {
         eliminarCuentaTodasTablas(correoSeleccionado);
-        mostrarTablaEstudiantes();
-        mostrarTablaUltimaConexion();
+        mostrarTablas();
         btnEditar.setEnabled(habilitarBotones());
         btnEliminar.setEnabled(habilitarBotones());
     }
